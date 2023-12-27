@@ -14,6 +14,8 @@
 		F9D6B06A2B374A270063F634 /* MidiControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0692B374A270063F634 /* MidiControlTests.swift */; };
 		F9D6B0742B374A280063F634 /* MidiControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0732B374A280063F634 /* MidiControlUITests.swift */; };
 		F9D6B0762B374A280063F634 /* MidiControlUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0752B374A280063F634 /* MidiControlUITestsLaunchTests.swift */; };
+		F9D6B0852B39B7470063F634 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0842B39B7470063F634 /* List.swift */; };
+		F9D6B0872B39D38D0063F634 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0862B39D38D0063F634 /* PreviewContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		F9D6B06F2B374A280063F634 /* MidiControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MidiControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D6B0732B374A280063F634 /* MidiControlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlUITests.swift; sourceTree = "<group>"; };
 		F9D6B0752B374A280063F634 /* MidiControlUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F9D6B0842B39B7470063F634 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		F9D6B0862B39D38D0063F634 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				F9D6B05B2B374A270063F634 /* Assets.xcassets */,
 				F9D6B0602B374A270063F634 /* MidiControl.entitlements */,
 				F9D6B05D2B374A270063F634 /* Preview Content */,
+				F9D6B0842B39B7470063F634 /* List.swift */,
+				F9D6B0862B39D38D0063F634 /* PreviewContainer.swift */,
 			);
 			path = MidiControl;
 			sourceTree = "<group>";
@@ -261,6 +267,8 @@
 			files = (
 				F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */,
 				F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */,
+				F9D6B0872B39D38D0063F634 /* PreviewContainer.swift in Sources */,
+				F9D6B0852B39B7470063F634 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

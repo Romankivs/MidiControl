@@ -67,6 +67,8 @@ struct ContentView: View {
                     "Test field",
                     text: $testInput
             )
+            MidiList()
+                .modelContainer(for: [MidiToStroke.self])
         }
         .padding()
         .alert("Enable accessibility", isPresented: $showAccessabilityAlert) {
