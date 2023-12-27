@@ -21,9 +21,10 @@ class KeyStroke {
         self.keyDown = keyDown
     }
 
+    var creationDate: Date = Date.now
     var keyCode: CGKeyCode
     var keyDown: Bool
-    var stroke: MidiToStroke?
+    var midiStroke: MidiToStroke?
 }
 
 @Model
@@ -33,12 +34,22 @@ class MidiToStroke {
         self.stroke = stroke
     }
 
+    var creationDate: Date = Date.now
     var name: String
-    @Relationship(deleteRule: .cascade) var stroke: [KeyStroke]
+    @Relationship(deleteRule: .cascade, inverse: \KeyStroke.midiStroke) var stroke: [KeyStroke]
 }
 
 struct MidiList: View {
+    func saveContext() {
+        do {
+            try context.save()
+        } catch {
+            print("Context save error: \(error.localizedDescription)")
+        }
+    }
+
     @State private var selectedStroke: MidiToStroke?
+    @State private var selectedKey: KeyStroke?
 
     @Environment(\.modelContext) private var context
     @Query var strokes: [MidiToStroke]
@@ -47,31 +58,23 @@ struct MidiList: View {
         HStack {
             VStack {
                 Button("Add") {
-                    let strokes = [KeyStroke(keyCode: 11, keyDown: false),
-                                   KeyStroke(keyCode: 22, keyDown: true),
-                                   KeyStroke(keyCode: 33, keyDown: false)]
-                    let element = MidiToStroke(name: randomString(length: 5), stroke: strokes)
-                    do {
-                        context.insert(element)
-                        try context.save()
-                    }
-                    catch {
-                        print("Add: \(error)")
-                    }
+                    let element = MidiToStroke(name: "fff", stroke: [])
+                    context.insert(element)
+                    saveContext()
                 }
                 Button("Delete") {
-                    if let selectedStroke = selectedStroke {
-                        do {
-                            context.delete(selectedStroke)
-                            try context.save()
-                        }
-                        catch {
-                            print("Delete: \(error)")
+                    if let selected = selectedStroke {
+                        context.delete(selected)
+                        saveContext()
+                        if !strokes.isEmpty {
+                            selectedStroke = strokes[0]
                         }
                     }
                 }
                 List(strokes, id: \.self, selection: $selectedStroke) { stroke in
                     Text(stroke.name)
+                }.onChange(of: selectedStroke) {
+                    print(selectedStroke?.stroke ?? "Empty")
                 }
             }
 
@@ -82,14 +85,35 @@ struct MidiList: View {
                     .foregroundColor(.gray)
             }
 
-            if let selectedStroke = selectedStroke {
-                List(selectedStroke.stroke, id: \.self) { item in
-                    Text("\(item.keyCode)")
+            VStack {
+                Button("Add") {
+                    guard let selectedStroke = selectedStroke else { return }
+                    let stroke = KeyStroke(keyCode: 11, keyDown: false)
+                    selectedStroke.stroke.append(stroke)
+                    saveContext()
                 }
-            } else {
-                Text("Select a midi combination")
-                    .foregroundColor(.secondary)
-                    .padding()
+                Button("Delete") {
+                    if let selected = selectedKey {
+                        context.delete(selected)
+                        saveContext()
+                        if let selectedStroke = selectedStroke, !selectedStroke.stroke.isEmpty {
+                            selectedKey = selectedStroke.stroke[0]
+                        }
+                    }
+                }
+                if let selectedStroke = selectedStroke {
+                    List(selectedStroke.stroke, id: \.self, selection: $selectedKey) { item in
+                        Text("\(item.keyCode)")
+                    }
+                } else {
+                    List {
+                        VStack(alignment: .center) {
+                            Text("Select a midi combination")
+                                .foregroundColor(.secondary)
+                                .padding()
+                        }
+                    }
+                }
             }
         }
         .padding()
