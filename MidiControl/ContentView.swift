@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-func verifyAccessibility() -> Bool {
-    return AXIsProcessTrusted();
-}
-
-func showAccessabilityPreferences() {
-    NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
-}
-
 class TextEntrySimulator {
     var timer: Timer?
 
@@ -29,8 +21,6 @@ class TextEntrySimulator {
 
     func typeText(_ text: String) {
         let eventSource = CGEventSource(stateID: .hidSystemState)
-
-        var test = verifyAccessibility();
 
         // Simulate typing characters
         for _ in text {
@@ -57,12 +47,11 @@ struct ContentView: View {
     // Create an instance of TextEntrySimulator to start the simulation
     let textEntrySimulator = TextEntrySimulator()
 
-    @State private var showAccessabilityAlert = !verifyAccessibility()
-
     @State private var testInput = ""
 
     var body: some View {
         VStack {
+            AccessibilityAlertView()
             TextField(
                     "Test field",
                     text: $testInput
@@ -70,16 +59,6 @@ struct ContentView: View {
             MidiList()
         }
         .padding()
-        .alert("Enable accessibility", isPresented: $showAccessabilityAlert) {
-            Button("OK") {
-                showAccessabilityPreferences()
-            }
-            Button("Not Now") {
-                // Do nothing...
-            }
-        } message: {
-            Text("Please enable accessibility for MidiControl. Without it the application won't be able to simulate key strokes.")
-        }
     }
 }
 

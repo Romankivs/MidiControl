@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F9545D0A2B3CAE5B008F8B29 /* AccessibilityAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */; };
 		F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0572B374A260063F634 /* MidiControlApp.swift */; };
 		F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0592B374A260063F634 /* ContentView.swift */; };
 		F9D6B05C2B374A270063F634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D6B05B2B374A270063F634 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityAlertView.swift; sourceTree = "<group>"; };
 		F9D6B0542B374A260063F634 /* MidiControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MidiControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D6B0572B374A260063F634 /* MidiControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlApp.swift; sourceTree = "<group>"; };
 		F9D6B0592B374A260063F634 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				F9D6B05D2B374A270063F634 /* Preview Content */,
 				F9D6B0842B39B7470063F634 /* List.swift */,
 				F9D6B0862B39D38D0063F634 /* PreviewContainer.swift */,
+				F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */,
 			);
 			path = MidiControl;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */,
 				F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */,
+				F9545D0A2B3CAE5B008F8B29 /* AccessibilityAlertView.swift in Sources */,
 				F9D6B0872B39D38D0063F634 /* PreviewContainer.swift in Sources */,
 				F9D6B0852B39B7470063F634 /* List.swift in Sources */,
 			);
