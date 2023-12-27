@@ -1,0 +1,586 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0572B374A260063F634 /* MidiControlApp.swift */; };
+		F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0592B374A260063F634 /* ContentView.swift */; };
+		F9D6B05C2B374A270063F634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D6B05B2B374A270063F634 /* Assets.xcassets */; };
+		F9D6B05F2B374A270063F634 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D6B05E2B374A270063F634 /* Preview Assets.xcassets */; };
+		F9D6B06A2B374A270063F634 /* MidiControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0692B374A270063F634 /* MidiControlTests.swift */; };
+		F9D6B0742B374A280063F634 /* MidiControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0732B374A280063F634 /* MidiControlUITests.swift */; };
+		F9D6B0762B374A280063F634 /* MidiControlUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0752B374A280063F634 /* MidiControlUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F9D6B0662B374A270063F634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9D6B04C2B374A260063F634 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F9D6B0532B374A260063F634;
+			remoteInfo = MidiControl;
+		};
+		F9D6B0702B374A280063F634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9D6B04C2B374A260063F634 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F9D6B0532B374A260063F634;
+			remoteInfo = MidiControl;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F9D6B0542B374A260063F634 /* MidiControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MidiControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9D6B0572B374A260063F634 /* MidiControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlApp.swift; sourceTree = "<group>"; };
+		F9D6B0592B374A260063F634 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F9D6B05B2B374A270063F634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F9D6B05E2B374A270063F634 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F9D6B0602B374A270063F634 /* MidiControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MidiControl.entitlements; sourceTree = "<group>"; };
+		F9D6B0652B374A270063F634 /* MidiControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MidiControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9D6B0692B374A270063F634 /* MidiControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlTests.swift; sourceTree = "<group>"; };
+		F9D6B06F2B374A280063F634 /* MidiControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MidiControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9D6B0732B374A280063F634 /* MidiControlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlUITests.swift; sourceTree = "<group>"; };
+		F9D6B0752B374A280063F634 /* MidiControlUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F9D6B0512B374A260063F634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9D6B0622B374A270063F634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9D6B06C2B374A280063F634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F9D6B04B2B374A260063F634 = {
+			isa = PBXGroup;
+			children = (
+				F9D6B0562B374A260063F634 /* MidiControl */,
+				F9D6B0682B374A270063F634 /* MidiControlTests */,
+				F9D6B0722B374A280063F634 /* MidiControlUITests */,
+				F9D6B0552B374A260063F634 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F9D6B0552B374A260063F634 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F9D6B0542B374A260063F634 /* MidiControl.app */,
+				F9D6B0652B374A270063F634 /* MidiControlTests.xctest */,
+				F9D6B06F2B374A280063F634 /* MidiControlUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F9D6B0562B374A260063F634 /* MidiControl */ = {
+			isa = PBXGroup;
+			children = (
+				F9D6B0572B374A260063F634 /* MidiControlApp.swift */,
+				F9D6B0592B374A260063F634 /* ContentView.swift */,
+				F9D6B05B2B374A270063F634 /* Assets.xcassets */,
+				F9D6B0602B374A270063F634 /* MidiControl.entitlements */,
+				F9D6B05D2B374A270063F634 /* Preview Content */,
+			);
+			path = MidiControl;
+			sourceTree = "<group>";
+		};
+		F9D6B05D2B374A270063F634 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F9D6B05E2B374A270063F634 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F9D6B0682B374A270063F634 /* MidiControlTests */ = {
+			isa = PBXGroup;
+			children = (
+				F9D6B0692B374A270063F634 /* MidiControlTests.swift */,
+			);
+			path = MidiControlTests;
+			sourceTree = "<group>";
+		};
+		F9D6B0722B374A280063F634 /* MidiControlUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F9D6B0732B374A280063F634 /* MidiControlUITests.swift */,
+				F9D6B0752B374A280063F634 /* MidiControlUITestsLaunchTests.swift */,
+			);
+			path = MidiControlUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F9D6B0532B374A260063F634 /* MidiControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9D6B0792B374A280063F634 /* Build configuration list for PBXNativeTarget "MidiControl" */;
+			buildPhases = (
+				F9D6B0502B374A260063F634 /* Sources */,
+				F9D6B0512B374A260063F634 /* Frameworks */,
+				F9D6B0522B374A260063F634 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MidiControl;
+			productName = MidiControl;
+			productReference = F9D6B0542B374A260063F634 /* MidiControl.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F9D6B0642B374A270063F634 /* MidiControlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9D6B07C2B374A280063F634 /* Build configuration list for PBXNativeTarget "MidiControlTests" */;
+			buildPhases = (
+				F9D6B0612B374A270063F634 /* Sources */,
+				F9D6B0622B374A270063F634 /* Frameworks */,
+				F9D6B0632B374A270063F634 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9D6B0672B374A270063F634 /* PBXTargetDependency */,
+			);
+			name = MidiControlTests;
+			productName = MidiControlTests;
+			productReference = F9D6B0652B374A270063F634 /* MidiControlTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F9D6B06E2B374A280063F634 /* MidiControlUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9D6B07F2B374A280063F634 /* Build configuration list for PBXNativeTarget "MidiControlUITests" */;
+			buildPhases = (
+				F9D6B06B2B374A280063F634 /* Sources */,
+				F9D6B06C2B374A280063F634 /* Frameworks */,
+				F9D6B06D2B374A280063F634 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9D6B0712B374A280063F634 /* PBXTargetDependency */,
+			);
+			name = MidiControlUITests;
+			productName = MidiControlUITests;
+			productReference = F9D6B06F2B374A280063F634 /* MidiControlUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F9D6B04C2B374A260063F634 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					F9D6B0532B374A260063F634 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					F9D6B0642B374A270063F634 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = F9D6B0532B374A260063F634;
+					};
+					F9D6B06E2B374A280063F634 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = F9D6B0532B374A260063F634;
+					};
+				};
+			};
+			buildConfigurationList = F9D6B04F2B374A260063F634 /* Build configuration list for PBXProject "MidiControl" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F9D6B04B2B374A260063F634;
+			productRefGroup = F9D6B0552B374A260063F634 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F9D6B0532B374A260063F634 /* MidiControl */,
+				F9D6B0642B374A270063F634 /* MidiControlTests */,
+				F9D6B06E2B374A280063F634 /* MidiControlUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F9D6B0522B374A260063F634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9D6B05F2B374A270063F634 /* Preview Assets.xcassets in Resources */,
+				F9D6B05C2B374A270063F634 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9D6B0632B374A270063F634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9D6B06D2B374A280063F634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F9D6B0502B374A260063F634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */,
+				F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9D6B0612B374A270063F634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9D6B06A2B374A270063F634 /* MidiControlTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9D6B06B2B374A280063F634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9D6B0742B374A280063F634 /* MidiControlUITests.swift in Sources */,
+				F9D6B0762B374A280063F634 /* MidiControlUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F9D6B0672B374A270063F634 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F9D6B0532B374A260063F634 /* MidiControl */;
+			targetProxy = F9D6B0662B374A270063F634 /* PBXContainerItemProxy */;
+		};
+		F9D6B0712B374A280063F634 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F9D6B0532B374A260063F634 /* MidiControl */;
+			targetProxy = F9D6B0702B374A280063F634 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F9D6B0772B374A280063F634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F9D6B0782B374A280063F634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		F9D6B07A2B374A280063F634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MidiControl/MidiControl.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MidiControl/Preview Content\"";
+				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControl;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F9D6B07B2B374A280063F634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MidiControl/MidiControl.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MidiControl/Preview Content\"";
+				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControl;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F9D6B07D2B374A280063F634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControlTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MidiControl.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MidiControl";
+			};
+			name = Debug;
+		};
+		F9D6B07E2B374A280063F634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControlTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MidiControl.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MidiControl";
+			};
+			name = Release;
+		};
+		F9D6B0802B374A280063F634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControlUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = MidiControl;
+			};
+			name = Debug;
+		};
+		F9D6B0812B374A280063F634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControlUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = MidiControl;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F9D6B04F2B374A260063F634 /* Build configuration list for PBXProject "MidiControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9D6B0772B374A280063F634 /* Debug */,
+				F9D6B0782B374A280063F634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9D6B0792B374A280063F634 /* Build configuration list for PBXNativeTarget "MidiControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9D6B07A2B374A280063F634 /* Debug */,
+				F9D6B07B2B374A280063F634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9D6B07C2B374A280063F634 /* Build configuration list for PBXNativeTarget "MidiControlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9D6B07D2B374A280063F634 /* Debug */,
+				F9D6B07E2B374A280063F634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9D6B07F2B374A280063F634 /* Build configuration list for PBXNativeTarget "MidiControlUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9D6B0802B374A280063F634 /* Debug */,
+				F9D6B0812B374A280063F634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F9D6B04C2B374A260063F634 /* Project object */;
+}
