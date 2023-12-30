@@ -47,15 +47,10 @@ struct ContentView: View {
     // Create an instance of TextEntrySimulator to start the simulation
     let textEntrySimulator = TextEntrySimulator()
 
-    @State private var testInput = ""
-
     var body: some View {
         VStack {
             AccessibilityAlertView()
-            TextField(
-                    "Test field",
-                    text: $testInput
-            )
+            MidiSourcesView(midiSourcesManager: MidiSourcesManager())
             MidiList()
         }
         .padding()
