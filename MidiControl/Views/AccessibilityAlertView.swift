@@ -22,15 +22,17 @@ struct AccessibilityAlertView: View {
         VStack {
             // Empty
         }
-        .alert("Enable accessibility", isPresented: $showAccessabilityAlert) {
-            Button("OK") {
-                showAccessabilityPreferences()
-            }
-            Button("Not Now") {
-                // Do nothing...
-            }
-        } message: {
-            Text("Please enable accessibility for MidiControl. Without it the application won't be able to simulate key strokes.")
+        .alert(isPresented: $showAccessabilityAlert) {
+            Alert(title: Text("Enable accessibility"),
+                  message: Text("Please enable accessibility for MidiControl. Without it the application won't be able to simulate key strokes."),
+                  primaryButton: .default(
+                    Text("Ok"),
+                    action: showAccessabilityPreferences
+                  ),
+                  secondaryButton: .default(
+                    Text("Not Now")
+                  )
+            )
         }
     }
 }

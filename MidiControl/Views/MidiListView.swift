@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 import Foundation
 
 func randomString(length: Int) -> String {
@@ -14,67 +13,66 @@ func randomString(length: Int) -> String {
   return String((0..<length).map{ _ in letters.randomElement()! })
 }
 
-@Model
-class KeyStroke {
+class KeyStroke : Hashable {
+    static func == (lhs: KeyStroke, rhs: KeyStroke) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
     init(keyCode: CGKeyCode, keyDown: Bool) {
         self.keyCode = keyCode
         self.keyDown = keyDown
     }
 
-    var creationDate: Date = Date.now
+    var id = UUID()
     var keyCode: CGKeyCode
     var keyDown: Bool
     var midiStroke: MidiToStroke?
 }
 
-@Model
-class MidiToStroke {
+class MidiToStroke : Hashable  {
+    static func == (lhs: MidiToStroke, rhs: MidiToStroke) -> Bool {
+        return lhs.id == rhs.id;
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
     init(name: String, stroke: [KeyStroke]) {
         self.name = name
         self.stroke = stroke
     }
 
-    var creationDate: Date = Date.now
+    var id = UUID()
     var name: String
-    @Relationship(deleteRule: .cascade, inverse: \KeyStroke.midiStroke) var stroke: [KeyStroke]
+    var stroke: [KeyStroke]
 }
 
 struct MidiList: View {
-    func saveContext() {
-        do {
-            try context.save()
-        } catch {
-            print("Context save error: \(error.localizedDescription)")
-        }
-    }
-
     @State private var selectedStroke: MidiToStroke?
     @State private var selectedKey: KeyStroke?
 
-    @Environment(\.modelContext) private var context
-    @Query var strokes: [MidiToStroke]
+    @State var strokes: [MidiToStroke] = []
 
     var body: some View {
         HStack {
             VStack {
                 Button("Add") {
                     let element = MidiToStroke(name: "fff", stroke: [])
-                    context.insert(element)
-                    saveContext()
+                    strokes.append(element)
                 }
                 Button("Delete") {
-                    if let selected = selectedStroke {
-                        context.delete(selected)
-                        saveContext()
-                        if !strokes.isEmpty {
-                            selectedStroke = strokes[0]
-                        }
+                    if let selected = selectedStroke,
+                       let index = strokes.firstIndex(of: selected) {
+                            strokes.remove(at: index)
                     }
                 }
                 List(strokes, id: \.self, selection: $selectedStroke) { stroke in
                     Text(stroke.name)
-                }.onChange(of: selectedStroke) {
-                    print(selectedStroke?.stroke ?? "Empty")
                 }
             }
 
@@ -90,15 +88,14 @@ struct MidiList: View {
                     guard let selectedStroke = selectedStroke else { return }
                     let stroke = KeyStroke(keyCode: 11, keyDown: false)
                     selectedStroke.stroke.append(stroke)
-                    saveContext()
                 }
                 Button("Delete") {
-                    if let selected = selectedKey {
-                        context.delete(selected)
-                        saveContext()
-                        if let selectedStroke = selectedStroke, !selectedStroke.stroke.isEmpty {
-                            selectedKey = selectedStroke.stroke[0]
-                        }
+                    guard let selectedStroke = selectedStroke else { return }
+                    guard let selected = selectedKey else { return }
+                    guard let index = selectedStroke.stroke.firstIndex(of: selected) else { return }
+                    selectedStroke.stroke.remove(at: index)
+                    if !selectedStroke.stroke.isEmpty {
+                        selectedKey = selectedStroke.stroke[0]
                     }
                 }
                 if let selectedStroke = selectedStroke {
@@ -122,6 +119,5 @@ struct MidiList: View {
 
 #Preview {
     MidiList()
-        .modelContainer(previewContainer)
 }
 
