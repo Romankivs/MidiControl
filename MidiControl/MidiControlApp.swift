@@ -10,9 +10,12 @@ import SwiftData
 
 @main
 struct MidiControlApp: App {
+    private var appState = AppState()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(midiSourcesManager: appState.midiSourcesManager,
+                        midiReceiver: appState.midiReceiver)
         }
     }
 }

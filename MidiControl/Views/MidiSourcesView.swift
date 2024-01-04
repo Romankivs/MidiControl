@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MidiSourcesView: View {
     @ObservedObject var midiSourcesManager: MidiSourcesManager
+    var midiReceiver: MidiReceiver
 
     var body: some View {
         VStack {
@@ -16,6 +17,8 @@ struct MidiSourcesView: View {
                 ForEach((0..<midiSourcesManager.midiSources.count), id: \.self) {
                     Text(midiSourcesManager.midiSources[$0].name).tag($0)
                 }
+            }.onChange(of: midiSourcesManager.selectedSourceIndex) { _ in
+                midiReceiver.updateSource()
             }
             .frame(width: 300)
         }
@@ -24,5 +27,5 @@ struct MidiSourcesView: View {
 
 
 #Preview {
-    MidiSourcesView(midiSourcesManager: MidiSourcesManager())
+    MidiSourcesView(midiSourcesManager: MidiSourcesManager(), midiReceiver: MidiReceiver(midiSourcesManager: MidiSourcesManager()))
 }

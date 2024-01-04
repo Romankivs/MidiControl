@@ -11,7 +11,7 @@ import CoreMIDI
 class MidiSourcesManager: ObservableObject {
     @Published var midiSources = [MIDIEndpointModel]()
 
-    var selectedSourceIndex = 0
+    @Published var selectedSourceIndex = 0
     var selectedSource: MIDIEndpointRef? {
         if selectedSourceIndex < 0 || selectedSourceIndex >= midiSources.count { return nil }
         return midiSources[selectedSourceIndex].endpointType
