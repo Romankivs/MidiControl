@@ -15,12 +15,13 @@ struct MidiControlApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(midiSourcesManager: appState.midiSourcesManager,
-                        midiReceiver: appState.midiReceiver)
+                        midiReceiver: appState.midiReceiver,
+                        midiEventsLogModel: appState.midiEventsLogModel)
             .onAppear {
-                appState.midiReceiver.startLogTimer()
+                appState.midiEventsLogModel.startLogTimer()
             }
             .onDisappear {
-                appState.midiReceiver.stopLogTimer()
+                appState.midiEventsLogModel.stopLogTimer()
             }
         }
     }

@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct MidiEventsLogView: View {
+    @ObservedObject var midiEventsLogModel: MidiEventsLogModel
+
     var body: some View {
-        List {
-            Text("A List Item")
-            Text("A Second List Item")
-            Text("A Third List Item")
+        List(midiEventsLogModel.logs) {
+            Text($0.description)
         }
     }
 }
 
 #Preview {
-    MidiEventsLogView()
+    MidiEventsLogView(midiEventsLogModel: MidiEventsLogModel())
 }

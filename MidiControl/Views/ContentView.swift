@@ -50,6 +50,8 @@ struct ContentView: View {
     @ObservedObject var midiSourcesManager: MidiSourcesManager
     var midiReceiver: MidiReceiver
 
+    @ObservedObject var midiEventsLogModel: MidiEventsLogModel
+
     var body: some View {
         VStack {
             AccessibilityAlertView()
@@ -58,12 +60,13 @@ struct ContentView: View {
                 midiReceiver: midiReceiver
             )
             MidiList()
-            MidiEventsLogView()
+            MidiEventsLogView(midiEventsLogModel: midiEventsLogModel)
         }
         .padding()
     }
 }
 
 #Preview {
-    ContentView(midiSourcesManager: MidiSourcesManager(), midiReceiver: MidiReceiver(midiSourcesManager: MidiSourcesManager()))
+    ContentView(midiSourcesManager: MidiSourcesManager(), midiReceiver: MidiReceiver(midiSourcesManager: MidiSourcesManager()),
+        midiEventsLogModel: MidiEventsLogModel(midiAdapter: MidiAdapter()))
 }

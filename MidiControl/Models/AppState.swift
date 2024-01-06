@@ -11,8 +11,10 @@ class AppState {
     init(midiSourcesManager: MidiSourcesManager = .init()) {
         self.midiSourcesManager = midiSourcesManager
         self.midiReceiver = MidiReceiver(midiSourcesManager: midiSourcesManager)
+        self.midiEventsLogModel = MidiEventsLogModel(midiAdapter: midiReceiver.midiAdapter)
     }
     
     var midiSourcesManager: MidiSourcesManager
     var midiReceiver: MidiReceiver
+    var midiEventsLogModel: MidiEventsLogModel
 }

@@ -22,8 +22,6 @@ class MidiReceiver {
     
     let midiAdapter = MidiAdapter()
 
-    var timer: Timer?
-
     var midiSourcesManager: MidiSourcesManager
 
     var client = MIDIClientRef()
@@ -85,28 +83,5 @@ class MidiReceiver {
                 activeSource = nextSource
             }
         }
-    }
-
-    // MARK: - Timer Callback
-
-    func startLogTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
-            guard let self = self else { return }
-
-            self.midiAdapter.popSourceMessages { packet in
-                print("------------------------------------")
-                print("Universal MIDI Packet \(packet.wordCount * 32)")
-                print("Data: 0x\(packet.hexString)")
-                print(packet.description)
-                print("")
-            }
-        }
-    }
-
-    func stopLogTimer() {
-        guard let timer = self.timer else { return }
-
-        timer.invalidate()
-        self.timer = nil
     }
 }
