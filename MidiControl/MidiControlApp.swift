@@ -16,6 +16,12 @@ struct MidiControlApp: App {
         WindowGroup {
             ContentView(midiSourcesManager: appState.midiSourcesManager,
                         midiReceiver: appState.midiReceiver)
+            .onAppear {
+                appState.midiReceiver.startLogTimer()
+            }
+            .onDisappear {
+                appState.midiReceiver.stopLogTimer()
+            }
         }
     }
 }

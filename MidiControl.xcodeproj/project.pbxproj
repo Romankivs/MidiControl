@@ -19,6 +19,10 @@
 		F9D6B06A2B374A270063F634 /* MidiControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0692B374A270063F634 /* MidiControlTests.swift */; };
 		F9D6B0742B374A280063F634 /* MidiControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0732B374A280063F634 /* MidiControlUITests.swift */; };
 		F9D6B0762B374A280063F634 /* MidiControlUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0752B374A280063F634 /* MidiControlUITestsLaunchTests.swift */; };
+		F9E4FF8D2B49B35400BA18C3 /* MidiAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = F9E4FF8B2B49B35400BA18C3 /* MidiAdapter.mm */; };
+		F9E4FF8F2B49BE9900BA18C3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E4FF8E2B49BE9900BA18C3 /* Extensions.swift */; };
+		F9E4FF912B49CA0A00BA18C3 /* MidiEventsLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E4FF902B49CA0A00BA18C3 /* MidiEventsLogModel.swift */; };
+		F9E4FF932B49CA6600BA18C3 /* MidiEventsLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E4FF922B49CA6600BA18C3 /* MidiEventsLogView.swift */; };
 		F9FF59072B473FB1005D7CB9 /* MidiReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FF59062B473FB1005D7CB9 /* MidiReceiver.swift */; };
 		F9FF59092B473FBE005D7CB9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FF59082B473FBE005D7CB9 /* AppState.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +61,13 @@
 		F9D6B06F2B374A280063F634 /* MidiControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MidiControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D6B0732B374A280063F634 /* MidiControlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlUITests.swift; sourceTree = "<group>"; };
 		F9D6B0752B374A280063F634 /* MidiControlUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F9E4FF852B49B1CA00BA18C3 /* MidiControl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MidiControl-Bridging-Header.h"; sourceTree = "<group>"; };
+		F9E4FF872B49B1CA00BA18C3 /* SingleProducerSingleConsumerQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SingleProducerSingleConsumerQueue.hpp; sourceTree = "<group>"; };
+		F9E4FF8B2B49B35400BA18C3 /* MidiAdapter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MidiAdapter.mm; sourceTree = "<group>"; };
+		F9E4FF8C2B49B35400BA18C3 /* MidiAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiAdapter.h; sourceTree = "<group>"; };
+		F9E4FF8E2B49BE9900BA18C3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F9E4FF902B49CA0A00BA18C3 /* MidiEventsLogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiEventsLogModel.swift; sourceTree = "<group>"; };
+		F9E4FF922B49CA6600BA18C3 /* MidiEventsLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiEventsLogView.swift; sourceTree = "<group>"; };
 		F9FF59062B473FB1005D7CB9 /* MidiReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiReceiver.swift; sourceTree = "<group>"; };
 		F9FF59082B473FBE005D7CB9 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +104,7 @@
 				F97FD9F12B40B4090032DFD0 /* MidiListView.swift */,
 				F9D6B0592B374A260063F634 /* ContentView.swift */,
 				F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */,
+				F9E4FF922B49CA6600BA18C3 /* MidiEventsLogView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -104,6 +116,7 @@
 				F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */,
 				F9FF59062B473FB1005D7CB9 /* MidiReceiver.swift */,
 				F9FF59082B473FBE005D7CB9 /* AppState.swift */,
+				F9E4FF902B49CA0A00BA18C3 /* MidiEventsLogModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -111,6 +124,7 @@
 		F97FD9F32B40B4330032DFD0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F9E4FF8E2B49BE9900BA18C3 /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -138,6 +152,7 @@
 		F9D6B0562B374A260063F634 /* MidiControl */ = {
 			isa = PBXGroup;
 			children = (
+				F9E4FF842B49B18600BA18C3 /* Realtime */,
 				F97FD9F32B40B4330032DFD0 /* Utils */,
 				F97FD9F02B40B37A0032DFD0 /* Models */,
 				F97FD9EF2B40B3740032DFD0 /* Views */,
@@ -172,6 +187,17 @@
 				F9D6B0752B374A280063F634 /* MidiControlUITestsLaunchTests.swift */,
 			);
 			path = MidiControlUITests;
+			sourceTree = "<group>";
+		};
+		F9E4FF842B49B18600BA18C3 /* Realtime */ = {
+			isa = PBXGroup;
+			children = (
+				F9E4FF852B49B1CA00BA18C3 /* MidiControl-Bridging-Header.h */,
+				F9E4FF8C2B49B35400BA18C3 /* MidiAdapter.h */,
+				F9E4FF8B2B49B35400BA18C3 /* MidiAdapter.mm */,
+				F9E4FF872B49B1CA00BA18C3 /* SingleProducerSingleConsumerQueue.hpp */,
+			);
+			path = Realtime;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +268,7 @@
 				TargetAttributes = {
 					F9D6B0532B374A260063F634 = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 					F9D6B0642B374A270063F634 = {
 						CreatedOnToolsVersion = 15.0;
@@ -308,10 +335,14 @@
 				F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */,
 				F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */,
 				F9FF59092B473FBE005D7CB9 /* AppState.swift in Sources */,
+				F9E4FF8D2B49B35400BA18C3 /* MidiAdapter.mm in Sources */,
 				F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */,
 				F97FD9F22B40B4090032DFD0 /* MidiListView.swift in Sources */,
 				F9FF59072B473FB1005D7CB9 /* MidiReceiver.swift in Sources */,
 				F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */,
+				F9E4FF932B49CA6600BA18C3 /* MidiEventsLogView.swift in Sources */,
+				F9E4FF912B49CA0A00BA18C3 /* MidiEventsLogModel.swift in Sources */,
+				F9E4FF8F2B49BE9900BA18C3 /* Extensions.swift in Sources */,
 				F9545D0A2B3CAE5B008F8B29 /* AccessibilityAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MidiControl/MidiControl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -491,6 +523,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MidiControl/Realtime/MidiControl-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -500,6 +534,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MidiControl/MidiControl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -519,6 +554,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MidiControl/Realtime/MidiControl-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

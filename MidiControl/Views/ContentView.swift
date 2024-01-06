@@ -58,6 +58,7 @@ struct ContentView: View {
                 midiReceiver: midiReceiver
             )
             MidiList()
+            MidiEventsLogView()
         }
         .padding()
     }

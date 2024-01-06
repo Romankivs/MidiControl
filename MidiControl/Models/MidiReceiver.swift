@@ -8,113 +8,6 @@
 import CoreMIDI
 import Foundation
 
-extension Data {
-
-    func hexString() -> String {
-        if isEmpty { return "" }
-        return map { String(format: "%02x", $0) }.joined().uppercased()
-    }
-
-}
-
-extension MIDICVStatus: CustomStringConvertible {
-
-    public var description: String {
-        switch self {
-        // MIDI 1.0
-        case .noteOff:
-            return "Note Off"
-        case .noteOn:
-            return "Note On"
-        case .polyPressure:
-            return "Poly Pressure"
-        case .controlChange:
-            return "Control Change"
-        case .programChange:
-            return "Program Change"
-        case .channelPressure:
-            return "Channel Pressure"
-        case .pitchBend:
-            return "Pitch Bend"
-        // MIDI 2.0
-        case .registeredPNC:
-            return "Registered PNC"
-        case .assignablePNC:
-            return "Assignable PNC"
-        case .registeredControl:
-            return "Registered Control"
-        case .assignableControl:
-            return "Assignable Control"
-        case .relRegisteredControl:
-            return "Rel Registered Control"
-        case .relAssignableControl:
-            return "Rel Assignable Control"
-        case .perNotePitchBend:
-            return "Per Note PitchBend"
-        case .perNoteMgmt:
-            return "Per Note Mgmt"
-        default:
-            return ""
-        }
-    }
-}
-
-extension MIDIEventPacket: CustomStringConvertible {
-
-    var messageType: MIDIMessageType? {
-        // Shift the message by 28 bits to get the message type nibble.
-        MIDIMessageType(rawValue: words.0 >> 28)
-    }
-
-    var hexString: String {
-        var data = Data()
-
-        let mirror = Mirror(reflecting: words)
-        let elements = mirror.children.map { $0.value }
-
-        for (index, element) in elements.enumerated() {
-            guard index < wordCount, let value = element as? UInt32 else { continue }
-
-            withUnsafeBytes(of: UInt32(bigEndian: value)) {
-                data.append(contentsOf: $0)
-            }
-        }
-
-        return data.hexString()
-    }
-
-    var status: MIDICVStatus? {
-        /*
-        To get only the status nibble, shift by 20 bits (the start position of the status)
-         and then perform an AND operation to clear the message type and group nibbles.
-        */
-        return MIDICVStatus(rawValue: (words.0 >> 20) & 0x00f)
-    }
-
-    public var description: String {
-        guard let messageType = messageType,
-              let status = status else {
-            return ""
-        }
-
-        switch messageType {
-        case (.utility):
-            return "Utility"
-        case (.system):
-            return "System"
-        case (.channelVoice1):
-            return "MIDI 1.0 Channel Voice Message (\(status.description))"
-        case (.sysEx):
-            return "Sysex"
-        case (.channelVoice2):
-            return "MIDI 2.0 Channel Voice Message (\(status.description))"
-        default:
-            return ""
-        }
-    }
-}
-
-
 class MidiReceiver {
     init(midiSourcesManager: MidiSourcesManager) {
         self.midiSourcesManager = midiSourcesManager
@@ -127,6 +20,10 @@ class MidiReceiver {
         }
     }
     
+    let midiAdapter = MidiAdapter()
+
+    var timer: Timer?
+
     var midiSourcesManager: MidiSourcesManager
 
     var client = MIDIClientRef()
@@ -145,32 +42,7 @@ class MidiReceiver {
             return false
         }
 
-        status = MIDIInputPortCreateWithProtocol(client, "Midi Receiver" as CFString, ._1_0, &port) { [weak self] eventList, srcConnRefCon in
-            print("=== event received")
-
-            guard let strongSelf = self else {
-                return
-            }
-
-            let midiEventList: MIDIEventList = eventList.pointee
-            
-            if (midiEventList.numPackets > 0) {
-                var packet = midiEventList.packet;
-                for _ in 1...midiEventList.numPackets {
-                    print(packet.timeStamp)
-
-                    let statusByte = packet.words.0
-                    let command = statusByte >> 4  // Get the high-order 4 bits (command)
-                    let channel = statusByte & 0x0F  // Get the low-order 4 bits (channel)
-
-                    print("Universal MIDI Packet \(packet.wordCount * 32)")
-                    print("Data: 0x\(packet.hexString)")
-                    print(packet.description)
-
-                    packet = MIDIEventPacketNext(&packet).pointee;
-                }
-            }
-        }
+        status = midiAdapter.createMIDISource(client, named: "Midi Receiver" as CFString, protocol: ._1_0, port: &port)
         guard status == noErr else {
             print("Failed to create the MIDI client.")
             return false
@@ -213,5 +85,28 @@ class MidiReceiver {
                 activeSource = nextSource
             }
         }
+    }
+
+    // MARK: - Timer Callback
+
+    func startLogTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
+            guard let self = self else { return }
+
+            self.midiAdapter.popSourceMessages { packet in
+                print("------------------------------------")
+                print("Universal MIDI Packet \(packet.wordCount * 32)")
+                print("Data: 0x\(packet.hexString)")
+                print(packet.description)
+                print("")
+            }
+        }
+    }
+
+    func stopLogTimer() {
+        guard let timer = self.timer else { return }
+
+        timer.invalidate()
+        self.timer = nil
     }
 }
