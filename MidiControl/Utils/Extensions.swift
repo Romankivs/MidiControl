@@ -83,6 +83,20 @@ extension MIDIEventPacket: CustomStringConvertible {
         return data.hexString()
     }
 
+    var wordsArray: [UInt32] {
+        var array: [UInt32] = []
+
+        let mirror = Mirror(reflecting: words)
+        let elements = mirror.children.map { $0.value }
+
+        for (index, element) in elements.enumerated() {
+            guard index < wordCount, let value = element as? UInt32 else { continue }
+            array.append(value)
+        }
+
+        return array
+    }
+
     var status: MIDICVStatus? {
         /*
         To get only the status nibble, shift by 20 bits (the start position of the status)
