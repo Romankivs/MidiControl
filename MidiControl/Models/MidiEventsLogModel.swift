@@ -19,7 +19,7 @@ func extractBits(from number: UInt32, at position: Int, numberOfBits: Int) -> UI
 }
 
 func statusFromUMP(ump: UInt32) -> MIDICVStatus {
-    return MIDICVStatus(rawValue: extractBits(from: ump, at: 24, numberOfBits: 4)) ?? .noteOff
+    return MIDICVStatus(rawValue: extractBits(from: ump, at: 20, numberOfBits: 4)) ?? .noteOff
 }
 
 struct Midi1NoteOnMessage : CustomStringConvertible {
@@ -104,7 +104,7 @@ class MidiEventsLogModel: ObservableObject {
                         continue
                     }
 
-                    let umpDescription = "[\(currentTime())] \(message!.description))"
+                    let umpDescription = "[\(currentTime())] \(message!.description)"
                     print(umpDescription)
                     self.logs.append(MidiEventDescription(description: umpDescription))
                 }

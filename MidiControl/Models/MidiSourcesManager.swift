@@ -19,6 +19,7 @@ class MidiSourcesManager: ObservableObject {
 
     init() {
         populateSources()
+        selectedSourceIndex = 0
     }
 
     func populateSources() {
