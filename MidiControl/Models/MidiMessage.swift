@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum MidiMessage {
     // MIDI 1
@@ -42,5 +43,103 @@ extension MidiMessage : CustomStringConvertible {
         case let .noteOff(channel, note, velocity): "Channel: \(channel) Note: \(note) Velocity: \(velocity)"
         default: "Unknown message"
         }
+    }
+}
+
+protocol IMidiMessage: View {
+    var description: String { get }
+}
+
+func getMidiMessageFromUmp(umpWord: UInt32) -> (any IMidiMessage)? {
+    switch statusFromUMP(ump: umpWord) {
+    case .noteOn:
+        return MidiNoteOnMessage(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
+                       note: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)),
+                       velocity: UInt8(extractBits(from: umpWord, at: 0, numberOfBits: 8)))
+    case .noteOff:
+        return MidiNoteOffMessage(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
+                       note: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)),
+                       velocity: UInt8(extractBits(from: umpWord, at: 0, numberOfBits: 8)))
+    default:
+        return nil
+    }
+}
+
+struct TextEntryField : View {
+    var value: Binding<UInt8>
+    var name: String
+    var emptyText: String
+
+    var body: some View {
+        HStack {
+            Text(name)
+            TextField(emptyText, value: value, formatter: NumberFormatter())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        }.padding()
+    }
+}
+
+struct MidiNoteOnMessage: IMidiMessage {
+    @State var channel: UInt8
+    @State var note: UInt8
+    @State var velocity: UInt8
+
+    var description: String {
+        return "Channel: \(channel) Note: \(note) Velocity: \(velocity)"
+    }
+
+    var body: some View {
+        HStack {
+            Text("Note On").padding()
+            TextEntryField(value: $channel, name: "Channel", emptyText: "Enter channel number")
+            TextEntryField(value: $note, name: "Note", emptyText: "Enter note number")
+            TextEntryField(value: $velocity, name: "Velocity", emptyText: "Enter velocity value")
+        }
+    }
+}
+
+struct MidiNoteOffMessage: IMidiMessage {
+    @State var channel: UInt8
+    @State var note: UInt8
+    @State var velocity: UInt8
+
+    var description: String {
+        return "Channel: \(channel) Note: \(note) Velocity: \(velocity)"
+    }
+
+    var body: some View  {
+        HStack {
+            Text("Note Off").padding()
+            TextEntryField(value: $channel, name: "Channel", emptyText: "Enter channel")
+            TextEntryField(value: $note, name: "Note", emptyText: "Enter note")
+            TextEntryField(value: $velocity, name: "Velocity", emptyText: "Enter velocity")
+        }
+    }
+}
+
+struct MidiPolyPressureMessage : IMidiMessage {
+    @State var channel: UInt8
+    @State var note: UInt8
+    @State var data: UInt8
+
+    var description: String {
+        return "Channel: \(channel) Note: \(note) Data: \(data)"
+    }
+
+    var body: some View  {
+        HStack {
+            Text("Note Off").padding()
+            TextEntryField(value: $channel, name: "Channel", emptyText: "Enter channel")
+            TextEntryField(value: $note, name: "Note", emptyText: "Enter note")
+            TextEntryField(value: $data, name: "Data", emptyText: "Enter data")
+        }
+    }
+}
+
+
+#Preview {
+    List {
+        MidiNoteOnMessage(channel: 5, note: 22, velocity: 126)
+        MidiNoteOffMessage(channel: 11, note: 100, velocity: 1)
     }
 }

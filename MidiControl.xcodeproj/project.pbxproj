@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F90E373C2B4DF95D00331483 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E373B2B4DF95D00331483 /* Utils.swift */; };
+		F90E373E2B51BFA100331483 /* MidiMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E373D2B51BFA100331483 /* MidiMessageView.swift */; };
 		F924A6B52B4DE9E0004E9129 /* MidiMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F924A6B42B4DE9E0004E9129 /* MidiMessage.swift */; };
 		F9545D0A2B3CAE5B008F8B29 /* AccessibilityAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */; };
 		F97FD9F22B40B4090032DFD0 /* MidiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F12B40B4090032DFD0 /* MidiListView.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		F90E373B2B4DF95D00331483 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		F90E373D2B51BFA100331483 /* MidiMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiMessageView.swift; sourceTree = "<group>"; };
 		F924A6B42B4DE9E0004E9129 /* MidiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiMessage.swift; sourceTree = "<group>"; };
 		F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityAlertView.swift; sourceTree = "<group>"; };
 		F97FD9F12B40B4090032DFD0 /* MidiListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiListView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				F9D6B0592B374A260063F634 /* ContentView.swift */,
 				F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */,
 				F9E4FF922B49CA6600BA18C3 /* MidiEventsLogView.swift */,
+				F90E373D2B51BFA100331483 /* MidiMessageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				F924A6B52B4DE9E0004E9129 /* MidiMessage.swift in Sources */,
 				F90E373C2B4DF95D00331483 /* Utils.swift in Sources */,
 				F9E4FF8D2B49B35400BA18C3 /* MidiAdapter.mm in Sources */,
+				F90E373E2B51BFA100331483 /* MidiMessageView.swift in Sources */,
 				F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */,
 				F97FD9F22B40B4090032DFD0 /* MidiListView.swift in Sources */,
 				F9FF59072B473FB1005D7CB9 /* MidiReceiver.swift in Sources */,
