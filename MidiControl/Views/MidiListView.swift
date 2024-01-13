@@ -13,40 +13,14 @@ func randomString(length: Int) -> String {
   return String((0..<length).map{ _ in letters.randomElement()! })
 }
 
-class KeyStroke : Hashable {
-    static func == (lhs: KeyStroke, rhs: KeyStroke) -> Bool {
-        return lhs.id == rhs.id
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-
-    init(keyCode: CGKeyCode, keyDown: Bool) {
-        self.keyCode = keyCode
-        self.keyDown = keyDown
-    }
-
+struct KeyStroke : Identifiable, Hashable {
     var id = UUID()
     var keyCode: CGKeyCode
     var keyDown: Bool
     var midiStroke: MidiToStroke?
 }
 
-class MidiToStroke : Hashable  {
-    static func == (lhs: MidiToStroke, rhs: MidiToStroke) -> Bool {
-        return lhs.id == rhs.id;
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-
-    init(name: String, stroke: [KeyStroke]) {
-        self.name = name
-        self.stroke = stroke
-    }
-
+struct MidiToStroke : Identifiable, Hashable  {
     var id = UUID()
     var name: String
     var stroke: [KeyStroke]
@@ -60,15 +34,24 @@ struct MidiList: View {
 
     var body: some View {
         HStack {
-            VStack {
-                Button("Add") {
-                    let element = MidiToStroke(name: "fff", stroke: [])
-                    strokes.append(element)
-                }
-                Button("Delete") {
-                    if let selected = selectedStroke,
-                       let index = strokes.firstIndex(of: selected) {
+            VStack(alignment: .leading) {
+                HStack {
+                    Button(action: {
+                        let element = MidiToStroke(name: "fff", stroke: [])
+                        strokes.append(element)
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                    Button(action: {
+                        if let selected = selectedStroke,
+                           let index = strokes.firstIndex(of: selected) {
                             strokes.remove(at: index)
+                            if !strokes.isEmpty {
+                                selectedStroke = strokes[0]
+                            }
+                        }
+                    }) {
+                        Image(systemName: "minus")
                     }
                 }
                 List(strokes, id: \.self, selection: $selectedStroke) { stroke in
@@ -83,19 +66,23 @@ struct MidiList: View {
                     .foregroundColor(.gray)
             }
 
-            VStack {
-                Button("Add") {
-                    guard let selectedStroke = selectedStroke else { return }
-                    let stroke = KeyStroke(keyCode: 11, keyDown: false)
-                    selectedStroke.stroke.append(stroke)
-                }
-                Button("Delete") {
-                    guard let selectedStroke = selectedStroke else { return }
-                    guard let selected = selectedKey else { return }
-                    guard let index = selectedStroke.stroke.firstIndex(of: selected) else { return }
-                    selectedStroke.stroke.remove(at: index)
-                    if !selectedStroke.stroke.isEmpty {
-                        selectedKey = selectedStroke.stroke[0]
+            VStack(alignment: .leading) {
+                HStack {
+                    Button(action: {
+                        let stroke = KeyStroke(keyCode: 11, keyDown: false)
+                        selectedStroke?.stroke.append(stroke)
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                    Button(action: {
+                        guard let selected = selectedKey else { return }
+                        guard let index = selectedStroke?.stroke.firstIndex(of: selected) else { return }
+                        selectedStroke?.stroke.remove(at: index)
+                        if let selectedStroke = selectedStroke, !selectedStroke.stroke.isEmpty {
+                            selectedKey = selectedStroke.stroke[0]
+                        }
+                    }) {
+                        Image(systemName: "minus")
                     }
                 }
                 if let selectedStroke = selectedStroke {
