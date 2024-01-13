@@ -21,8 +21,18 @@ struct KeyStroke : Identifiable, Hashable {
 }
 
 struct MidiToStroke : Identifiable, Hashable  {
+    static func == (lhs: MidiToStroke, rhs: MidiToStroke) -> Bool {
+        return lhs.id == rhs.id && lhs.midi.description == rhs.midi.description && lhs.stroke == rhs.stroke
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(midi.description)
+        hasher.combine(stroke)
+    }
+
     var id = UUID()
-    var name: String
+    var midi: IMidiMessage
     var stroke: [KeyStroke]
 }
 
@@ -37,8 +47,10 @@ struct MidiList: View {
             VStack(alignment: .leading) {
                 HStack {
                     Button(action: {
-                        let element = MidiToStroke(name: "fff", stroke: [])
+                        let element = MidiToStroke(midi: MidiNoteOnMessage(channel: 5, note: 22, velocity: 126), stroke: [])
                         strokes.append(element)
+                        let el = MidiToStroke(midi: MidiNoteOffMessage(channel: 5, note: 22, velocity: 126), stroke: [])
+                        strokes.append(el)
                     }) {
                         Image(systemName: "plus")
                     }
@@ -55,7 +67,7 @@ struct MidiList: View {
                     }
                 }
                 List(strokes, id: \.self, selection: $selectedStroke) { stroke in
-                    Text(stroke.name)
+                    MidiMessageView(model: stroke.midi)
                 }
             }
 

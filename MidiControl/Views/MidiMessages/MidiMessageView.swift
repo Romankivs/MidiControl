@@ -32,6 +32,7 @@ struct MidiMessageView: View {
             default: Text("Unknown message")
             }
         }
+        .padding(.horizontal, 3.0)
     }
 }
 
@@ -40,7 +41,7 @@ struct MidiNoteOnView: View {
 
     var body: some View {
         HStack {
-            Text("Note On").padding()
+            Text("Note On").fontWeight(.bold)
             TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
             TextFieldUInt8(value: $model.velocity, name: "Velocity", emptyText: "Enter velocity value")
@@ -53,10 +54,9 @@ struct MidiNoteOffView: View {
 
     var body: some View {
         HStack {
-            Text("Note Off").padding()
+            Text("Note Off").fontWeight(.bold)
             TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
-            TextFieldUInt8(value: $model.velocity, name: "Velocity", emptyText: "Enter velocity value")
         }
     }
 }

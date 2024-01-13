@@ -24,7 +24,7 @@ struct TextFieldUInt8 : View {
             Text(name)
             TextField(emptyText, value: value, formatter: formatter)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-        }.padding()
+        }
     }
 }
 
