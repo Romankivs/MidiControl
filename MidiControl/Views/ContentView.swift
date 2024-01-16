@@ -47,26 +47,19 @@ struct ContentView: View {
     // Create an instance of TextEntrySimulator to start the simulation
     let textEntrySimulator = TextEntrySimulator()
 
-    @ObservedObject var midiSourcesManager: MidiSourcesManager
-    var midiReceiver: MidiReceiver
-
-    @ObservedObject var midiEventsLogModel: MidiEventsLogModel
-
     var body: some View {
         VStack {
             AccessibilityAlertView()
-            MidiSourcesView(
-                midiSourcesManager: midiSourcesManager,
-                midiReceiver: midiReceiver
-            )
+            MidiSourcesView()
             MidiList()
-            MidiEventsLogView(midiEventsLogModel: midiEventsLogModel)
+            MidiEventsLogView()
         }
         .padding()
     }
 }
 
 #Preview {
-    ContentView(midiSourcesManager: MidiSourcesManager(), midiReceiver: MidiReceiver(midiSourcesManager: MidiSourcesManager()),
-        midiEventsLogModel: MidiEventsLogModel(midiAdapter: MidiAdapter()))
+    ContentView()
+        .environmentObject(MidiSourcesManager())
+        .environmentObject(MidiReceiver(midiSourcesManager: MidiSourcesManager()))
 }

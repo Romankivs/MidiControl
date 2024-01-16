@@ -10,7 +10,10 @@
 		F90E373C2B4DF95D00331483 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E373B2B4DF95D00331483 /* Utils.swift */; };
 		F90E373E2B51BFA100331483 /* MidiMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E373D2B51BFA100331483 /* MidiMessageView.swift */; };
 		F90E37412B52CC9800331483 /* TextFieldUInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E37402B52CC9800331483 /* TextFieldUInt8.swift */; };
+		F90E37442B5597F000331483 /* MidiControl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F90E37422B5597F000331483 /* MidiControl.xcdatamodeld */; };
+		F90E37472B5598D700331483 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E37462B5598D700331483 /* DataController.swift */; };
 		F924A6B52B4DE9E0004E9129 /* MidiMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F924A6B42B4DE9E0004E9129 /* MidiMessage.swift */; };
+		F92B18852B56FD8C0018CE5F /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B18842B56FD8C0018CE5F /* CoreDataExtensions.swift */; };
 		F9545D0A2B3CAE5B008F8B29 /* AccessibilityAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */; };
 		F97FD9F22B40B4090032DFD0 /* MidiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F12B40B4090032DFD0 /* MidiListView.swift */; };
 		F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */; };
@@ -52,7 +55,10 @@
 		F90E373B2B4DF95D00331483 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F90E373D2B51BFA100331483 /* MidiMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiMessageView.swift; sourceTree = "<group>"; };
 		F90E37402B52CC9800331483 /* TextFieldUInt8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldUInt8.swift; sourceTree = "<group>"; };
+		F90E37432B5597F000331483 /* MidiControl.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MidiControl.xcdatamodel; sourceTree = "<group>"; };
+		F90E37462B5598D700331483 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		F924A6B42B4DE9E0004E9129 /* MidiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiMessage.swift; sourceTree = "<group>"; };
+		F92B18842B56FD8C0018CE5F /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityAlertView.swift; sourceTree = "<group>"; };
 		F97FD9F12B40B4090032DFD0 /* MidiListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiListView.swift; sourceTree = "<group>"; };
 		F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiEndpointModel.swift; sourceTree = "<group>"; };
@@ -114,6 +120,16 @@
 			path = MidiMessages;
 			sourceTree = "<group>";
 		};
+		F90E37452B5598C300331483 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F90E37422B5597F000331483 /* MidiControl.xcdatamodeld */,
+				F90E37462B5598D700331483 /* DataController.swift */,
+				F92B18842B56FD8C0018CE5F /* CoreDataExtensions.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		F97FD9EF2B40B3740032DFD0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +188,7 @@
 		F9D6B0562B374A260063F634 /* MidiControl */ = {
 			isa = PBXGroup;
 			children = (
+				F90E37452B5598C300331483 /* Data */,
 				F9E4FF842B49B18600BA18C3 /* Realtime */,
 				F97FD9F32B40B4330032DFD0 /* Utils */,
 				F97FD9F02B40B37A0032DFD0 /* Models */,
@@ -361,13 +378,16 @@
 				F90E373E2B51BFA100331483 /* MidiMessageView.swift in Sources */,
 				F90E37412B52CC9800331483 /* TextFieldUInt8.swift in Sources */,
 				F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */,
+				F90E37472B5598D700331483 /* DataController.swift in Sources */,
 				F97FD9F22B40B4090032DFD0 /* MidiListView.swift in Sources */,
 				F9FF59072B473FB1005D7CB9 /* MidiReceiver.swift in Sources */,
+				F90E37442B5597F000331483 /* MidiControl.xcdatamodeld in Sources */,
 				F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */,
 				F9E4FF932B49CA6600BA18C3 /* MidiEventsLogView.swift in Sources */,
 				F9E4FF912B49CA0A00BA18C3 /* MidiEventsLogModel.swift in Sources */,
 				F9E4FF8F2B49BE9900BA18C3 /* Extensions.swift in Sources */,
 				F9545D0A2B3CAE5B008F8B29 /* AccessibilityAlertView.swift in Sources */,
+				F92B18852B56FD8C0018CE5F /* CoreDataExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +721,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F90E37422B5597F000331483 /* MidiControl.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F90E37432B5597F000331483 /* MidiControl.xcdatamodel */,
+			);
+			currentVersion = F90E37432B5597F000331483 /* MidiControl.xcdatamodel */;
+			path = MidiControl.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F9D6B04C2B374A260063F634 /* Project object */;
 }

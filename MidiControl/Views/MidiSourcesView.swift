@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MidiSourcesView: View {
-    @ObservedObject var midiSourcesManager: MidiSourcesManager
-    var midiReceiver: MidiReceiver
+    @EnvironmentObject var midiSourcesManager: MidiSourcesManager
+    @EnvironmentObject var midiReceiver: MidiReceiver
 
     var body: some View {
         VStack {
@@ -27,5 +27,6 @@ struct MidiSourcesView: View {
 
 
 #Preview {
-    MidiSourcesView(midiSourcesManager: MidiSourcesManager(), midiReceiver: MidiReceiver(midiSourcesManager: MidiSourcesManager()))
+    MidiSourcesView().environmentObject(MidiSourcesManager())
+        .environmentObject(MidiReceiver(midiSourcesManager: MidiSourcesManager()))
 }

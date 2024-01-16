@@ -8,7 +8,7 @@
 import CoreMIDI
 import Foundation
 
-class MidiReceiver {
+class MidiReceiver: ObservableObject {
     init(midiSourcesManager: MidiSourcesManager) {
         self.midiSourcesManager = midiSourcesManager
 

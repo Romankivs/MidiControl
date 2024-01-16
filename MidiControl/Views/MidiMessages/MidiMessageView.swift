@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct MidiMessageView: View {
-    var model: IMidiMessage
+    var model: NSManagedObject
 
     var body: some View {
         HStack {
             switch model {
-            case let model as MidiNoteOnMessage:
+            case let model as NoteOnMessage:
                 MidiNoteOnView(model: model)
-            case let model as MidiNoteOffMessage:
+            case let model as NoteOffMessage:
                 MidiNoteOffView(model: model)
 //            case .noteOff(let channel, let note, let velocity):
 //                <#code#>
@@ -37,7 +37,9 @@ struct MidiMessageView: View {
 }
 
 struct MidiNoteOnView: View {
-    @ObservedObject var model: MidiNoteOnMessage
+    @ObservedObject var model: NoteOnMessage
+
+    @Environment(\.managedObjectContext) var moc
 
     var body: some View {
         HStack {
@@ -46,24 +48,41 @@ struct MidiNoteOnView: View {
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
             TextFieldUInt8(value: $model.velocity, name: "Velocity", emptyText: "Enter velocity value")
         }
+        .onChange(of: [model.channel, model.note, model.velocity]) { _ in
+            try? moc.save()
+        }
     }
 }
 
 struct MidiNoteOffView: View {
-    @ObservedObject var model: MidiNoteOffMessage
+    @ObservedObject var model: NoteOffMessage
+
+    @Environment(\.managedObjectContext) var moc
 
     var body: some View {
         HStack {
             Text("Note Off").fontWeight(.bold)
             TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
+            TextFieldUInt8(value: $model.velocity, name: "Velocity", emptyText: "Enter velocity value")
+        }
+        .onChange(of: [model.channel, model.note, model.velocity]) { _ in
+            try? moc.save()
         }
     }
 }
 
+func getMessage() -> NoteOnMessage {
+    var noteOn = NoteOnMessage()
+    noteOn.channel = 3
+    noteOn.note = 55
+    noteOn.velocity = 100
+    return noteOn
+}
+
 #Preview {
     List {
-        MidiMessageView(model: MidiNoteOnMessage(channel: 5, note: 22, velocity: 126))
-        MidiMessageView(model: MidiNoteOffMessage(channel: 11, note: 120, velocity: 123))
+        MidiMessageView(model: getMessage())
+        MidiMessageView(model: getMessage())
     }
 }

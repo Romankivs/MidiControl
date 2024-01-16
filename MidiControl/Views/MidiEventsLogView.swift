@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MidiEventsLogView: View {
-    @ObservedObject var midiEventsLogModel: MidiEventsLogModel
+    @StateObject var midiEventsLogModel =  MidiEventsLogModel()
 
     var body: some View {
         List(midiEventsLogModel.logs) {
@@ -18,5 +18,5 @@ struct MidiEventsLogView: View {
 }
 
 #Preview {
-    MidiEventsLogView(midiEventsLogModel: MidiEventsLogModel())
+    MidiEventsLogView()
 }

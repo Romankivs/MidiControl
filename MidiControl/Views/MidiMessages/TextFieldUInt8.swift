@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TextFieldUInt8 : View {
-    var value: Binding<UInt8>
+    var value: Binding<Int16>
     var name: String
     var emptyText: String
 
