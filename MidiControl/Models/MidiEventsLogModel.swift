@@ -5,6 +5,8 @@
 //  Created by Sviatoslav Romankiv on 06.01.2024.
 //
 
+import CoreData
+
 func currentTime() -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH:mm:ss.SS"
@@ -20,15 +22,23 @@ struct MidiEventDescription: Identifiable {
 }
 
 class MidiEventsLogModel: ObservableObject {
-    init(midiAdapter: MidiAdapter = .init()) {
+    init(midiAdapter: MidiAdapter = .init(), context: NSManagedObjectContext) {
         self.midiAdapter = midiAdapter
+        self.context = context
     }
-    
-    var timer: Timer?
-
-    var midiAdapter: MidiAdapter
 
     @Published var logs: [MidiEventDescription] = []
+
+    private var timer: Timer?
+
+    private var midiAdapter: MidiAdapter
+
+    private var context: NSManagedObjectContext
+
+    func getMessages<T: NSManagedObject>(name: String) -> [T] {
+        let request = NSFetchRequest<T>(entityName: name)
+        return (try? context.fetch(request)) ?? []
+    }
 
     // MARK: - Timer Callback
 
@@ -49,6 +59,8 @@ class MidiEventsLogModel: ObservableObject {
                     let umpDescription = "[\(currentTime())] \(message!.description)"
                     print(umpDescription)
                     self.logs.append(MidiEventDescription(description: umpDescription))
+
+                    let test = self.getMessages(name: "NoteOffMessage")
                 }
                 print("")
             }

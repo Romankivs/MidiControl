@@ -12,12 +12,10 @@ import SwiftData
 struct MidiControlApp: App {
     private var appState = AppState()
 
-    @StateObject private var dataController = DataController()
-
     var body: some Scene {
         WindowGroup {
             ContentView()
-            .environment(\.managedObjectContext, dataController.container.viewContext)
+            .environment(\.managedObjectContext, appState.dataController.container.viewContext)
             .environmentObject(appState.midiSourcesManager)
             .environmentObject(appState.midiReceiver)
             .environmentObject(appState.midiEventsLogModel)

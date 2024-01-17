@@ -8,12 +8,14 @@
 import Foundation
 
 class AppState {
-    init(midiSourcesManager: MidiSourcesManager = .init()) {
+    init(dataController: DataController = .init(), midiSourcesManager: MidiSourcesManager = .init()) {
+        self.dataController = dataController
         self.midiSourcesManager = midiSourcesManager
         self.midiReceiver = MidiReceiver(midiSourcesManager: midiSourcesManager)
-        self.midiEventsLogModel = MidiEventsLogModel(midiAdapter: midiReceiver.midiAdapter)
+        self.midiEventsLogModel = MidiEventsLogModel(midiAdapter: midiReceiver.midiAdapter, context: dataController.container.viewContext)
     }
     
+    var dataController: DataController
     var midiSourcesManager: MidiSourcesManager
     var midiReceiver: MidiReceiver
     var midiEventsLogModel: MidiEventsLogModel
