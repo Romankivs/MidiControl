@@ -1,20 +1,19 @@
 //
-//  List.swift
+//  GenericMidiListView.swift
 //  MidiControl
 //
-//  Created by Sviatoslav Romankiv on 25.12.2023.
+//  Created by Sviatoslav Romankiv on 17.01.2024.
 //
 
 import SwiftUI
-import Foundation
 
-struct MidiList: View {
-    @State private var selectedStroke: NoteOnMessage?
+struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
+    @State private var selectedStroke: T?
     @State private var selectedKey: KeyStroke?
 
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var noteOnMessages: FetchedResults<NoteOnMessage>
-    @FetchRequest(sortDescriptors: []) var noteOffMessages: FetchedResults<NoteOffMessage>
+
+    @FetchRequest(sortDescriptors: []) var messages: FetchedResults<T>
 
     var body: some View {
         HStack {
@@ -22,9 +21,7 @@ struct MidiList: View {
                 HStack {
                     Button(action: {
                         withAnimation {
-                            let noteOn = NoteOnMessage(context: moc)
-                            noteOn.id = UUID()
-
+                            let _ = T(context: moc)
                             try? moc.save()
                         }
                     }) {
@@ -34,7 +31,6 @@ struct MidiList: View {
                         withAnimation {
                             if let selected = selectedStroke {
                                 moc.delete(selected)
-                                
                                 try? moc.save()
                             }
                         }
@@ -42,7 +38,7 @@ struct MidiList: View {
                         Image(systemName: "minus")
                     }
                 }
-                List(noteOnMessages, id: \.self, selection: $selectedStroke) { stroke in
+                List(messages, id: \.self, selection: $selectedStroke) { stroke in
                     MidiMessageView(model: stroke)
                 }
             }
@@ -61,9 +57,8 @@ struct MidiList: View {
                             guard let selectedMidi = selectedStroke else { return }
 
                             let stroke = KeyStroke(context: moc)
-                            stroke.id = UUID()
                             stroke.keyCode = 33
-                            stroke.noteOn = selectedMidi
+                            stroke.parent = selectedMidi
 
                             try? moc.save()
                         }
@@ -102,6 +97,5 @@ struct MidiList: View {
 }
 
 #Preview {
-    MidiList()
+    GenericMidiListView<NoteOnMessage>()
 }
-

@@ -51,7 +51,7 @@ struct ContentView: View {
         VStack {
             AccessibilityAlertView()
             MidiSourcesView()
-            MidiList()
+            TabsMidiListsView()
             MidiEventsLogView()
         }
         .padding()

@@ -73,7 +73,7 @@ struct MidiNoteOffView: View {
 }
 
 func getMessage() -> NoteOnMessage {
-    var noteOn = NoteOnMessage()
+    let noteOn = NoteOnMessage()
     noteOn.channel = 3
     noteOn.note = 55
     noteOn.velocity = 100

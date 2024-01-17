@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="KeyStroke" representedClassName="KeyStroke" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="keyCode" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="noteOff" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteOffMessage" inverseName="keyStroke" inverseEntity="NoteOffMessage"/>
         <relationship name="noteOn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteOnMessage" inverseName="keyStroke" inverseEntity="NoteOnMessage"/>
     </entity>
     <entity name="NoteOffMessage" representedClassName="NoteOffMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="velocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="noteOff" inverseEntity="KeyStroke"/>
     </entity>
     <entity name="NoteOnMessage" representedClassName="NoteOnMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="velocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="noteOn" inverseEntity="KeyStroke"/>
