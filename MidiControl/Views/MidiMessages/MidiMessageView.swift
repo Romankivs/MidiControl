@@ -72,8 +72,8 @@ struct MidiNoteOffView: View {
     }
 }
 
-func getMessage() -> NoteOnMessage {
-    let noteOn = NoteOnMessage()
+func getPreviewMessage() -> NoteOnMessage {
+    let noteOn = NoteOnMessage(context: DataController.preview.container.viewContext)
     noteOn.channel = 3
     noteOn.note = 55
     noteOn.velocity = 100
@@ -82,7 +82,8 @@ func getMessage() -> NoteOnMessage {
 
 #Preview {
     List {
-        MidiMessageView(model: getMessage())
-        MidiMessageView(model: getMessage())
+        MidiMessageView(model: getPreviewMessage())
+        MidiMessageView(model: getPreviewMessage())
     }
+    .environment(\.managedObjectContext, DataController.preview.container.viewContext)
 }

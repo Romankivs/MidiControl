@@ -11,11 +11,22 @@ import Foundation
 class DataController: ObservableObject {
     let container = NSPersistentContainer(name: "MidiControl")
 
-    init() {
+    static var preview: DataController = {
+        let result = DataController(inMemory: true)
+        return result
+    }()
+
+    init(inMemory: Bool = false) {
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        }
+
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Core Data failed to load: \(error.localizedDescription)")
             }
         }
+
+        container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }

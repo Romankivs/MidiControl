@@ -42,6 +42,26 @@ class TextEntrySimulator {
     }
 }
 
+struct KeyEventHandling: NSViewRepresentable {
+    class KeyView: NSView {
+        override var acceptsFirstResponder: Bool { true }
+        override func keyDown(with event: NSEvent) {
+            print(">> key \(event.charactersIgnoringModifiers ?? "")")
+            print(">> key code \(event.keyCode)")
+        }
+    }
+
+    func makeNSView(context: Context) -> NSView {
+        let view = KeyView()
+        DispatchQueue.main.async { // wait till next event cycle
+            view.window?.makeFirstResponder(view)
+        }
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+    }
+}
 
 struct ContentView: View {
     // Create an instance of TextEntrySimulator to start the simulation
@@ -49,11 +69,12 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            AccessibilityAlertView()
             MidiSourcesView()
             TabsMidiListsView()
             MidiEventsLogView()
         }
+        .background(AccessibilityAlertView())
+        .background(KeyEventHandling())
         .padding()
     }
 }
@@ -62,4 +83,6 @@ struct ContentView: View {
     ContentView()
         .environmentObject(MidiSourcesManager())
         .environmentObject(MidiReceiver(midiSourcesManager: MidiSourcesManager()))
+        .environmentObject(MidiEventsLogModel(context: DataController.preview.container.viewContext))
+        .environment(\.managedObjectContext, DataController.preview.container.viewContext)
 }

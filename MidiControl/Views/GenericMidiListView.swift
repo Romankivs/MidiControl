@@ -79,7 +79,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                 }
                 if let selectedStroke = selectedStroke {
                     List(selectedStroke.keyStrokesArray, id: \.self, selection: $selectedKey) { item in
-                        Text("\(item.keyCode)")
+                        KeyStrokeView(stroke: item)
                     }
                 } else {
                     List {

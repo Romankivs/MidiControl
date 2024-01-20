@@ -15,6 +15,8 @@
 		F924A6B52B4DE9E0004E9129 /* MidiMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F924A6B42B4DE9E0004E9129 /* MidiMessage.swift */; };
 		F92B18852B56FD8C0018CE5F /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B18842B56FD8C0018CE5F /* CoreDataExtensions.swift */; };
 		F9545D0A2B3CAE5B008F8B29 /* AccessibilityAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */; };
+		F956578A2B59CEFC00125ABE /* KeyStrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95657892B59CEFC00125ABE /* KeyStrokeView.swift */; };
+		F96AB3A92B5BFC3E0009D766 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */; };
 		F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */; };
 		F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */; };
 		F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */; };
@@ -61,6 +63,8 @@
 		F924A6B42B4DE9E0004E9129 /* MidiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiMessage.swift; sourceTree = "<group>"; };
 		F92B18842B56FD8C0018CE5F /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityAlertView.swift; sourceTree = "<group>"; };
+		F95657892B59CEFC00125ABE /* KeyStrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStrokeView.swift; sourceTree = "<group>"; };
+		F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiEndpointModel.swift; sourceTree = "<group>"; };
 		F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesManager.swift; sourceTree = "<group>"; };
 		F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesView.swift; sourceTree = "<group>"; };
@@ -132,9 +136,18 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		F956578B2B59CF0100125ABE /* KeyStroke */ = {
+			isa = PBXGroup;
+			children = (
+				F95657892B59CEFC00125ABE /* KeyStrokeView.swift */,
+			);
+			path = KeyStroke;
+			sourceTree = "<group>";
+		};
 		F97FD9EF2B40B3740032DFD0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F956578B2B59CF0100125ABE /* KeyStroke */,
 				F90E373F2B52BF8A00331483 /* MidiMessages */,
 				F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */,
 				F9D6B0592B374A260063F634 /* ContentView.swift */,
@@ -164,6 +177,7 @@
 			children = (
 				F9E4FF8E2B49BE9900BA18C3 /* Extensions.swift */,
 				F90E373B2B4DF95D00331483 /* Utils.swift */,
+				F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -375,6 +389,7 @@
 				F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */,
 				F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */,
 				F9FF59092B473FBE005D7CB9 /* AppState.swift in Sources */,
+				F956578A2B59CEFC00125ABE /* KeyStrokeView.swift in Sources */,
 				F9B052652B5858E4006F1A33 /* TabsMidiListsView.swift in Sources */,
 				F924A6B52B4DE9E0004E9129 /* MidiMessage.swift in Sources */,
 				F90E373C2B4DF95D00331483 /* Utils.swift in Sources */,
@@ -385,6 +400,7 @@
 				F90E37472B5598D700331483 /* DataController.swift in Sources */,
 				F9FF59072B473FB1005D7CB9 /* MidiReceiver.swift in Sources */,
 				F9B052632B584C2E006F1A33 /* GenericMidiListView.swift in Sources */,
+				F96AB3A92B5BFC3E0009D766 /* KeyCodes.swift in Sources */,
 				F90E37442B5597F000331483 /* MidiControl.xcdatamodeld in Sources */,
 				F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */,
 				F9E4FF932B49CA6600BA18C3 /* MidiEventsLogView.swift in Sources */,

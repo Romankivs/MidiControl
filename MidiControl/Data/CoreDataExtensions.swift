@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: MIDI Messages extensions
+
 protocol ICDMidiMessage {
     var keyStrokesArray: [KeyStroke] { get }
 }
@@ -25,6 +27,8 @@ extension NoteOffMessage: ICDMidiMessage {
     }
 }
 
+// MARK: Key Stroke extensions
+
 extension KeyStroke {
     var parent: ICDMidiMessage {
         get {
@@ -39,6 +43,34 @@ extension KeyStroke {
             } else {
                 noteOff = newValue as? NoteOffMessage
             }
+        }
+    }
+}
+
+enum KeyStrokeAction: Int32 {
+    case press
+    case hold
+    case release
+}
+
+extension KeyStroke {
+    var unwrappedAction: KeyStrokeAction {
+        get {
+            return KeyStrokeAction(rawValue: self.action) ?? .press
+        }
+        set {
+            self.action = Int32(newValue.rawValue)
+        }
+    }
+}
+
+extension KeyStroke {
+    var unwrappedKeyCode: KeyCode {
+        get {
+            return KeyCode(rawValue: self.keyCode) ?? .return
+        }
+        set {
+            self.keyCode = Int32(newValue.rawValue)
         }
     }
 }

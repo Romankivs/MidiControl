@@ -19,4 +19,5 @@ struct MidiEventsLogView: View {
 
 #Preview {
     MidiEventsLogView()
+        .environmentObject(MidiEventsLogModel(context: DataController.preview.container.viewContext))
 }
