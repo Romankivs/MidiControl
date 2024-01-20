@@ -33,6 +33,7 @@
 		F9E4FF8F2B49BE9900BA18C3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E4FF8E2B49BE9900BA18C3 /* Extensions.swift */; };
 		F9E4FF912B49CA0A00BA18C3 /* MidiEventsLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E4FF902B49CA0A00BA18C3 /* MidiEventsLogModel.swift */; };
 		F9E4FF932B49CA6600BA18C3 /* MidiEventsLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E4FF922B49CA6600BA18C3 /* MidiEventsLogView.swift */; };
+		F9F05C712B5C44F8008F14FC /* KeyPressEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F05C702B5C44F8008F14FC /* KeyPressEmulator.swift */; };
 		F9FF59072B473FB1005D7CB9 /* MidiReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FF59062B473FB1005D7CB9 /* MidiReceiver.swift */; };
 		F9FF59092B473FBE005D7CB9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FF59082B473FBE005D7CB9 /* AppState.swift */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		F9E4FF8E2B49BE9900BA18C3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F9E4FF902B49CA0A00BA18C3 /* MidiEventsLogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiEventsLogModel.swift; sourceTree = "<group>"; };
 		F9E4FF922B49CA6600BA18C3 /* MidiEventsLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiEventsLogView.swift; sourceTree = "<group>"; };
+		F9F05C702B5C44F8008F14FC /* KeyPressEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPressEmulator.swift; sourceTree = "<group>"; };
 		F9FF59062B473FB1005D7CB9 /* MidiReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiReceiver.swift; sourceTree = "<group>"; };
 		F9FF59082B473FBE005D7CB9 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,8 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				F90E37422B5597F000331483 /* MidiControl.xcdatamodeld */,
-				F90E37462B5598D700331483 /* DataController.swift */,
 				F92B18842B56FD8C0018CE5F /* CoreDataExtensions.swift */,
+				F90E37462B5598D700331483 /* DataController.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -205,6 +207,7 @@
 		F9D6B0562B374A260063F634 /* MidiControl */ = {
 			isa = PBXGroup;
 			children = (
+				F9F05C6F2B5C44D6008F14FC /* Services */,
 				F90E37452B5598C300331483 /* Data */,
 				F9E4FF842B49B18600BA18C3 /* Realtime */,
 				F97FD9F32B40B4330032DFD0 /* Utils */,
@@ -252,6 +255,14 @@
 				F9E4FF872B49B1CA00BA18C3 /* SingleProducerSingleConsumerQueue.hpp */,
 			);
 			path = Realtime;
+			sourceTree = "<group>";
+		};
+		F9F05C6F2B5C44D6008F14FC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F9F05C702B5C44F8008F14FC /* KeyPressEmulator.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F05C712B5C44F8008F14FC /* KeyPressEmulator.swift in Sources */,
 				F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */,
 				F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */,
 				F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */,

@@ -60,7 +60,28 @@ class MidiEventsLogModel: ObservableObject {
                     print(umpDescription)
                     self.logs.append(MidiEventDescription(description: umpDescription))
 
-                    let test = self.getMessages(name: "NoteOffMessage")
+                    switch message {
+                    case .noteOn(_, _, _):
+                        let test = self.getMessages(name: "NoteOnMessage") as! [NoteOnMessage]
+                        let first = test.first(where: { msg in
+                            return msg.channel == 1
+                        })
+                        guard let first = first else { continue }
+                        for stroke in first.keyStrokesArray {
+                            KeyPressEmulator.emulateKey(key: stroke)
+                        }
+                    case .noteOff(_, _, _):
+                        let test = self.getMessages(name: "NoteOffMessage") as! [NoteOffMessage]
+                        let first = test.first(where: { msg in
+                            return msg.channel == 1
+                        })
+                        guard let first = first else { continue }
+                        for stroke in first.keyStrokesArray {
+                            KeyPressEmulator.emulateKey(key: stroke)
+                        }
+                    default:
+                        continue
+                    }
                 }
                 print("")
             }

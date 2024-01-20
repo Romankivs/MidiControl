@@ -24,15 +24,15 @@ class TextEntrySimulator {
 
         // Simulate typing characters
         for _ in text {
-            let keyCode = UInt16(2) // letter d
-            let keyDownEvent = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: true)
-            let keyUpEvent = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: false)
-
-            keyDownEvent?.post(tap: .cghidEventTap)
-            keyUpEvent?.post(tap: .cghidEventTap)
-
-            // Add a small delay between key events to simulate typing speed
-            usleep(10000) // 10 milliseconds
+//            let keyCode = UInt16(2) // letter d
+//            let keyDownEvent = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: true)
+//            let keyUpEvent = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: false)
+//
+//            keyDownEvent?.post(tap: .cghidEventTap)
+//            keyUpEvent?.post(tap: .cghidEventTap)
+//
+//            // Add a small delay between key events to simulate typing speed
+//            usleep(10000) // 10 milliseconds
         }
     }
 

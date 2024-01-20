@@ -20,6 +20,7 @@ struct KeyStrokeView: View {
                 Text("Release").tag(KeyStrokeAction.release)
             }
             .padding(.horizontal)
+            .labelsHidden()
             Picker("Key", selection: $stroke.unwrappedKeyCode) {
                 ForEach(KeyCode.allCases) { code in
                     Text(code.description)
