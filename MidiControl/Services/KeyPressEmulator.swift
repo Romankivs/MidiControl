@@ -16,10 +16,8 @@ class KeyPressEmulator {
             fireKeyAndAdditionalKeysIfNecessary(key: key, keyDown: false)
         }
     }
+
     static private func fireKeyAndAdditionalKeysIfNecessary(key: KeyStroke, keyDown: Bool) {
-        if !keyDown {
-            fireEventForKey(keyCode: key.unwrappedKeyCode, keyDown: keyDown)
-        }
         if (key.command) {
             fireEventForKey(keyCode: .cmd, keyDown: keyDown)
         }
@@ -32,20 +30,39 @@ class KeyPressEmulator {
         if (key.shift) {
             fireEventForKey(keyCode: .shift, keyDown: keyDown)
         }
-        if keyDown {
-            fireEventForKey(keyCode: key.unwrappedKeyCode, keyDown: keyDown)
-        }
+        fireEventForKey(keyCode: key.unwrappedKeyCode, keyDown: keyDown,
+                        command: key.command, option: key.option,
+                        control: key.control, shift: key.shift)
     }
 
-    static private func fireEventForKey(keyCode: KeyCode, keyDown: Bool) {
+    static private func fireEventForKey(keyCode: KeyCode, keyDown: Bool,
+                                        command: Bool = false, option: Bool = false,
+                                        control: Bool = false, shift: Bool = false) {
         let eventSource = CGEventSource(stateID: .hidSystemState)
         let keyEvent = CGEvent(keyboardEventSource: eventSource, virtualKey: UInt16(keyCode.rawValue), keyDown: keyDown)
 
-        // TODO: Add flags
-        if keyCode != .cmd {
-            keyEvent?.flags = .maskCommand
-        }
-        print("fired \(keyCode) \(keyDown)")
+        keyEvent?.flags = getEventFlags(command: command, option: option, control: control, shift: shift)
+
         keyEvent?.post(tap: .cghidEventTap)
+
+        print("Triggered key: \(keyCode) down: \(keyDown) command: \(command)",
+              "option: \(option) control: \(control) shift: \(shift)")
+    }
+
+    static private func getEventFlags(command: Bool, option: Bool, control: Bool, shift: Bool) -> CGEventFlags {
+        var flags: CGEventFlags = []
+        if command {
+            flags.insert(.maskCommand)
+        }
+        if option {
+            flags.insert(.maskAlternate)
+        }
+        if control {
+            flags.insert(.maskControl)
+        }
+        if shift {
+            flags.insert(.maskShift)
+        }
+        return flags
     }
 }
