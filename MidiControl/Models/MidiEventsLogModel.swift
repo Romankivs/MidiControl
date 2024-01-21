@@ -55,29 +55,36 @@ class MidiEventsLogModel: ObservableObject {
                 
                 for umpPacket in packet.wordsArray {
                     let message = MidiMessage(umpWord: umpPacket)
-                    
-                    let umpDescription = "[\(currentTime())] \(message!.description)"
+                    guard let message = message else { continue }
+
+                    let umpDescription = "[\(currentTime())] \(message.description)"
                     print(umpDescription)
                     self.logs.append(MidiEventDescription(description: umpDescription))
 
                     switch message {
-                    case .noteOn(_, _, _):
+                    case let .noteOn(channel, note, velocity):
                         let test = self.getMessages(name: "NoteOnMessage") as! [NoteOnMessage]
-                        let first = test.first(where: { msg in
-                            return msg.channel == 1
+                        let search = test.filter({ msg in
+                            return (msg.channel == channel &&
+                                    msg.note == note &&
+                                    (msg.velocity == 0 || msg.velocity == velocity))
                         })
-                        guard let first = first else { continue }
-                        for stroke in first.keyStrokesArray {
-                            KeyPressEmulator.emulateKey(key: stroke)
+                        for msg in search {
+                            for stroke in msg.keyStrokesArray {
+                                KeyPressEmulator.emulateKey(key: stroke)
+                            }
                         }
-                    case .noteOff(_, _, _):
+                    case let .noteOff(channel, note, velocity):
                         let test = self.getMessages(name: "NoteOffMessage") as! [NoteOffMessage]
-                        let first = test.first(where: { msg in
-                            return msg.channel == 1
+                        let search = test.filter({ msg in
+                            return (msg.channel == channel &&
+                                    msg.note == note &&
+                                    (msg.velocity == 0 || msg.velocity == velocity))
                         })
-                        guard let first = first else { continue }
-                        for stroke in first.keyStrokesArray {
-                            KeyPressEmulator.emulateKey(key: stroke)
+                        for msg in search {
+                            for stroke in msg.keyStrokesArray {
+                                KeyPressEmulator.emulateKey(key: stroke)
+                            }
                         }
                     default:
                         continue
