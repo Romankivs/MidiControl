@@ -4,6 +4,7 @@
         <attribute name="action" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="command" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="control" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="keyCode" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="option" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="shift" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -12,12 +13,14 @@
     </entity>
     <entity name="NoteOffMessage" representedClassName="NoteOffMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="velocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="noteOff" inverseEntity="KeyStroke"/>
     </entity>
     <entity name="NoteOnMessage" representedClassName="NoteOnMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="velocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="noteOn" inverseEntity="KeyStroke"/>

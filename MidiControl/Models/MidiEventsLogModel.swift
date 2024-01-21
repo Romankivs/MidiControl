@@ -37,6 +37,7 @@ class MidiEventsLogModel: ObservableObject {
 
     func getMessages<T: NSManagedObject>(name: String) -> [T] {
         let request = NSFetchRequest<T>(entityName: name)
+        request.sortDescriptors = [NSSortDescriptor(key: "created", ascending: true)]
         return (try? context.fetch(request)) ?? []
     }
 
@@ -64,25 +65,31 @@ class MidiEventsLogModel: ObservableObject {
                     switch message {
                     case let .noteOn(channel, note, velocity):
                         let test = self.getMessages(name: "NoteOnMessage") as! [NoteOnMessage]
-                        let search = test.filter({ msg in
+                        let search = test.filter { msg in
                             return (msg.channel == channel &&
                                     msg.note == note &&
                                     (msg.velocity == 0 || msg.velocity == velocity))
-                        })
+                        }
                         for msg in search {
-                            for stroke in msg.keyStrokesArray {
+                            let array = msg.keyStrokesArray.sorted { left, right in
+                                left.createdDate < right.createdDate
+                            }
+                            for stroke in array {
                                 KeyPressEmulator.emulateKey(key: stroke)
                             }
                         }
                     case let .noteOff(channel, note, velocity):
                         let test = self.getMessages(name: "NoteOffMessage") as! [NoteOffMessage]
-                        let search = test.filter({ msg in
+                        let search = test.filter { msg in
                             return (msg.channel == channel &&
                                     msg.note == note &&
                                     (msg.velocity == 0 || msg.velocity == velocity))
-                        })
+                        }
                         for msg in search {
-                            for stroke in msg.keyStrokesArray {
+                            let array = msg.keyStrokesArray.sorted { left, right in
+                                left.createdDate < right.createdDate
+                            }
+                            for stroke in array {
                                 KeyPressEmulator.emulateKey(key: stroke)
                             }
                         }

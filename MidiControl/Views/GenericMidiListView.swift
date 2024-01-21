@@ -13,7 +13,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
 
     @Environment(\.managedObjectContext) var moc
 
-    @FetchRequest(sortDescriptors: []) var messages: FetchedResults<T>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "created", ascending: true)]) var messages: FetchedResults<T>
 
     var body: some View {
         HStack {
@@ -21,7 +21,8 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                 HStack {
                     Button(action: {
                         withAnimation {
-                            let _ = T(context: moc)
+                            var new = T(context: moc)
+                            new.createdDate = .init()
                             try? moc.save()
                         }
                     }) {
@@ -57,6 +58,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                             guard let selectedMidi = selectedStroke else { return }
 
                             let stroke = KeyStroke(context: moc)
+                            stroke.createdDate = .init()
                             stroke.keyCode = 33
                             stroke.parent = selectedMidi
 
@@ -78,7 +80,10 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                     }
                 }
                 if let selectedStroke = selectedStroke {
-                    List(selectedStroke.keyStrokesArray, id: \.self, selection: $selectedKey) { item in
+                    let array = selectedStroke.keyStrokesArray.sorted { left, right in
+                        left.createdDate < right.createdDate
+                    }
+                    List(array, id: \.self, selection: $selectedKey) { item in
                         KeyStrokeView(stroke: item)
                     }
                 } else {

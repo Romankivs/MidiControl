@@ -9,11 +9,24 @@ import Foundation
 
 // MARK: MIDI Messages extensions
 
-protocol ICDMidiMessage {
+protocol CreatedAtDate {
+    var createdDate: Date { get set }
+}
+
+protocol ICDMidiMessage: CreatedAtDate {
     var keyStrokesArray: [KeyStroke] { get }
 }
 
 extension NoteOnMessage: ICDMidiMessage {
+    var createdDate: Date {
+        get {
+            created ?? .distantPast
+        }
+        set {
+            created = newValue
+        }
+    }
+    
     public var keyStrokesArray: [KeyStroke] {
         guard let keyStroke = keyStroke else { return [] }
         return Array(keyStroke as! Set<KeyStroke>)
@@ -21,6 +34,15 @@ extension NoteOnMessage: ICDMidiMessage {
 }
 
 extension NoteOffMessage: ICDMidiMessage {
+    var createdDate: Date {
+        get {
+            created ?? .distantPast
+        }
+        set {
+            created = newValue
+        }
+    }
+
     public var keyStrokesArray: [KeyStroke] {
         guard let keyStroke = keyStroke else { return [] }
         return Array(keyStroke as! Set<KeyStroke>)
@@ -71,6 +93,17 @@ extension KeyStroke {
         }
         set {
             self.keyCode = Int32(newValue.rawValue)
+        }
+    }
+}
+
+extension KeyStroke: CreatedAtDate {
+    var createdDate: Date {
+        get {
+            created ?? .distantPast
+        }
+        set {
+            created = newValue
         }
     }
 }
