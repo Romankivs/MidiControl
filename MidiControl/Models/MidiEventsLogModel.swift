@@ -151,8 +151,20 @@ class MidiEventsLogModel: ObservableObject {
                                 KeyPressEmulator.emulateKey(key: stroke)
                             }
                         }
-                    default:
-                        continue
+                    case let .pitchBend(channel, data):
+                        let test = self.getMessages(name: "PitchBendMessage") as! [PitchBendMessage]
+                        let search = test.filter { msg in
+                            return (msg.channel == channel &&
+                                    (msg.data == 0 || msg.data == data))
+                        }
+                        for msg in search {
+                            let array = msg.keyStrokesArray.sorted { left, right in
+                                left.createdDate < right.createdDate
+                            }
+                            for stroke in array {
+                                KeyPressEmulator.emulateKey(key: stroke)
+                            }
+                        }
                     }
                 }
                 print("")

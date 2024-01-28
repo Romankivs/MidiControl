@@ -16,7 +16,7 @@ enum MidiMessage {
     case controlChange(channel: UInt8, index: UInt8, data: UInt8)
     case programChange(channel: UInt8, program: UInt8)
     case channelPressure(channel: UInt8, data: UInt8)
-    case pitchBend(channel: UInt8, lsbData: UInt8, msbData: UInt8)
+    case pitchBend(channel: UInt8, data: UInt16)
 }
 
 extension MidiMessage {
@@ -44,6 +44,9 @@ extension MidiMessage {
             self = .polyPressure(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
                            note: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)),
                            data: UInt8(extractBits(from: umpWord, at: 0, numberOfBits: 8)))
+        case .pitchBend:
+            self = .pitchBend(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
+                           data: (UInt16(extractBits(from: umpWord, at: 0, numberOfBits: 8)) << 8) | UInt16(extractBits(from: umpWord, at: 8, numberOfBits: 8)))
         default:
             return nil
         }
@@ -59,7 +62,7 @@ extension MidiMessage : CustomStringConvertible {
         case let .programChange(channel, program): "Program Change | Channel: \(channel) Program: \(program)"
         case let .channelPressure(channel, data): "Channel Presure | Channel: \(channel) Data: \(data)"
         case let .polyPressure(channel, note, data): "Poly Presure | Channel: \(channel) Note: \(note) Data: \(data)"
-        default: "Unknown message"
+        case let .pitchBend(channel, data): "Pitch Bend | Channel: \(channel) Data: \(data)"
         }
     }
 }

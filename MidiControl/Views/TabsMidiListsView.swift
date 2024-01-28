@@ -16,6 +16,7 @@ struct TabsMidiListsView: View {
             GenericMidiListView<ProgramChangeMessage>().tabItem { Text("Program Change") }
             GenericMidiListView<ChannelPressureMessage>().tabItem { Text("Channel Pressure") }
             GenericMidiListView<PolyPressureMessage>().tabItem { Text("Poly Pressure") }
+            GenericMidiListView<PitchBendMessage>().tabItem { Text("Pitch Bend") }
         }
     }
 }

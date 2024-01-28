@@ -113,6 +113,22 @@ extension PolyPressureMessage: ICDMidiMessage {
     }
 }
 
+extension PitchBendMessage: ICDMidiMessage {
+    var createdDate: Date {
+        get {
+            created ?? .distantPast
+        }
+        set {
+            created = newValue
+        }
+    }
+
+    public var keyStrokesArray: [KeyStroke] {
+        guard let keyStroke = keyStroke else { return [] }
+        return Array(keyStroke as! Set<KeyStroke>)
+    }
+}
+
 // MARK: Key Stroke extensions
 
 extension KeyStroke {
@@ -136,6 +152,8 @@ extension KeyStroke {
                 channelPressure = newValue
             } else if let newValue = newValue as? PolyPressureMessage {
                 polyPressure = newValue
+            } else if let newValue = newValue as? PitchBendMessage {
+                pitchBend = newValue
             } else {
                 fatalError("Unknown parent")
             }
