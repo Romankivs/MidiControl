@@ -12,6 +12,7 @@ struct TabsMidiListsView: View {
         TabView {
             GenericMidiListView<NoteOnMessage>().tabItem { Text("Note On") }
             GenericMidiListView<NoteOffMessage>().tabItem { Text("Note Off") }
+            GenericMidiListView<ControlChangeMessage>().tabItem { Text("Control Change") }
         }
     }
 }

@@ -49,6 +49,22 @@ extension NoteOffMessage: ICDMidiMessage {
     }
 }
 
+extension ControlChangeMessage: ICDMidiMessage {
+    var createdDate: Date {
+        get {
+            created ?? .distantPast
+        }
+        set {
+            created = newValue
+        }
+    }
+
+    public var keyStrokesArray: [KeyStroke] {
+        guard let keyStroke = keyStroke else { return [] }
+        return Array(keyStroke as! Set<KeyStroke>)
+    }
+}
+
 // MARK: Key Stroke extensions
 
 extension KeyStroke {
@@ -62,8 +78,12 @@ extension KeyStroke {
         set {
             if let newValue = newValue as? NoteOnMessage {
                 noteOn = newValue
+            } else if let newValue = newValue as? NoteOffMessage {
+                noteOff = newValue
+            } else if let newValue = newValue as? ControlChangeMessage {
+                controlChange = newValue
             } else {
-                noteOff = newValue as? NoteOffMessage
+                fatalError("Unknown parent")
             }
         }
     }

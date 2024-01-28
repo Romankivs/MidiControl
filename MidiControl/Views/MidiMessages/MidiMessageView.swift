@@ -17,12 +17,8 @@ struct MidiMessageView: View {
                 MidiNoteOnView(model: model)
             case let model as NoteOffMessage:
                 MidiNoteOffView(model: model)
-//            case .noteOff(let channel, let note, let velocity):
-//                <#code#>
-//            case .polyPressure(let channel, let noteNumber, let data):
-//                <#code#>
-//            case .controlChange(let channel, let index, let data):
-//                <#code#>
+            case let model as ControlChangeMessage:
+                MidiControlChangeView(model: model)
 //            case .programChange(let channe, let program):
 //                <#code#>
 //            case .channelPressure(let channel, let data):
@@ -67,6 +63,24 @@ struct MidiNoteOffView: View {
             TextFieldUInt8(value: $model.velocity, name: "Velocity", emptyText: "Enter velocity value")
         }
         .onChange(of: [model.channel, model.note, model.velocity]) { _ in
+            try? moc.save()
+        }
+    }
+}
+
+struct MidiControlChangeView: View {
+    @ObservedObject var model: ControlChangeMessage
+
+    @Environment(\.managedObjectContext) var moc
+
+    var body: some View {
+        HStack {
+            Text("Control Change").fontWeight(.bold)
+            TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
+            TextFieldUInt8(value: $model.index, name: "Index", emptyText: "Enter index")
+            TextFieldUInt8(value: $model.data, name: "Data", emptyText: "Enter data value")
+        }
+        .onChange(of: [model.channel, model.index, model.data]) { _ in
             try? moc.save()
         }
     }

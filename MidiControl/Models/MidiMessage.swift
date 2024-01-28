@@ -14,7 +14,7 @@ enum MidiMessage {
     case noteOff(channel: UInt8, note: UInt8, velocity: UInt8)
     case polyPressure(channel: UInt8, noteNumber: UInt8, data: UInt8)
     case controlChange(channel: UInt8, index: UInt8, data: UInt8)
-    case programChange(channe: UInt8, program: UInt8)
+    case programChange(channel: UInt8, program: UInt8)
     case channelPressure(channel: UInt8, data: UInt8)
     case pitchBend(channel: UInt8, lsbData: UInt8, msbData: UInt8)
 }
@@ -30,6 +30,10 @@ extension MidiMessage {
             self = .noteOff(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
                            note: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)),
                            velocity: UInt8(extractBits(from: umpWord, at: 0, numberOfBits: 8)))
+        case .controlChange:
+            self = .controlChange(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
+                           index: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)),
+                           data: UInt8(extractBits(from: umpWord, at: 0, numberOfBits: 8)))
         default:
             return nil
         }
@@ -39,8 +43,9 @@ extension MidiMessage {
 extension MidiMessage : CustomStringConvertible {
     var description: String {
         return switch self {
-        case let .noteOn(channel, note, velocity): "Channel: \(channel) Note: \(note) Velocity: \(velocity)"
-        case let .noteOff(channel, note, velocity): "Channel: \(channel) Note: \(note) Velocity: \(velocity)"
+        case let .noteOn(channel, note, velocity): "Note On | Channel: \(channel) Note: \(note) Velocity: \(velocity)"
+        case let .noteOff(channel, note, velocity): "Note Off | Channel: \(channel) Note: \(note) Velocity: \(velocity)"
+        case let .controlChange(channel, index, data): "Control | Change Channel: \(channel) Index: \(index) Data: \(data)"
         default: "Unknown message"
         }
     }
