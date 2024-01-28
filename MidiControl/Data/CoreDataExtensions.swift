@@ -81,6 +81,22 @@ extension ProgramChangeMessage: ICDMidiMessage {
     }
 }
 
+extension ChannelPressureMessage: ICDMidiMessage {
+    var createdDate: Date {
+        get {
+            created ?? .distantPast
+        }
+        set {
+            created = newValue
+        }
+    }
+
+    public var keyStrokesArray: [KeyStroke] {
+        guard let keyStroke = keyStroke else { return [] }
+        return Array(keyStroke as! Set<KeyStroke>)
+    }
+}
+
 // MARK: Key Stroke extensions
 
 extension KeyStroke {
@@ -100,6 +116,8 @@ extension KeyStroke {
                 controlChange = newValue
             } else if let newValue = newValue as? ProgramChangeMessage {
                 programChange = newValue
+            } else if let newValue = newValue as? ChannelPressureMessage {
+                channelPresure = newValue
             } else {
                 fatalError("Unknown parent")
             }

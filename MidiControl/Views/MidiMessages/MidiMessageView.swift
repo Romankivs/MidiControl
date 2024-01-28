@@ -21,6 +21,8 @@ struct MidiMessageView: View {
                 MidiControlChangeView(model: model)
             case let model as ProgramChangeMessage:
                 MidiProgramChangeView(model: model)
+            case let model as ChannelPressureMessage:
+                MidiChannelPressureView(model: model)
 //            case .channelPressure(let channel, let data):
 //                <#code#>
 //            case .pitchBend(let channel, let lsbData, let msbData):
@@ -98,6 +100,23 @@ struct MidiProgramChangeView: View {
             TextFieldUInt8(value: $model.program, name: "Program", emptyText: "Enter program value")
         }
         .onChange(of: [model.channel, model.program]) { _ in
+            try? moc.save()
+        }
+    }
+}
+
+struct MidiChannelPressureView: View {
+    @ObservedObject var model: ChannelPressureMessage
+
+    @Environment(\.managedObjectContext) var moc
+
+    var body: some View {
+        HStack {
+            Text("Channel Pressure").fontWeight(.bold)
+            TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
+            TextFieldUInt8(value: $model.data, name: "Data", emptyText: "Enter data value")
+        }
+        .onChange(of: [model.channel, model.data]) { _ in
             try? moc.save()
         }
     }
