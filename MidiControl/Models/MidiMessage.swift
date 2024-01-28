@@ -34,6 +34,9 @@ extension MidiMessage {
             self = .controlChange(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
                            index: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)),
                            data: UInt8(extractBits(from: umpWord, at: 0, numberOfBits: 8)))
+        case .programChange:
+            self = .programChange(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
+                           program: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)))
         default:
             return nil
         }
@@ -45,7 +48,8 @@ extension MidiMessage : CustomStringConvertible {
         return switch self {
         case let .noteOn(channel, note, velocity): "Note On | Channel: \(channel) Note: \(note) Velocity: \(velocity)"
         case let .noteOff(channel, note, velocity): "Note Off | Channel: \(channel) Note: \(note) Velocity: \(velocity)"
-        case let .controlChange(channel, index, data): "Control | Change Channel: \(channel) Index: \(index) Data: \(data)"
+        case let .controlChange(channel, index, data): "Control Change | Channel: \(channel) Index: \(index) Data: \(data)"
+        case let .programChange(channel, program): "Program Change | Channel: \(channel) Program: \(program)"
         default: "Unknown message"
         }
     }

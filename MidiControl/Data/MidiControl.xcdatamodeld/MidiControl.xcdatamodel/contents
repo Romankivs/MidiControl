@@ -18,6 +18,7 @@
         <relationship name="controlChange" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ControlChangeMessage" inverseName="keyStroke" inverseEntity="ControlChangeMessage"/>
         <relationship name="noteOff" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteOffMessage" inverseName="keyStroke" inverseEntity="NoteOffMessage"/>
         <relationship name="noteOn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteOnMessage" inverseName="keyStroke" inverseEntity="NoteOnMessage"/>
+        <relationship name="programChange" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProgramChangeMessage" inverseName="keyStroke" inverseEntity="ProgramChangeMessage"/>
     </entity>
     <entity name="NoteOffMessage" representedClassName="NoteOffMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -32,5 +33,11 @@
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="velocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="noteOn" inverseEntity="KeyStroke"/>
+    </entity>
+    <entity name="ProgramChangeMessage" representedClassName="ProgramChangeMessage" syncable="YES" codeGenerationType="class">
+        <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="program" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="programChange" inverseEntity="KeyStroke"/>
     </entity>
 </model>

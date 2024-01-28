@@ -65,6 +65,22 @@ extension ControlChangeMessage: ICDMidiMessage {
     }
 }
 
+extension ProgramChangeMessage: ICDMidiMessage {
+    var createdDate: Date {
+        get {
+            created ?? .distantPast
+        }
+        set {
+            created = newValue
+        }
+    }
+
+    public var keyStrokesArray: [KeyStroke] {
+        guard let keyStroke = keyStroke else { return [] }
+        return Array(keyStroke as! Set<KeyStroke>)
+    }
+}
+
 // MARK: Key Stroke extensions
 
 extension KeyStroke {
@@ -82,6 +98,8 @@ extension KeyStroke {
                 noteOff = newValue
             } else if let newValue = newValue as? ControlChangeMessage {
                 controlChange = newValue
+            } else if let newValue = newValue as? ProgramChangeMessage {
+                programChange = newValue
             } else {
                 fatalError("Unknown parent")
             }

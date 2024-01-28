@@ -106,6 +106,20 @@ class MidiEventsLogModel: ObservableObject {
                             }
                             for stroke in array {
                                 KeyPressEmulator.emulateKey(key: stroke)
+                           }
+                        }
+                    case let .programChange(channel, program):
+                        let test = self.getMessages(name: "ProgramChangeMessage") as! [ProgramChangeMessage]
+                        let search = test.filter { msg in
+                            return (msg.channel == channel &&
+                                    (msg.program == 0 || msg.program == program))
+                        }
+                        for msg in search {
+                            let array = msg.keyStrokesArray.sorted { left, right in
+                                left.createdDate < right.createdDate
+                            }
+                            for stroke in array {
+                                KeyPressEmulator.emulateKey(key: stroke)
                             }
                         }
                     default:
