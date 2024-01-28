@@ -12,7 +12,7 @@ enum MidiMessage {
     // MIDI 1
     case noteOn(channel: UInt8, note: UInt8, velocity: UInt8)
     case noteOff(channel: UInt8, note: UInt8, velocity: UInt8)
-    case polyPressure(channel: UInt8, noteNumber: UInt8, data: UInt8)
+    case polyPressure(channel: UInt8, note: UInt8, data: UInt8)
     case controlChange(channel: UInt8, index: UInt8, data: UInt8)
     case programChange(channel: UInt8, program: UInt8)
     case channelPressure(channel: UInt8, data: UInt8)
@@ -40,6 +40,10 @@ extension MidiMessage {
         case .channelPressure:
             self = .channelPressure(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
                            data: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)))
+        case .polyPressure:
+            self = .polyPressure(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
+                           note: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)),
+                           data: UInt8(extractBits(from: umpWord, at: 0, numberOfBits: 8)))
         default:
             return nil
         }
@@ -54,6 +58,7 @@ extension MidiMessage : CustomStringConvertible {
         case let .controlChange(channel, index, data): "Control Change | Channel: \(channel) Index: \(index) Data: \(data)"
         case let .programChange(channel, program): "Program Change | Channel: \(channel) Program: \(program)"
         case let .channelPressure(channel, data): "Channel Presure | Channel: \(channel) Data: \(data)"
+        case let .polyPressure(channel, note, data): "Poly Presure | Channel: \(channel) Note: \(note) Data: \(data)"
         default: "Unknown message"
         }
     }
