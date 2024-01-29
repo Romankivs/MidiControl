@@ -12,6 +12,9 @@ class KeyPressEmulator {
         if key.unwrappedAction == .press || key.unwrappedAction == .hold {
             fireKeyAndAdditionalKeysIfNecessary(key: key, keyDown: true)
         }
+        if key.unwrappedAction == .press {
+            usleep(100000) // simulate a 0.1 millisecond hold
+        }
         if key.unwrappedAction == .press || key.unwrappedAction == .release {
             fireKeyAndAdditionalKeysIfNecessary(key: key, keyDown: false)
         }
@@ -19,16 +22,24 @@ class KeyPressEmulator {
 
     static private func fireKeyAndAdditionalKeysIfNecessary(key: KeyStroke, keyDown: Bool) {
         if (key.command) {
-            fireEventForKey(keyCode: .cmd, keyDown: keyDown)
+            fireEventForKey(keyCode: .cmd, keyDown: keyDown,
+                            command: key.command, option: key.option,
+                            control: key.control, shift: key.shift)
         }
         if (key.option) {
-            fireEventForKey(keyCode: .option, keyDown: keyDown)
+            fireEventForKey(keyCode: .option, keyDown: keyDown,
+                            command: key.command, option: key.option,
+                            control: key.control, shift: key.shift)
         }
         if (key.control) {
-            fireEventForKey(keyCode: .control, keyDown: keyDown)
+            fireEventForKey(keyCode: .control, keyDown: keyDown,
+                            command: key.command, option: key.option,
+                            control: key.control, shift: key.shift)
         }
         if (key.shift) {
-            fireEventForKey(keyCode: .shift, keyDown: keyDown)
+            fireEventForKey(keyCode: .shift, keyDown: keyDown,
+                            command: key.command, option: key.option,
+                            control: key.control, shift: key.shift)
         }
         fireEventForKey(keyCode: key.unwrappedKeyCode, keyDown: keyDown,
                         command: key.command, option: key.option,
