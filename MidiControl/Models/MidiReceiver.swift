@@ -14,6 +14,12 @@ class MidiReceiver: ObservableObject {
 
         if setupMIDI() {
             print("Succesfully started midi client")
+
+            // Select previously selected input
+            let savedName = UserDefaults.standard.string(forKey: "SelectedMidiInput") ?? ""
+            let index = midiSourcesManager.midiSources.firstIndex(where: { $0.name == savedName })
+            midiSourcesManager.selectedSourceIndex = index ?? 0
+            updateSource()
         }
         else {
             print("Failed to start midi client")
@@ -81,6 +87,11 @@ class MidiReceiver: ObservableObject {
             }
             else {
                 activeSource = nextSource
+
+                // Save input to be used in future app launches
+                let index = midiSourcesManager.selectedSourceIndex
+                let name = midiSourcesManager.midiSources[index].name
+                UserDefaults.standard.set(name, forKey: "SelectedMidiInput")
             }
         }
     }
