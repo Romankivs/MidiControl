@@ -11,15 +11,13 @@ import CoreMIDI
 class MidiSourcesManager: ObservableObject {
     @Published var midiSources = [MIDIEndpointModel]()
 
-    @Published var selectedSourceIndex = 0
+    @Published var selectedSourceName = ""
     var selectedSource: MIDIEndpointRef? {
-        if selectedSourceIndex < 0 || selectedSourceIndex >= midiSources.count { return nil }
-        return midiSources[selectedSourceIndex].endpointType
+        return midiSources.first(where: { $0.name == selectedSourceName })?.endpointType
     }
 
     init() {
         populateSources()
-        selectedSourceIndex = 0
     }
 
     func populateSources() {

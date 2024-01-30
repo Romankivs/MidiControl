@@ -13,11 +13,11 @@ struct MidiSourcesView: View {
 
     var body: some View {
         VStack {
-            Picker("Midi Input", selection: $midiSourcesManager.selectedSourceIndex) {
-                ForEach((0..<midiSourcesManager.midiSources.count), id: \.self) {
-                    Text(midiSourcesManager.midiSources[$0].name).tag($0)
+            Picker("Midi Input", selection: $midiSourcesManager.selectedSourceName) {
+                ForEach(midiSourcesManager.midiSources, id: \.self) {
+                    Text($0.name).tag($0.name)
                 }
-            }.onChange(of: midiSourcesManager.selectedSourceIndex) { _ in
+            }.onChange(of: midiSourcesManager.selectedSourceName) { _ in
                 midiReceiver.updateSource()
             }
             .frame(width: 300)

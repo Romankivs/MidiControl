@@ -17,8 +17,7 @@ class MidiReceiver: ObservableObject {
 
             // Select previously selected input
             let savedName = UserDefaults.standard.string(forKey: "SelectedMidiInput") ?? ""
-            let index = midiSourcesManager.midiSources.firstIndex(where: { $0.name == savedName })
-            midiSourcesManager.selectedSourceIndex = index ?? 0
+            midiSourcesManager.selectedSourceName = savedName
             updateSource()
         }
         else {
@@ -89,8 +88,7 @@ class MidiReceiver: ObservableObject {
                 activeSource = nextSource
 
                 // Save input to be used in future app launches
-                let index = midiSourcesManager.selectedSourceIndex
-                let name = midiSourcesManager.midiSources[index].name
+                let name = midiSourcesManager.selectedSourceName
                 UserDefaults.standard.set(name, forKey: "SelectedMidiInput")
             }
         }

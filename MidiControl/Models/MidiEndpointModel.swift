@@ -21,7 +21,7 @@ extension MIDIProtocolID: CustomStringConvertible {
     }
 }
 
-struct MIDIEndpointModel: Identifiable {
+struct MIDIEndpointModel: Identifiable, Hashable {
     let id = UUID()
 
     let endpointType: MIDIEndpointRef
