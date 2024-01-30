@@ -23,23 +23,23 @@ class KeyPressEmulator {
     static private func fireKeyAndAdditionalKeysIfNecessary(key: KeyStroke, keyDown: Bool) {
         if (key.command) {
             fireEventForKey(keyCode: .cmd, keyDown: keyDown,
-                            command: key.command, option: key.option,
+                            command: false, option: key.option,
                             control: key.control, shift: key.shift)
         }
         if (key.option) {
             fireEventForKey(keyCode: .option, keyDown: keyDown,
-                            command: key.command, option: key.option,
+                            command: key.command, option: false,
                             control: key.control, shift: key.shift)
         }
         if (key.control) {
             fireEventForKey(keyCode: .control, keyDown: keyDown,
                             command: key.command, option: key.option,
-                            control: key.control, shift: key.shift)
+                            control: false, shift: key.shift)
         }
         if (key.shift) {
             fireEventForKey(keyCode: .shift, keyDown: keyDown,
                             command: key.command, option: key.option,
-                            control: key.control, shift: key.shift)
+                            control: key.control, shift: false)
         }
         fireEventForKey(keyCode: key.unwrappedKeyCode, keyDown: keyDown,
                         command: key.command, option: key.option,
