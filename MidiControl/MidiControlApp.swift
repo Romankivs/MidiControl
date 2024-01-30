@@ -25,6 +25,10 @@ struct MidiControlApp: App {
             .onDisappear {
                 appState.midiEventsLogModel.stopLogTimer()
             }
+        }.commands {
+            CommandGroup(after: .appInfo) {
+                CheckForUpdatesView(updater: appState.updaterController.updater)
+            }
         }
     }
 }

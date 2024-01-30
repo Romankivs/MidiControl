@@ -16,6 +16,9 @@
 		F92B18852B56FD8C0018CE5F /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B18842B56FD8C0018CE5F /* CoreDataExtensions.swift */; };
 		F9545D0A2B3CAE5B008F8B29 /* AccessibilityAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */; };
 		F956578A2B59CEFC00125ABE /* KeyStrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95657892B59CEFC00125ABE /* KeyStrokeView.swift */; };
+		F958EF8C2B69617E00610202 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = F958EF8B2B69617E00610202 /* Sparkle */; };
+		F958EF902B6966A900610202 /* CheckForUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958EF8F2B6966A900610202 /* CheckForUpdates.swift */; };
+		F958EF932B69671B00610202 /* CheckForUpdatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958EF922B69671B00610202 /* CheckForUpdatesModel.swift */; };
 		F96AB3A92B5BFC3E0009D766 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */; };
 		F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */; };
 		F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */; };
@@ -65,6 +68,9 @@
 		F92B18842B56FD8C0018CE5F /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		F9545D092B3CAE5B008F8B29 /* AccessibilityAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityAlertView.swift; sourceTree = "<group>"; };
 		F95657892B59CEFC00125ABE /* KeyStrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStrokeView.swift; sourceTree = "<group>"; };
+		F958EF8D2B6964BE00610202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F958EF8F2B6966A900610202 /* CheckForUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdates.swift; sourceTree = "<group>"; };
+		F958EF922B69671B00610202 /* CheckForUpdatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesModel.swift; sourceTree = "<group>"; };
 		F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiEndpointModel.swift; sourceTree = "<group>"; };
 		F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesManager.swift; sourceTree = "<group>"; };
@@ -99,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F958EF8C2B69617E00610202 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,9 +153,26 @@
 			path = KeyStroke;
 			sourceTree = "<group>";
 		};
+		F958EF8E2B69669600610202 /* Updates */ = {
+			isa = PBXGroup;
+			children = (
+				F958EF8F2B6966A900610202 /* CheckForUpdates.swift */,
+			);
+			path = Updates;
+			sourceTree = "<group>";
+		};
+		F958EF912B69670B00610202 /* Updates */ = {
+			isa = PBXGroup;
+			children = (
+				F958EF922B69671B00610202 /* CheckForUpdatesModel.swift */,
+			);
+			path = Updates;
+			sourceTree = "<group>";
+		};
 		F97FD9EF2B40B3740032DFD0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F958EF8E2B69669600610202 /* Updates */,
 				F956578B2B59CF0100125ABE /* KeyStroke */,
 				F90E373F2B52BF8A00331483 /* MidiMessages */,
 				F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */,
@@ -164,6 +188,7 @@
 		F97FD9F02B40B37A0032DFD0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F958EF912B69670B00610202 /* Updates */,
 				F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */,
 				F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */,
 				F9FF59062B473FB1005D7CB9 /* MidiReceiver.swift */,
@@ -207,6 +232,7 @@
 		F9D6B0562B374A260063F634 /* MidiControl */ = {
 			isa = PBXGroup;
 			children = (
+				F958EF8D2B6964BE00610202 /* Info.plist */,
 				F9F05C6F2B5C44D6008F14FC /* Services */,
 				F90E37452B5598C300331483 /* Data */,
 				F9E4FF842B49B18600BA18C3 /* Realtime */,
@@ -281,6 +307,9 @@
 			dependencies = (
 			);
 			name = MidiControl;
+			packageProductDependencies = (
+				F958EF8B2B69617E00610202 /* Sparkle */,
+			);
 			productName = MidiControl;
 			productReference = F9D6B0542B374A260063F634 /* MidiControl.app */;
 			productType = "com.apple.product-type.application";
@@ -354,6 +383,9 @@
 				Base,
 			);
 			mainGroup = F9D6B04B2B374A260063F634;
+			packageReferences = (
+				F958EF8A2B69617E00610202 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			productRefGroup = F9D6B0552B374A260063F634 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -411,6 +443,8 @@
 				F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */,
 				F90E37472B5598D700331483 /* DataController.swift in Sources */,
 				F9FF59072B473FB1005D7CB9 /* MidiReceiver.swift in Sources */,
+				F958EF932B69671B00610202 /* CheckForUpdatesModel.swift in Sources */,
+				F958EF902B6966A900610202 /* CheckForUpdates.swift in Sources */,
 				F9B052632B584C2E006F1A33 /* GenericMidiListView.swift in Sources */,
 				F96AB3A92B5BFC3E0009D766 /* KeyCodes.swift in Sources */,
 				F90E37442B5597F000331483 /* MidiControl.xcdatamodeld in Sources */,
@@ -585,19 +619,20 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"MidiControl/Preview Content\"";
 				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MidiControl/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -619,19 +654,20 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"MidiControl/Preview Content\"";
 				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MidiControl/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -753,6 +789,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F958EF8A2B69617E00610202 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F958EF8B2B69617E00610202 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F958EF8A2B69617E00610202 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F90E37422B5597F000331483 /* MidiControl.xcdatamodeld */ = {
