@@ -25,6 +25,7 @@
 		F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */; };
 		F9B052632B584C2E006F1A33 /* GenericMidiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B052622B584C2D006F1A33 /* GenericMidiListView.swift */; };
 		F9B052652B5858E4006F1A33 /* TabsMidiListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B052642B5858E3006F1A33 /* TabsMidiListsView.swift */; };
+		F9D482802B6A8A0A00470467 /* ExpandViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D4827F2B6A8A0A00470467 /* ExpandViewer.swift */; };
 		F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0572B374A260063F634 /* MidiControlApp.swift */; };
 		F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6B0592B374A260063F634 /* ContentView.swift */; };
 		F9D6B05C2B374A270063F634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D6B05B2B374A270063F634 /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesView.swift; sourceTree = "<group>"; };
 		F9B052622B584C2D006F1A33 /* GenericMidiListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMidiListView.swift; sourceTree = "<group>"; };
 		F9B052642B5858E3006F1A33 /* TabsMidiListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsMidiListsView.swift; sourceTree = "<group>"; };
+		F9D4827F2B6A8A0A00470467 /* ExpandViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandViewer.swift; sourceTree = "<group>"; };
 		F9D6B0542B374A260063F634 /* MidiControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MidiControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D6B0572B374A260063F634 /* MidiControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiControlApp.swift; sourceTree = "<group>"; };
 		F9D6B0592B374A260063F634 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		F97FD9EF2B40B3740032DFD0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F9D4827E2B6A89EE00470467 /* Components */,
 				F958EF8E2B69669600610202 /* Updates */,
 				F956578B2B59CF0100125ABE /* KeyStroke */,
 				F90E373F2B52BF8A00331483 /* MidiMessages */,
@@ -207,6 +210,14 @@
 				F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		F9D4827E2B6A89EE00470467 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F9D4827F2B6A8A0A00470467 /* ExpandViewer.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		F9D6B04B2B374A260063F634 = {
@@ -435,6 +446,7 @@
 				F9FF59092B473FBE005D7CB9 /* AppState.swift in Sources */,
 				F956578A2B59CEFC00125ABE /* KeyStrokeView.swift in Sources */,
 				F9B052652B5858E4006F1A33 /* TabsMidiListsView.swift in Sources */,
+				F9D482802B6A8A0A00470467 /* ExpandViewer.swift in Sources */,
 				F924A6B52B4DE9E0004E9129 /* MidiMessage.swift in Sources */,
 				F90E373C2B4DF95D00331483 /* Utils.swift in Sources */,
 				F9E4FF8D2B49B35400BA18C3 /* MidiAdapter.mm in Sources */,

@@ -41,7 +41,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                 }
                 List(messages, id: \.self, selection: $selectedStroke) { stroke in
                     MidiMessageView(model: stroke)
-                }
+                }.clipShape(.rect(cornerRadius: 3))
             }
 
             VStack {
@@ -85,7 +85,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                     }
                     List(array, id: \.self, selection: $selectedKey) { item in
                         KeyStrokeView(stroke: item)
-                    }
+                    }.clipShape(.rect(cornerRadius: 3))
                 } else {
                     List {
                         VStack(alignment: .center) {

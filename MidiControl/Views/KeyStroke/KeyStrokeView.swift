@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+struct ToggleButton: View {
+    let iconName: String
+
+    @Binding var value: Bool
+
+    var body: some View {
+        Button(action: { value.toggle() }) {
+            Image(systemName: iconName)
+                .foregroundColor(value ? Color.black : Color.blue)
+        }
+    }
+}
+
 struct KeyStrokeView: View {
     @ObservedObject var stroke: KeyStroke
 
@@ -27,18 +40,10 @@ struct KeyStrokeView: View {
                 }
             }
             .padding(.horizontal)
-            Toggle(isOn: $stroke.command) {
-                Image(systemName: "command")
-            }.padding(.horizontal)
-            Toggle(isOn: $stroke.option) {
-                Image(systemName: "option")
-            }.padding(.horizontal)
-            Toggle(isOn: $stroke.control) {
-                Image(systemName: "control")
-            }.padding(.horizontal)
-            Toggle(isOn: $stroke.shift) {
-                Image(systemName: "shift")
-            }.padding(.horizontal)
+            ToggleButton(iconName: "command", value: $stroke.command)
+            ToggleButton(iconName: "option", value: $stroke.option)
+            ToggleButton(iconName: "control", value: $stroke.control)
+            ToggleButton(iconName: "shift", value: $stroke.shift)
         }
         .padding(5.0)
         .onChange(of: [stroke.action, stroke.keyCode]) { _ in

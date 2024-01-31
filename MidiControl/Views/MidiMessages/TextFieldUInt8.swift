@@ -20,11 +20,11 @@ struct TextFieldUInt8 : View {
     }()
 
     var body: some View {
-        HStack {
-            Text(name)
+        VStack {
             TextField(emptyText, value: value, formatter: formatter)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-        }
+            Text(name)
+        }.padding()
     }
 }
 
@@ -41,11 +41,11 @@ struct TextFieldUInt16 : View {
     }()
 
     var body: some View {
-        HStack {
-            Text(name)
+        VStack {
             TextField(emptyText, value: value, formatter: formatter)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-        }
+            Text(name)
+        }.padding(.vertical)
     }
 }
 

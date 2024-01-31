@@ -71,7 +71,9 @@ struct ContentView: View {
         VStack {
             MidiSourcesView()
             TabsMidiListsView()
-            MidiEventsLogView()
+            ExpandViewer {
+                MidiEventsLogView()
+            }
         }
         .background(AccessibilityAlertView())
         .background(KeyEventHandling())
