@@ -42,7 +42,7 @@ struct MidiNoteOnView: View {
     var body: some View {
         HStack {
             Text("Note On").fontWeight(.bold)
-            TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
+            ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
             TextFieldUInt8(value: $model.velocity, name: "Velocity", emptyText: "Enter velocity value")
         }
@@ -60,7 +60,7 @@ struct MidiNoteOffView: View {
     var body: some View {
         HStack {
             Text("Note Off").fontWeight(.bold)
-            TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
+            ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
             TextFieldUInt8(value: $model.velocity, name: "Velocity", emptyText: "Enter velocity value")
         }
@@ -78,7 +78,7 @@ struct MidiControlChangeView: View {
     var body: some View {
         HStack {
             Text("Control Change").fontWeight(.bold)
-            TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
+            ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.index, name: "Index", emptyText: "Enter index")
             TextFieldUInt8(value: $model.data, name: "Data", emptyText: "Enter data value")
         }
@@ -96,7 +96,7 @@ struct MidiProgramChangeView: View {
     var body: some View {
         HStack {
             Text("Program Change").fontWeight(.bold)
-            TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
+            ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.program, name: "Program", emptyText: "Enter program value")
         }
         .onChange(of: [model.channel, model.program]) { _ in
@@ -113,7 +113,7 @@ struct MidiChannelPressureView: View {
     var body: some View {
         HStack {
             Text("Channel Pressure").fontWeight(.bold)
-            TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
+            ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.data, name: "Data", emptyText: "Enter data value")
         }
         .onChange(of: [model.channel, model.data]) { _ in
@@ -130,7 +130,7 @@ struct MidiPolyPressureView: View {
     var body: some View {
         HStack {
             Text("Channel Pressure").fontWeight(.bold)
-            TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
+            ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
             TextFieldUInt8(value: $model.data, name: "Data", emptyText: "Enter data value")
         }
@@ -148,7 +148,7 @@ struct MidiPitchBendView: View {
     var body: some View {
         HStack {
             Text("Channel Pressure").fontWeight(.bold)
-            TextFieldUInt8(value: $model.channel, name: "Channel", emptyText: "Enter channel number")
+            ChannelStepper(value: $model.channel)
             TextFieldUInt16(value: $model.data, name: "Data", emptyText: "Enter data value")
         }
         .onChange(of: model.channel) { _ in

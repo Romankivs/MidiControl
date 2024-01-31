@@ -15,7 +15,7 @@ struct ToggleButton: View {
     var body: some View {
         Button(action: { value.toggle() }) {
             Image(systemName: iconName)
-                .foregroundColor(value ? Color.black : Color.blue)
+                .foregroundColor(value ? Color.blue : Color.black)
         }
     }
 }
