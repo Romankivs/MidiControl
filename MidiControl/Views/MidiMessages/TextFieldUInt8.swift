@@ -7,17 +7,20 @@
 
 import SwiftUI
 
-struct TextFieldUInt8 : View {
-    var value: Binding<Int16>
+struct TextFieldUInt<T> : View {
+    var value: Binding<T>
     var name: String
     var emptyText: String
 
-    let formatter: NumberFormatter = {
+    var minimum: NSNumber = 0
+    var maximum: NSNumber = 127
+
+    var formatter: NumberFormatter {
         let formatter = NumberFormatter()
-        formatter.minimum = 0
-        formatter.maximum = 255
+        formatter.minimum = minimum
+        formatter.maximum = maximum
         return formatter
-    }()
+    }
 
     var body: some View {
         VStack {
@@ -28,26 +31,8 @@ struct TextFieldUInt8 : View {
     }
 }
 
-struct TextFieldUInt16 : View {
-    var value: Binding<Int32>
-    var name: String
-    var emptyText: String
-
-    let formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimum = 0
-        formatter.maximum = 65535
-        return formatter
-    }()
-
-    var body: some View {
-        VStack {
-            TextField(emptyText, value: value, formatter: formatter)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            Text(name)
-        }.padding(.vertical)
-    }
-}
+typealias TextFieldUInt8 = TextFieldUInt<Int16>
+typealias TextFieldUInt16 = TextFieldUInt<Int32>
 
 #Preview {
     TextFieldUInt8(value: .constant(55), name: "Preview", emptyText: "Enter")
