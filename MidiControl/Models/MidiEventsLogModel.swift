@@ -67,7 +67,7 @@ class MidiEventsLogModel: ObservableObject {
                         let test = self.getMessages(name: "NoteOnMessage") as! [NoteOnMessage]
                         let search = test.filter { msg in
                             let te = msg.minVelocity <= velocity && msg.maxVelocity >= velocity
-                            return (msg.channel == channel &&
+                            return (msg.channel - 1 == channel &&
                                     msg.note == note &&
                                     (msg.ignoreVelocity || (msg.minVelocity <= velocity && msg.maxVelocity >= velocity)))
                         }
@@ -82,7 +82,7 @@ class MidiEventsLogModel: ObservableObject {
                     case let .noteOff(channel, note, velocity):
                         let test = self.getMessages(name: "NoteOffMessage") as! [NoteOffMessage]
                         let search = test.filter { msg in
-                            return (msg.channel == channel &&
+                            return (msg.channel - 1 == channel &&
                                     msg.note == note &&
                                     (msg.velocity == 0 || msg.velocity == velocity))
                         }
@@ -97,7 +97,7 @@ class MidiEventsLogModel: ObservableObject {
                     case let .controlChange(channel, index, data):
                         let test = self.getMessages(name: "ControlChangeMessage") as! [ControlChangeMessage]
                         let search = test.filter { msg in
-                            return (msg.channel == channel &&
+                            return (msg.channel - 1 == channel &&
                                     msg.index == index &&
                                     (msg.data == 0 || msg.data == data))
                         }
@@ -112,7 +112,7 @@ class MidiEventsLogModel: ObservableObject {
                     case let .programChange(channel, program):
                         let test = self.getMessages(name: "ProgramChangeMessage") as! [ProgramChangeMessage]
                         let search = test.filter { msg in
-                            return (msg.channel == channel &&
+                            return (msg.channel - 1 == channel &&
                                     (msg.program == 0 || msg.program == program))
                         }
                         for msg in search {
@@ -126,7 +126,7 @@ class MidiEventsLogModel: ObservableObject {
                     case let .channelPressure(channel, data):
                         let test = self.getMessages(name: "ChannelPressureMessage") as! [ChannelPressureMessage]
                         let search = test.filter { msg in
-                            return (msg.channel == channel &&
+                            return (msg.channel - 1 == channel &&
                                     (msg.data == 0 || msg.data == data))
                         }
                         for msg in search {
@@ -140,7 +140,7 @@ class MidiEventsLogModel: ObservableObject {
                     case let .polyPressure(channel, note, data):
                         let test = self.getMessages(name: "PolyPressureMessage") as! [PolyPressureMessage]
                         let search = test.filter { msg in
-                            return (msg.channel == channel &&
+                            return (msg.channel - 1 == channel &&
                                     msg.note == note &&
                                     (msg.data == 0 || msg.data == data))
                         }
@@ -155,7 +155,7 @@ class MidiEventsLogModel: ObservableObject {
                     case let .pitchBend(channel, data):
                         let test = self.getMessages(name: "PitchBendMessage") as! [PitchBendMessage]
                         let search = test.filter { msg in
-                            return (msg.channel == channel &&
+                            return (msg.channel - 1 == channel &&
                                     (msg.data == 0 || msg.data == data))
                         }
                         for msg in search {
