@@ -44,9 +44,17 @@ struct MidiNoteOnView: View {
             Text("Note On").fontWeight(.bold)
             ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
-            TextFieldUInt8(value: $model.velocity, name: "Velocity", emptyText: "Enter velocity value")
+            VStack {
+                Toggle(isOn: $model.ignoreVelocity) {
+                }.labelsHidden()
+                Text("Ignore Velocity")
+            }
+            TextFieldUInt8(value: $model.minVelocity, name: "Min Velocity", emptyText: "Enter velocity value")
+                .disabled(model.ignoreVelocity)
+            TextFieldUInt8(value: $model.maxVelocity, name: "Max Velocity", emptyText: "Enter velocity value")
+                .disabled(model.ignoreVelocity)
         }
-        .onChange(of: [model.channel, model.note, model.velocity]) { _ in
+        .onChange(of: [model.channel, model.note, model.minVelocity, model.maxVelocity]) { _ in
             try? moc.save()
         }
     }
@@ -164,7 +172,8 @@ func getPreviewMessage() -> NoteOnMessage {
     let noteOn = NoteOnMessage(context: DataController.preview.container.viewContext)
     noteOn.channel = 3
     noteOn.note = 55
-    noteOn.velocity = 100
+    noteOn.minVelocity = 100
+    noteOn.maxVelocity = 125
     return noteOn
 }
 

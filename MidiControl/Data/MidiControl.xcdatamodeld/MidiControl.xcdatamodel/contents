@@ -39,8 +39,10 @@
     <entity name="NoteOnMessage" representedClassName="NoteOnMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="ignoreVelocity" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="maxVelocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="minVelocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="velocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="noteOn" inverseEntity="KeyStroke"/>
     </entity>
     <entity name="PitchBendMessage" representedClassName="PitchBendMessage" syncable="YES" codeGenerationType="class">

@@ -66,9 +66,10 @@ class MidiEventsLogModel: ObservableObject {
                     case let .noteOn(channel, note, velocity):
                         let test = self.getMessages(name: "NoteOnMessage") as! [NoteOnMessage]
                         let search = test.filter { msg in
+                            let te = msg.minVelocity <= velocity && msg.maxVelocity >= velocity
                             return (msg.channel == channel &&
                                     msg.note == note &&
-                                    (msg.velocity == 0 || msg.velocity == velocity))
+                                    (msg.ignoreVelocity || (msg.minVelocity <= velocity && msg.maxVelocity >= velocity)))
                         }
                         for msg in search {
                             let array = msg.keyStrokesArray.sorted { left, right in
