@@ -158,9 +158,9 @@ struct MidiPitchBendView: View {
 
     var body: some View {
         HStack {
-            Text("Channel Pressure").fontWeight(.bold)
+            Text("Pitch Bend").fontWeight(.bold)
             ChannelStepper(value: $model.channel)
-            TextFieldUInt16(value: $model.data, name: "Data", emptyText: "Enter data value")
+            TextFieldUInt16(value: $model.data, name: "Data", emptyText: "Enter data value", maximum: 16383)
         }
         .onChange(of: model.channel) { _ in
             try? moc.save()

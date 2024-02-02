@@ -45,8 +45,10 @@ extension MidiMessage {
                            note: UInt8(extractBits(from: umpWord, at: 8, numberOfBits: 8)),
                            data: UInt8(extractBits(from: umpWord, at: 0, numberOfBits: 8)))
         case .pitchBend:
+            let msb = extractBits(from: umpWord, at: 0, numberOfBits: 7)
+            let lsb = extractBits(from: umpWord, at: 8, numberOfBits: 7)
             self = .pitchBend(channel: UInt8(extractBits(from: umpWord, at: 16, numberOfBits: 4)),
-                           data: (UInt16(extractBits(from: umpWord, at: 0, numberOfBits: 8)) << 8) | UInt16(extractBits(from: umpWord, at: 8, numberOfBits: 8)))
+                           data: (UInt16(msb) << 7) | UInt16(lsb))
         default:
             return nil
         }
