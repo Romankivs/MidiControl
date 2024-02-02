@@ -89,18 +89,18 @@ class MidiEventsLogModel: ObservableObject {
                     case let .channelPressure(channel, data):
                         self.emulateKeysThatCorespondToMessage(ChannelPressureMessage.self, "ChannelPressureMessage") { msg in
                             return (msg.channel - 1 == channel &&
-                                    (msg.data == 0 || msg.data == data))
+                                    (msg.ignoreData || (msg.minData <= data && msg.maxData >= data)))
                         }
                     case let .polyPressure(channel, note, data):
                         self.emulateKeysThatCorespondToMessage(PolyPressureMessage.self, "PolyPressureMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.note == note &&
-                                    (msg.data == 0 || msg.data == data))
+                                    (msg.ignoreData || (msg.minData <= data && msg.maxData >= data)))
                         }
                     case let .pitchBend(channel, data):
                         self.emulateKeysThatCorespondToMessage(PitchBendMessage.self, "PitchBendMessage") { msg in
                             return (msg.channel - 1 == channel &&
-                                    (msg.data == 0 || msg.data == data))
+                                    (msg.ignoreData || (msg.minData <= data && msg.maxData >= data)))
                         }
                     }
                 }

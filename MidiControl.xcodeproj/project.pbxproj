@@ -20,6 +20,7 @@
 		F958EF902B6966A900610202 /* CheckForUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958EF8F2B6966A900610202 /* CheckForUpdates.swift */; };
 		F958EF932B69671B00610202 /* CheckForUpdatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958EF922B69671B00610202 /* CheckForUpdatesModel.swift */; };
 		F96AB3A92B5BFC3E0009D766 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */; };
+		F97402542B6D60DA00CFD4EE /* ToggleCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */; };
 		F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */; };
 		F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */; };
 		F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */; };
@@ -74,6 +75,7 @@
 		F958EF8F2B6966A900610202 /* CheckForUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdates.swift; sourceTree = "<group>"; };
 		F958EF922B69671B00610202 /* CheckForUpdatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesModel.swift; sourceTree = "<group>"; };
 		F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
+		F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCheckBox.swift; sourceTree = "<group>"; };
 		F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiEndpointModel.swift; sourceTree = "<group>"; };
 		F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesManager.swift; sourceTree = "<group>"; };
 		F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				F90E373D2B51BFA100331483 /* MidiMessageView.swift */,
 				F90E37402B52CC9800331483 /* TextFieldUInt8.swift */,
 				F9D482812B6AB95D00470467 /* ChannelStepper.swift */,
+				F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */,
 			);
 			path = MidiMessages;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				F90E37412B52CC9800331483 /* TextFieldUInt8.swift in Sources */,
 				F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */,
 				F90E37472B5598D700331483 /* DataController.swift in Sources */,
+				F97402542B6D60DA00CFD4EE /* ToggleCheckBox.swift in Sources */,
 				F9FF59072B473FB1005D7CB9 /* MidiReceiver.swift in Sources */,
 				F958EF932B69671B00610202 /* CheckForUpdatesModel.swift in Sources */,
 				F958EF902B6966A900610202 /* CheckForUpdates.swift in Sources */,
@@ -635,7 +639,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_ASSET_PATHS = "\"MidiControl/Preview Content\"";
 				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -648,7 +652,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -670,7 +674,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_ASSET_PATHS = "\"MidiControl/Preview Content\"";
 				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -683,7 +687,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = personal.MidiControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

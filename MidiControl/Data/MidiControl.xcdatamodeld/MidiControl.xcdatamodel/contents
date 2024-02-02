@@ -3,7 +3,9 @@
     <entity name="ChannelPressureMessage" representedClassName="ChannelPressureMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="data" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ignoreData" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="maxData" optional="YES" attributeType="Integer 16" defaultValueString="127" usesScalarValueType="YES"/>
+        <attribute name="minData" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="channelPressure" inverseEntity="KeyStroke"/>
     </entity>
     <entity name="ControlChangeMessage" representedClassName="ControlChangeMessage" syncable="YES" codeGenerationType="class">
@@ -50,13 +52,17 @@
     <entity name="PitchBendMessage" representedClassName="PitchBendMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="data" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ignoreData" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="maxData" optional="YES" attributeType="Integer 32" defaultValueString="16383" usesScalarValueType="YES"/>
+        <attribute name="minData" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="pitchBend" inverseEntity="KeyStroke"/>
     </entity>
     <entity name="PolyPressureMessage" representedClassName="PolyPressureMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="data" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ignoreData" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="maxData" optional="YES" attributeType="Integer 16" defaultValueString="127" usesScalarValueType="YES"/>
+        <attribute name="minData" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="keyStroke" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="KeyStroke" inverseName="polyPressure" inverseEntity="KeyStroke"/>
     </entity>

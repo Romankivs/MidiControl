@@ -44,11 +44,7 @@ struct MidiNoteOnView: View {
             Text("Note On").fontWeight(.bold)
             ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
-            VStack {
-                Toggle(isOn: $model.ignoreVelocity) {
-                }.labelsHidden()
-                Text("Ignore Velocity")
-            }
+            ToggleCheckBox(text: "Ignore Velocity", value: $model.ignoreVelocity)
             TextFieldUInt8(value: $model.minVelocity, name: "Min Velocity", emptyText: "Enter velocity value")
                 .disabled(model.ignoreVelocity)
             TextFieldUInt8(value: $model.maxVelocity, name: "Max Velocity", emptyText: "Enter velocity value")
@@ -73,11 +69,7 @@ struct MidiNoteOffView: View {
             Text("Note Off").fontWeight(.bold)
             ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
-            VStack {
-                Toggle(isOn: $model.ignoreVelocity) {
-                }.labelsHidden()
-                Text("Ignore Velocity")
-            }
+            ToggleCheckBox(text: "Ignore Velocity", value: $model.ignoreVelocity)
             TextFieldUInt8(value: $model.minVelocity, name: "Min Velocity", emptyText: "Enter velocity value")
                 .disabled(model.ignoreVelocity)
             TextFieldUInt8(value: $model.maxVelocity, name: "Max Velocity", emptyText: "Enter velocity value")
@@ -136,9 +128,16 @@ struct MidiChannelPressureView: View {
         HStack {
             Text("Channel Pressure").fontWeight(.bold)
             ChannelStepper(value: $model.channel)
-            TextFieldUInt8(value: $model.data, name: "Data", emptyText: "Enter data value")
+            ToggleCheckBox(text: "Ignore Data", value: $model.ignoreData)
+            TextFieldUInt8(value: $model.minData, name: "Min Data", emptyText: "Enter data value")
+                .disabled(model.ignoreData)
+            TextFieldUInt8(value: $model.minData, name: "Max Data", emptyText: "Enter data value")
+                .disabled(model.ignoreData)
         }
-        .onChange(of: [model.channel, model.data]) { _ in
+        .onChange(of: [model.channel, model.minData, model.minData]) { _ in
+            try? moc.save()
+        }
+        .onChange(of: model.ignoreData) { _ in
             try? moc.save()
         }
     }
@@ -154,9 +153,16 @@ struct MidiPolyPressureView: View {
             Text("Channel Pressure").fontWeight(.bold)
             ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
-            TextFieldUInt8(value: $model.data, name: "Data", emptyText: "Enter data value")
+            ToggleCheckBox(text: "Ignore Data", value: $model.ignoreData)
+            TextFieldUInt8(value: $model.minData, name: "Min Data", emptyText: "Enter data value")
+                .disabled(model.ignoreData)
+            TextFieldUInt8(value: $model.minData, name: "Max Data", emptyText: "Enter data value")
+                .disabled(model.ignoreData)
         }
-        .onChange(of: [model.channel, model.note, model.data]) { _ in
+        .onChange(of: [model.channel, model.note, model.minData, model.maxData]) { _ in
+            try? moc.save()
+        }
+        .onChange(of: model.ignoreData) { _ in
             try? moc.save()
         }
     }
@@ -171,12 +177,19 @@ struct MidiPitchBendView: View {
         HStack {
             Text("Pitch Bend").fontWeight(.bold)
             ChannelStepper(value: $model.channel)
-            TextFieldUInt16(value: $model.data, name: "Data", emptyText: "Enter data value", maximum: 16383)
+            ToggleCheckBox(text: "Ignore Data", value: $model.ignoreData)
+            TextFieldUInt16(value: $model.minData, name: "Min Data", emptyText: "Enter data value", maximum: 16383)
+                .disabled(model.ignoreData)
+            TextFieldUInt16(value: $model.minData, name: "Max Data", emptyText: "Enter data value", maximum: 16383)
+                .disabled(model.ignoreData)
         }
         .onChange(of: model.channel) { _ in
             try? moc.save()
         }
-        .onChange(of: model.data) { _ in
+        .onChange(of: [model.minData, model.maxData]) { _ in
+            try? moc.save()
+        }
+        .onChange(of: model.ignoreData) { _ in
             try? moc.save()
         }
     }
