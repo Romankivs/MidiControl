@@ -12,15 +12,22 @@ struct MidiSourcesView: View {
     @EnvironmentObject var midiReceiver: MidiReceiver
 
     var body: some View {
-        VStack {
-            Picker("Midi Input", selection: $midiSourcesManager.selectedSourceName) {
-                ForEach(midiSourcesManager.midiSources, id: \.self) {
-                    Text($0.name).tag($0.name)
+        VStack(alignment: .leading) {
+            ForEach(midiSourcesManager.midiSources) { source in
+                Toggle(isOn: Binding(get: { midiSourcesManager.selectedSourcesNames.contains(source.name)
+                }, set: {
+                    if $0 {
+                        midiSourcesManager.selectedSourcesNames.insert(source.name)
+                    } else {
+                        midiSourcesManager.selectedSourcesNames.remove(source.name)
+                    }
+                })) {
+                    Text(source.name)
                 }
-            }.onChange(of: midiSourcesManager.selectedSourceName) { _ in
-                midiReceiver.updateSource()
             }
-            .frame(width: 300)
+        }
+        .onChange(of: midiSourcesManager.selectedSourcesNames) { _ in
+            midiReceiver.updateSource()
         }
     }
 }

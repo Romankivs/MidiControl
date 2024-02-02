@@ -16,8 +16,8 @@ class MidiReceiver: ObservableObject {
             print("Succesfully started midi client")
 
             // Select previously selected input
-            let savedName = UserDefaults.standard.string(forKey: "SelectedMidiInput") ?? ""
-            midiSourcesManager.selectedSourceName = savedName
+            let savedName = UserDefaults.standard.stringArray(forKey: "SelectedMidiInputsNames") ?? []
+            midiSourcesManager.selectedSourcesNames = Set(savedName)
             updateSource()
         }
         else {
@@ -32,7 +32,7 @@ class MidiReceiver: ObservableObject {
     var client = MIDIClientRef()
     var port = MIDIPortRef()
 
-    var activeSource: MIDIEndpointRef?
+    var activeSources: [MIDIEndpointRef] = []
 
     // MARK: - MIDI Setup
 
@@ -70,27 +70,23 @@ class MidiReceiver: ObservableObject {
     }
 
     func updateSource() {
-        if let currentSource = activeSource {
-            let status = MIDIPortDisconnectSource(port, currentSource)
+        activeSources.removeAll(where: {
+            let status = MIDIPortDisconnectSource(port, $0)
             if status != noErr {
-                print("Failed to disconnect current source on port")
+                print("Failed to disconnect source \($0) on port \(port)")
+                return false
+            }
+            return true
+        })
+        for source in midiSourcesManager.selectedSources {
+            let status = MIDIPortConnectSource(port, source, nil)
+            if status != noErr {
+                print("Failed to connect to new source \(source) on port \(port)")
             }
             else {
-                activeSource = nil
+                activeSources.append(source)
             }
         }
-        if let nextSource = midiSourcesManager.selectedSource {
-            let status = MIDIPortConnectSource(port, nextSource, nil)
-            if status != noErr {
-                print("Failed to connect to new source on port")
-            }
-            else {
-                activeSource = nextSource
-
-                // Save input to be used in future app launches
-                let name = midiSourcesManager.selectedSourceName
-                UserDefaults.standard.set(name, forKey: "SelectedMidiInput")
-            }
-        }
+        UserDefaults.standard.set(Array(midiSourcesManager.selectedSourcesNames), forKey: "SelectedMidiInputsNames")
     }
 }

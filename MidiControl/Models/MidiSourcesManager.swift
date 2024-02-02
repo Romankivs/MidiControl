@@ -11,9 +11,11 @@ import CoreMIDI
 class MidiSourcesManager: ObservableObject {
     @Published var midiSources = [MIDIEndpointModel]()
 
-    @Published var selectedSourceName = ""
-    var selectedSource: MIDIEndpointRef? {
-        return midiSources.first(where: { $0.name == selectedSourceName })?.endpointType
+    @Published var selectedSourcesNames: Set<String> = []
+    var selectedSources: [MIDIEndpointRef] {
+        let filtered = midiSources.filter { selectedSourcesNames.contains($0.name) }
+        let endpoints = filtered.map { $0.endpointType }
+        return endpoints
     }
 
     init() {

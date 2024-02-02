@@ -10,7 +10,7 @@ typedef SingleProducerSingleConsumerQueue<MIDIEventPacket> MIDIMessageFIFO;
 -(id)init {
     self = [super init];
     if (self) {
-        messageQueue = std::make_unique<MIDIMessageFIFO>(64);
+        messageQueue = std::make_unique<MIDIMessageFIFO>(256);
     }
     return self;
 }
@@ -20,6 +20,8 @@ typedef SingleProducerSingleConsumerQueue<MIDIEventPacket> MIDIMessageFIFO;
 -(OSStatus)createMIDISource:(MIDIClientRef)client named:(CFStringRef)name protocol:(MIDIProtocolID)protocol port:(MIDIEndpointRef *)outPort {
     __block MIDIMessageFIFO *msgQueue = messageQueue.get();
     const auto status = MIDIInputPortCreateWithProtocol(client, name, protocol, outPort, ^(const MIDIEventList * _Nonnull evtlist, void * _Nullable srcConnRefCon) {
+
+        NSLog(@"%@", [NSThread currentThread]);
 
         if (evtlist->numPackets > 0 && msgQueue) {
             auto pkt = &evtlist->packet[0];
