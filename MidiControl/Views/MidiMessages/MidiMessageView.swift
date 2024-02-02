@@ -73,9 +73,20 @@ struct MidiNoteOffView: View {
             Text("Note Off").fontWeight(.bold)
             ChannelStepper(value: $model.channel)
             TextFieldUInt8(value: $model.note, name: "Note", emptyText: "Enter note number")
-            TextFieldUInt8(value: $model.velocity, name: "Velocity", emptyText: "Enter velocity value")
+            VStack {
+                Toggle(isOn: $model.ignoreVelocity) {
+                }.labelsHidden()
+                Text("Ignore Velocity")
+            }
+            TextFieldUInt8(value: $model.minVelocity, name: "Min Velocity", emptyText: "Enter velocity value")
+                .disabled(model.ignoreVelocity)
+            TextFieldUInt8(value: $model.maxVelocity, name: "Max Velocity", emptyText: "Enter velocity value")
+                .disabled(model.ignoreVelocity)
         }
-        .onChange(of: [model.channel, model.note, model.velocity]) { _ in
+        .onChange(of: [model.channel, model.note, model.minVelocity, model.maxVelocity]) { _ in
+            try? moc.save()
+        }
+        .onChange(of: model.ignoreVelocity) { _ in
             try? moc.save()
         }
     }

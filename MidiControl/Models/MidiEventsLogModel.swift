@@ -73,7 +73,7 @@ class MidiEventsLogModel: ObservableObject {
                         self.emulateKeysThatCorespondToMessage(NoteOffMessage.self, "NoteOffMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.note == note &&
-                                    (msg.velocity == 0 || msg.velocity == velocity))
+                                    (msg.ignoreVelocity || (msg.minVelocity <= velocity && msg.maxVelocity >= velocity)))
                         }
                     case let .controlChange(channel, index, data):
                         self.emulateKeysThatCorespondToMessage(ControlChangeMessage.self, "ControlChangeMessage") { msg in
