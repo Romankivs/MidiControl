@@ -57,6 +57,9 @@ struct MidiNoteOnView: View {
         .onChange(of: [model.channel, model.note, model.minVelocity, model.maxVelocity]) { _ in
             try? moc.save()
         }
+        .onChange(of: model.ignoreVelocity) { _ in
+            try? moc.save()
+        }
     }
 }
 

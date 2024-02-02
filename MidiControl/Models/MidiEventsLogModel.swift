@@ -64,111 +64,62 @@ class MidiEventsLogModel: ObservableObject {
 
                     switch message {
                     case let .noteOn(channel, note, velocity):
-                        let test = self.getMessages(name: "NoteOnMessage") as! [NoteOnMessage]
-                        let search = test.filter { msg in
-                            let te = msg.minVelocity <= velocity && msg.maxVelocity >= velocity
+                        self.emulateKeysThatCorespondToMessage(NoteOnMessage.self, "NoteOnMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.note == note &&
                                     (msg.ignoreVelocity || (msg.minVelocity <= velocity && msg.maxVelocity >= velocity)))
                         }
-                        for msg in search {
-                            let array = msg.keyStrokesArray.sorted { left, right in
-                                left.createdDate < right.createdDate
-                            }
-                            for stroke in array {
-                                KeyPressEmulator.emulateKey(key: stroke)
-                            }
-                        }
                     case let .noteOff(channel, note, velocity):
-                        let test = self.getMessages(name: "NoteOffMessage") as! [NoteOffMessage]
-                        let search = test.filter { msg in
+                        self.emulateKeysThatCorespondToMessage(NoteOffMessage.self, "NoteOffMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.note == note &&
                                     (msg.velocity == 0 || msg.velocity == velocity))
                         }
-                        for msg in search {
-                            let array = msg.keyStrokesArray.sorted { left, right in
-                                left.createdDate < right.createdDate
-                            }
-                            for stroke in array {
-                                KeyPressEmulator.emulateKey(key: stroke)
-                            }
-                        }
                     case let .controlChange(channel, index, data):
-                        let test = self.getMessages(name: "ControlChangeMessage") as! [ControlChangeMessage]
-                        let search = test.filter { msg in
+                        self.emulateKeysThatCorespondToMessage(ControlChangeMessage.self, "ControlChangeMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.index == index &&
                                     (msg.data == 0 || msg.data == data))
                         }
-                        for msg in search {
-                            let array = msg.keyStrokesArray.sorted { left, right in
-                                left.createdDate < right.createdDate
-                            }
-                            for stroke in array {
-                                KeyPressEmulator.emulateKey(key: stroke)
-                           }
-                        }
                     case let .programChange(channel, program):
-                        let test = self.getMessages(name: "ProgramChangeMessage") as! [ProgramChangeMessage]
-                        let search = test.filter { msg in
+                        self.emulateKeysThatCorespondToMessage(ProgramChangeMessage.self, "ProgramChangeMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     (msg.program == 0 || msg.program == program))
                         }
-                        for msg in search {
-                            let array = msg.keyStrokesArray.sorted { left, right in
-                                left.createdDate < right.createdDate
-                            }
-                            for stroke in array {
-                                KeyPressEmulator.emulateKey(key: stroke)
-                            }
-                        }
                     case let .channelPressure(channel, data):
-                        let test = self.getMessages(name: "ChannelPressureMessage") as! [ChannelPressureMessage]
-                        let search = test.filter { msg in
+                        self.emulateKeysThatCorespondToMessage(ChannelPressureMessage.self, "ChannelPressureMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     (msg.data == 0 || msg.data == data))
                         }
-                        for msg in search {
-                            let array = msg.keyStrokesArray.sorted { left, right in
-                                left.createdDate < right.createdDate
-                            }
-                            for stroke in array {
-                                KeyPressEmulator.emulateKey(key: stroke)
-                            }
-                        }
                     case let .polyPressure(channel, note, data):
-                        let test = self.getMessages(name: "PolyPressureMessage") as! [PolyPressureMessage]
-                        let search = test.filter { msg in
+                        self.emulateKeysThatCorespondToMessage(PolyPressureMessage.self, "PolyPressureMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.note == note &&
                                     (msg.data == 0 || msg.data == data))
                         }
-                        for msg in search {
-                            let array = msg.keyStrokesArray.sorted { left, right in
-                                left.createdDate < right.createdDate
-                            }
-                            for stroke in array {
-                                KeyPressEmulator.emulateKey(key: stroke)
-                            }
-                        }
                     case let .pitchBend(channel, data):
-                        let test = self.getMessages(name: "PitchBendMessage") as! [PitchBendMessage]
-                        let search = test.filter { msg in
+                        self.emulateKeysThatCorespondToMessage(PitchBendMessage.self, "PitchBendMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     (msg.data == 0 || msg.data == data))
-                        }
-                        for msg in search {
-                            let array = msg.keyStrokesArray.sorted { left, right in
-                                left.createdDate < right.createdDate
-                            }
-                            for stroke in array {
-                                KeyPressEmulator.emulateKey(key: stroke)
-                            }
                         }
                     }
                 }
                 print("")
+            }
+        }
+    }
+
+    private func emulateKeysThatCorespondToMessage<MessageType: ICDMidiMessage>(_ messageType: MessageType.Type,
+                                                                                _ messageName: String,
+                                                                                filter: (MessageType) -> Bool) {
+        let messages = self.getMessages(name: messageName) as! [MessageType]
+        let filtered = messages.filter(filter)
+        for msg in filtered {
+            let array = msg.keyStrokesArray.sorted { left, right in
+                left.createdDate < right.createdDate
+            }
+            for stroke in array {
+                KeyPressEmulator.emulateKey(key: stroke)
             }
         }
     }
