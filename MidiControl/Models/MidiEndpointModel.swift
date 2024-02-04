@@ -26,6 +26,7 @@ struct MIDIEndpointModel: Identifiable, Hashable {
 
     let endpointType: MIDIEndpointRef
     let name: String
+    let image: String
     let protocolID: MIDIProtocolID
 
     var protocolName: String {

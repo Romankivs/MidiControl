@@ -78,6 +78,7 @@ struct ContentView: View {
         .background(AccessibilityAlertView())
         .background(KeyEventHandling())
         .padding()
+        .frame(minWidth: 1100, idealWidth: 1920, minHeight: 500, idealHeight: 1080)
     }
 }
 
