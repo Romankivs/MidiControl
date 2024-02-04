@@ -1,51 +1,61 @@
 {
   "images" : [
     {
+      "filename" : "piano_tiles_icon-icons.com_69217-3.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
+      "filename" : "piano_tiles_icon-icons.com_69217-4.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
+      "filename" : "piano_tiles_icon-icons.com_69217-4 1.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
+      "filename" : "piano_tiles_icon-icons.com_69217-5.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
+      "filename" : "piano_tiles_icon-icons.com_69217-6.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
+      "filename" : "piano_tiles_icon-icons.com_69217 3.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
+      "filename" : "piano_tiles_icon-icons.com_69217.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
+      "filename" : "piano_tiles_icon-icons.com_69217 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
+      "filename" : "piano_tiles_icon-icons.com_69217 2.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
+      "filename" : "piano_tiles_icon-icons.com_69217-7.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
