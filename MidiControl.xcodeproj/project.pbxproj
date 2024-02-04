@@ -21,6 +21,7 @@
 		F958EF932B69671B00610202 /* CheckForUpdatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958EF922B69671B00610202 /* CheckForUpdatesModel.swift */; };
 		F96AB3A92B5BFC3E0009D766 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */; };
 		F97402542B6D60DA00CFD4EE /* ToggleCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */; };
+		F97402572B701A6D00CFD4EE /* ApplicationLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97402562B701A6D00CFD4EE /* ApplicationLaunchView.swift */; };
 		F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */; };
 		F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */; };
 		F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */; };
@@ -76,6 +77,7 @@
 		F958EF922B69671B00610202 /* CheckForUpdatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesModel.swift; sourceTree = "<group>"; };
 		F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCheckBox.swift; sourceTree = "<group>"; };
+		F97402562B701A6D00CFD4EE /* ApplicationLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationLaunchView.swift; sourceTree = "<group>"; };
 		F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiEndpointModel.swift; sourceTree = "<group>"; };
 		F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesManager.swift; sourceTree = "<group>"; };
 		F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesView.swift; sourceTree = "<group>"; };
@@ -153,12 +155,13 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		F956578B2B59CF0100125ABE /* KeyStroke */ = {
+		F956578B2B59CF0100125ABE /* TriggerableEvents */ = {
 			isa = PBXGroup;
 			children = (
 				F95657892B59CEFC00125ABE /* KeyStrokeView.swift */,
+				F97402562B701A6D00CFD4EE /* ApplicationLaunchView.swift */,
 			);
-			path = KeyStroke;
+			path = TriggerableEvents;
 			sourceTree = "<group>";
 		};
 		F958EF8E2B69669600610202 /* Updates */ = {
@@ -182,7 +185,7 @@
 			children = (
 				F9D4827E2B6A89EE00470467 /* Components */,
 				F958EF8E2B69669600610202 /* Updates */,
-				F956578B2B59CF0100125ABE /* KeyStroke */,
+				F956578B2B59CF0100125ABE /* TriggerableEvents */,
 				F90E373F2B52BF8A00331483 /* MidiMessages */,
 				F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */,
 				F9D6B0592B374A260063F634 /* ContentView.swift */,
@@ -447,6 +450,7 @@
 			files = (
 				F9F05C712B5C44F8008F14FC /* KeyPressEmulator.swift in Sources */,
 				F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */,
+				F97402572B701A6D00CFD4EE /* ApplicationLaunchView.swift in Sources */,
 				F9D6B0582B374A260063F634 /* MidiControlApp.swift in Sources */,
 				F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */,
 				F9FF59092B473FBE005D7CB9 /* AppState.swift in Sources */,

@@ -14,7 +14,7 @@ protocol CreatedAtDate {
 }
 
 protocol ICDMidiMessage: CreatedAtDate {
-    var keyStrokesArray: [KeyStroke] { get }
+    var triggerableEventsArray: [TriggerableEvent] { get }
 }
 
 extension NoteOnMessage: ICDMidiMessage {
@@ -27,9 +27,9 @@ extension NoteOnMessage: ICDMidiMessage {
         }
     }
     
-    public var keyStrokesArray: [KeyStroke] {
-        guard let keyStroke = keyStroke else { return [] }
-        return Array(keyStroke as! Set<KeyStroke>)
+    public var triggerableEventsArray: [TriggerableEvent] {
+        guard let event = event else { return [] }
+        return Array(event as! Set<TriggerableEvent>)
     }
 }
 
@@ -43,9 +43,9 @@ extension NoteOffMessage: ICDMidiMessage {
         }
     }
 
-    public var keyStrokesArray: [KeyStroke] {
-        guard let keyStroke = keyStroke else { return [] }
-        return Array(keyStroke as! Set<KeyStroke>)
+    public var triggerableEventsArray: [TriggerableEvent] {
+        guard let event = event else { return [] }
+        return Array(event as! Set<TriggerableEvent>)
     }
 }
 
@@ -59,9 +59,9 @@ extension ControlChangeMessage: ICDMidiMessage {
         }
     }
 
-    public var keyStrokesArray: [KeyStroke] {
-        guard let keyStroke = keyStroke else { return [] }
-        return Array(keyStroke as! Set<KeyStroke>)
+    public var triggerableEventsArray: [TriggerableEvent] {
+        guard let event = event else { return [] }
+        return Array(event as! Set<TriggerableEvent>)
     }
 }
 
@@ -75,10 +75,11 @@ extension ProgramChangeMessage: ICDMidiMessage {
         }
     }
 
-    public var keyStrokesArray: [KeyStroke] {
-        guard let keyStroke = keyStroke else { return [] }
-        return Array(keyStroke as! Set<KeyStroke>)
+    public var triggerableEventsArray: [TriggerableEvent] {
+        guard let event = event else { return [] }
+        return Array(event as! Set<TriggerableEvent>)
     }
+
 }
 
 extension ChannelPressureMessage: ICDMidiMessage {
@@ -91,10 +92,11 @@ extension ChannelPressureMessage: ICDMidiMessage {
         }
     }
 
-    public var keyStrokesArray: [KeyStroke] {
-        guard let keyStroke = keyStroke else { return [] }
-        return Array(keyStroke as! Set<KeyStroke>)
+    public var triggerableEventsArray: [TriggerableEvent] {
+        guard let event = event else { return [] }
+        return Array(event as! Set<TriggerableEvent>)
     }
+
 }
 
 extension PolyPressureMessage: ICDMidiMessage {
@@ -107,10 +109,11 @@ extension PolyPressureMessage: ICDMidiMessage {
         }
     }
 
-    public var keyStrokesArray: [KeyStroke] {
-        guard let keyStroke = keyStroke else { return [] }
-        return Array(keyStroke as! Set<KeyStroke>)
+    public var triggerableEventsArray: [TriggerableEvent] {
+        guard let event = event else { return [] }
+        return Array(event as! Set<TriggerableEvent>)
     }
+
 }
 
 extension PitchBendMessage: ICDMidiMessage {
@@ -123,15 +126,15 @@ extension PitchBendMessage: ICDMidiMessage {
         }
     }
 
-    public var keyStrokesArray: [KeyStroke] {
-        guard let keyStroke = keyStroke else { return [] }
-        return Array(keyStroke as! Set<KeyStroke>)
+    public var triggerableEventsArray: [TriggerableEvent] {
+        guard let event = event else { return [] }
+        return Array(event as! Set<TriggerableEvent>)
     }
 }
 
-// MARK: Key Stroke extensions
+// MARK: TriggerableEvent extensions
 
-extension KeyStroke {
+extension TriggerableEvent {
     var parent: ICDMidiMessage {
         get {
             if let noteOn = noteOn {
@@ -161,6 +164,19 @@ extension KeyStroke {
     }
 }
 
+extension TriggerableEvent: CreatedAtDate {
+    var createdDate: Date {
+        get {
+            created ?? .distantPast
+        }
+        set {
+            created = newValue
+        }
+    }
+}
+
+// MARK: Key Stroke extensions
+
 enum KeyStrokeAction: Int32 {
     case press
     case hold
@@ -185,17 +201,6 @@ extension KeyStroke {
         }
         set {
             self.keyCode = Int32(newValue.rawValue)
-        }
-    }
-}
-
-extension KeyStroke: CreatedAtDate {
-    var createdDate: Date {
-        get {
-            created ?? .distantPast
-        }
-        set {
-            created = newValue
         }
     }
 }

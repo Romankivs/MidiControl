@@ -45,7 +45,7 @@ struct KeyStrokeView: View {
             ToggleButton(iconName: "control", value: $stroke.control)
             ToggleButton(iconName: "shift", value: $stroke.shift)
         }
-        .padding(5.0)
+        .padding(.horizontal, 5.0)
         .onChange(of: [stroke.action, stroke.keyCode]) { _ in
             try? moc.save()
         }

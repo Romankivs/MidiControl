@@ -115,11 +115,13 @@ class MidiEventsLogModel: ObservableObject {
         let messages = self.getMessages(name: messageName) as! [MessageType]
         let filtered = messages.filter(filter)
         for msg in filtered {
-            let array = msg.keyStrokesArray.sorted { left, right in
+            let array = msg.triggerableEventsArray.sorted { left, right in
                 left.createdDate < right.createdDate
             }
-            for stroke in array {
-                KeyPressEmulator.emulateKey(key: stroke)
+            for event in array {
+                if let keyStroke = event as? KeyStroke {
+                    KeyPressEmulator.emulateKey(key: keyStroke)
+                }
             }
         }
     }

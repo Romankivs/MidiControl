@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
     @State private var selectedStroke: T?
-    @State private var selectedKey: KeyStroke?
+    @State private var selectedKey: TriggerableEvent?
 
     @Environment(\.managedObjectContext) var moc
 
@@ -53,20 +53,35 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
 
             VStack(alignment: .leading) {
                 HStack {
-                    Button(action: {
-                        withAnimation {
+                    Menu {
+                        Button {
+                            withAnimation {
+                                guard let selectedMidi = selectedStroke else { return }
+
+                                let stroke = KeyStroke(context: moc)
+                                stroke.createdDate = .init()
+                                stroke.keyCode = 33
+                                stroke.parent = selectedMidi
+
+                                try? moc.save()
+                            }
+                        } label: {
+                            Label("New Key Stroke", systemImage: "keyboard")
+                        }
+                        Button {
                             guard let selectedMidi = selectedStroke else { return }
 
-                            let stroke = KeyStroke(context: moc)
-                            stroke.createdDate = .init()
-                            stroke.keyCode = 33
-                            stroke.parent = selectedMidi
+                            let appLaunch = ApplicationLaunch(context: moc)
+                            appLaunch.createdDate = .init()
+                            appLaunch.parent = selectedMidi
 
                             try? moc.save()
+                        } label: {
+                            Label("New App Launch", systemImage: "apple.terminal")
                         }
-                    }) {
-                        Image(systemName: "plus")
-                    }
+                    } label: {
+                        Label("", systemImage: "plus")
+                    }.fixedSize().labelsHidden()
                     Button(action: {
                         withAnimation {
                             guard let selected = selectedKey else { return }
@@ -80,11 +95,17 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                     }
                 }
                 if let selectedStroke = selectedStroke {
-                    let array = selectedStroke.keyStrokesArray.sorted { left, right in
+                    let array = selectedStroke.triggerableEventsArray.sorted { left, right in
                         left.createdDate < right.createdDate
                     }
                     List(array, id: \.self, selection: $selectedKey) { item in
-                        KeyStrokeView(stroke: item)
+                        if let item = item as? KeyStroke {
+                            KeyStrokeView(stroke: item)
+                        } else if let item = item as? ApplicationLaunch {
+                            ApplicationLaunchView(launch: item)
+                        } else {
+                            Text("Something else")
+                        }
                     }.clipShape(.rect(cornerRadius: 3))
                 } else {
                     List {
