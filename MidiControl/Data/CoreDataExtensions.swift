@@ -218,3 +218,16 @@ extension ApplicationLaunch {
         }
     }
 }
+
+// MARK: Application Closure extensions
+
+extension ApplicationClosure {
+    var unwrappedUrl: URL? {
+        get {
+            return URL(string: url ?? "")
+        }
+        set {
+            self.url = newValue?.absoluteString
+        }
+    }
+}

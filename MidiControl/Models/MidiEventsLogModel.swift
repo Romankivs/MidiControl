@@ -22,6 +22,20 @@ struct MidiEventDescription: Identifiable {
     let id = UUID()
 }
 
+func terminateApplication(bundleIdentifier: String) {
+    let scriptSource = "tell application \"\(bundleIdentifier)\" to quit"
+    var error: NSDictionary?
+
+    print(scriptSource)
+
+    if let script = NSAppleScript(source: scriptSource) {
+        script.executeAndReturnError(&error)
+        if let error = error {
+            print("Error terminating application: \(error)")
+        }
+    }
+}
+
 class MidiEventsLogModel: ObservableObject {
     init(midiAdapter: MidiAdapter = .init(), context: NSManagedObjectContext) {
         self.midiAdapter = midiAdapter
@@ -129,6 +143,14 @@ class MidiEventsLogModel: ObservableObject {
                     configuration.hidesOthers = appLaunch.hidesOthers
                     configuration.createsNewApplicationInstance = appLaunch.newInstance
                     NSWorkspace.shared.openApplication(at: url, configuration: configuration)
+                }
+                else if let appLaunch = event as? ApplicationClosure, let url = appLaunch.unwrappedUrl {
+                    let runningApps = NSWorkspace.shared.runningApplications
+                    for app in runningApps {
+                       if let bundleUrl = app.bundleURL, bundleUrl == url {
+                           terminateApplication(bundleIdentifier: bundleUrl.lastPathComponent)
+                       }
+                    }
                 }
             }
         }

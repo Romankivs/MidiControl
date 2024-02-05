@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23D56" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="ApplicationClosure" representedClassName="ApplicationClosure" parentEntity="TriggerableEvent" syncable="YES" codeGenerationType="class">
+        <attribute name="url" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="ApplicationLaunch" representedClassName="ApplicationLaunch" parentEntity="TriggerableEvent" syncable="YES" codeGenerationType="class">
         <attribute name="activates" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="hidesOthers" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

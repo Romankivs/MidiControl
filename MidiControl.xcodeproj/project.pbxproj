@@ -25,6 +25,8 @@
 		F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */; };
 		F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */; };
 		F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */; };
+		F99774792B7166830045C7AD /* ApplicationClosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99774782B7166830045C7AD /* ApplicationClosureView.swift */; };
+		F997747B2B7167160045C7AD /* TriggerableEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997747A2B7167160045C7AD /* TriggerableEventView.swift */; };
 		F9B052632B584C2E006F1A33 /* GenericMidiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B052622B584C2D006F1A33 /* GenericMidiListView.swift */; };
 		F9B052652B5858E4006F1A33 /* TabsMidiListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B052642B5858E3006F1A33 /* TabsMidiListsView.swift */; };
 		F9D482802B6A8A0A00470467 /* ExpandViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D4827F2B6A8A0A00470467 /* ExpandViewer.swift */; };
@@ -81,6 +83,8 @@
 		F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiEndpointModel.swift; sourceTree = "<group>"; };
 		F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesManager.swift; sourceTree = "<group>"; };
 		F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesView.swift; sourceTree = "<group>"; };
+		F99774782B7166830045C7AD /* ApplicationClosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationClosureView.swift; sourceTree = "<group>"; };
+		F997747A2B7167160045C7AD /* TriggerableEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerableEventView.swift; sourceTree = "<group>"; };
 		F9B052622B584C2D006F1A33 /* GenericMidiListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMidiListView.swift; sourceTree = "<group>"; };
 		F9B052642B5858E3006F1A33 /* TabsMidiListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsMidiListsView.swift; sourceTree = "<group>"; };
 		F9D4827F2B6A8A0A00470467 /* ExpandViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandViewer.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 			children = (
 				F95657892B59CEFC00125ABE /* KeyStrokeView.swift */,
 				F97402562B701A6D00CFD4EE /* ApplicationLaunchView.swift */,
+				F99774782B7166830045C7AD /* ApplicationClosureView.swift */,
+				F997747A2B7167160045C7AD /* TriggerableEventView.swift */,
 			);
 			path = TriggerableEvents;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F99774792B7166830045C7AD /* ApplicationClosureView.swift in Sources */,
 				F9F05C712B5C44F8008F14FC /* KeyPressEmulator.swift in Sources */,
 				F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */,
 				F97402572B701A6D00CFD4EE /* ApplicationLaunchView.swift in Sources */,
@@ -473,6 +480,7 @@
 				F96AB3A92B5BFC3E0009D766 /* KeyCodes.swift in Sources */,
 				F90E37442B5597F000331483 /* MidiControl.xcdatamodeld in Sources */,
 				F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */,
+				F997747B2B7167160045C7AD /* TriggerableEventView.swift in Sources */,
 				F9E4FF932B49CA6600BA18C3 /* MidiEventsLogView.swift in Sources */,
 				F9E4FF912B49CA0A00BA18C3 /* MidiEventsLogModel.swift in Sources */,
 				F9E4FF8F2B49BE9900BA18C3 /* Extensions.swift in Sources */,

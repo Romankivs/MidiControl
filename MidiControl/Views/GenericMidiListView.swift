@@ -57,12 +57,10 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                         Button {
                             withAnimation {
                                 guard let selectedMidi = selectedStroke else { return }
-
                                 let stroke = KeyStroke(context: moc)
                                 stroke.createdDate = .init()
                                 stroke.keyCode = 33
                                 stroke.parent = selectedMidi
-
                                 try? moc.save()
                             }
                         } label: {
@@ -70,14 +68,21 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                         }
                         Button {
                             guard let selectedMidi = selectedStroke else { return }
-
                             let appLaunch = ApplicationLaunch(context: moc)
                             appLaunch.createdDate = .init()
                             appLaunch.parent = selectedMidi
-
                             try? moc.save()
                         } label: {
                             Label("New App Launch", systemImage: "apple.terminal")
+                        }
+                        Button {
+                            guard let selectedMidi = selectedStroke else { return }
+                            let appLaunch = ApplicationClosure(context: moc)
+                            appLaunch.createdDate = .init()
+                            appLaunch.parent = selectedMidi
+                            try? moc.save()
+                        } label: {
+                            Label("New App Closure", systemImage: "xmark.circle")
                         }
                     } label: {
                         Label("", systemImage: "plus")
@@ -98,14 +103,8 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                     let array = selectedStroke.triggerableEventsArray.sorted { left, right in
                         left.createdDate < right.createdDate
                     }
-                    List(array, id: \.self, selection: $selectedKey) { item in
-                        if let item = item as? KeyStroke {
-                            KeyStrokeView(stroke: item)
-                        } else if let item = item as? ApplicationLaunch {
-                            ApplicationLaunchView(launch: item)
-                        } else {
-                            Text("Something else")
-                        }
+                    List(array, id: \.self, selection: $selectedKey) {
+                        TriggerableEventView(model: $0)
                     }
                     .clipShape(.rect(cornerRadius: 3))
                 } else {
