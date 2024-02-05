@@ -204,3 +204,17 @@ extension KeyStroke {
         }
     }
 }
+
+
+// MARK: Application Launch extensions
+
+extension ApplicationLaunch {
+    var unwrappedUrl: URL? {
+        get {
+            return URL(string: url ?? "")
+        }
+        set {
+            self.url = newValue?.absoluteString
+        }
+    }
+}

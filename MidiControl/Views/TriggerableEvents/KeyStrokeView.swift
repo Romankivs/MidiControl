@@ -27,6 +27,7 @@ struct KeyStrokeView: View {
 
     var body: some View {
         HStack {
+            Text("Key Stroke").bold()
             Picker("Action", selection: $stroke.unwrappedAction) {
                 Text("Press").tag(KeyStrokeAction.press)
                 Text("Hold").tag(KeyStrokeAction.hold)
@@ -45,7 +46,7 @@ struct KeyStrokeView: View {
             ToggleButton(iconName: "control", value: $stroke.control)
             ToggleButton(iconName: "shift", value: $stroke.shift)
         }
-        .padding(.horizontal, 5.0)
+        .padding()
         .onChange(of: [stroke.action, stroke.keyCode]) { _ in
             try? moc.save()
         }

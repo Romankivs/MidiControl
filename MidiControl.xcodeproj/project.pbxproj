@@ -140,7 +140,6 @@
 				F90E373D2B51BFA100331483 /* MidiMessageView.swift */,
 				F90E37402B52CC9800331483 /* TextFieldUInt8.swift */,
 				F9D482812B6AB95D00470467 /* ChannelStepper.swift */,
-				F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */,
 			);
 			path = MidiMessages;
 			sourceTree = "<group>";
@@ -183,7 +182,7 @@
 		F97FD9EF2B40B3740032DFD0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F9D4827E2B6A89EE00470467 /* Components */,
+				F9D4827E2B6A89EE00470467 /* GenericComponents */,
 				F958EF8E2B69669600610202 /* Updates */,
 				F956578B2B59CF0100125ABE /* TriggerableEvents */,
 				F90E373F2B52BF8A00331483 /* MidiMessages */,
@@ -221,12 +220,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		F9D4827E2B6A89EE00470467 /* Components */ = {
+		F9D4827E2B6A89EE00470467 /* GenericComponents */ = {
 			isa = PBXGroup;
 			children = (
 				F9D4827F2B6A8A0A00470467 /* ExpandViewer.swift */,
+				F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */,
 			);
-			path = Components;
+			path = GenericComponents;
 			sourceTree = "<group>";
 		};
 		F9D6B04B2B374A260063F634 = {

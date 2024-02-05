@@ -106,7 +106,8 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                         } else {
                             Text("Something else")
                         }
-                    }.clipShape(.rect(cornerRadius: 3))
+                    }
+                    .clipShape(.rect(cornerRadius: 3))
                 } else {
                     List {
                         VStack(alignment: .center) {

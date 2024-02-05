@@ -16,6 +16,7 @@ struct ApplicationLaunchView: View {
 
     var body: some View {
         HStack {
+            Text("App Launch").bold()
             Button("Select App") {
                 importing = true
             }
@@ -25,20 +26,28 @@ struct ApplicationLaunchView: View {
             ) { result in
                 switch result {
                 case .success(let file):
-                    launch.url = file.relativePath
+                    launch.unwrappedUrl = file
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
             }
-            VStack {
-                HStack {
-                    if let appUrl = launch.url {
-                        Image(nsImage: NSWorkspace.shared.icon(forFile: appUrl))
-                    }
-                    Text(launch.url ?? "Not specified")
-                }
+            .padding(.horizontal)
+            if let appUrl = launch.unwrappedUrl {
+                Image(nsImage: NSWorkspace.shared.icon(forFile: appUrl.path))
             }
-        }.padding(.horizontal)
+            Text(launch.unwrappedUrl?.deletingPathExtension().lastPathComponent  ?? "Not specified")
+                .padding(.horizontal)
+            ToggleCheckBox(text: "Activates", value: $launch.activates)
+                .padding(.horizontal)
+            ToggleCheckBox(text: "Hide Others", value: $launch.hidesOthers)
+                .padding(.horizontal)
+            ToggleCheckBox(text: "New Instance", value: $launch.newInstance)
+                .padding(.horizontal)
+        }
+        .padding()
+        .onChange(of: launch.unwrappedUrl) { _ in
+            try? moc.save()
+        }
     }
 }
 

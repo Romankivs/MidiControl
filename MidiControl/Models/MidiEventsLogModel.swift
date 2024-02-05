@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import AppKit
 
 func currentTime() -> String {
     let dateFormatter = DateFormatter()
@@ -64,41 +65,41 @@ class MidiEventsLogModel: ObservableObject {
 
                     switch message {
                     case let .noteOn(channel, note, velocity):
-                        self.emulateKeysThatCorespondToMessage(NoteOnMessage.self, "NoteOnMessage") { msg in
+                        self.triggerEventsThatCorespondToMessage(NoteOnMessage.self, "NoteOnMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.note == note &&
                                     (msg.ignoreVelocity || (msg.minVelocity <= velocity && msg.maxVelocity >= velocity)))
                         }
                     case let .noteOff(channel, note, velocity):
-                        self.emulateKeysThatCorespondToMessage(NoteOffMessage.self, "NoteOffMessage") { msg in
+                        self.triggerEventsThatCorespondToMessage(NoteOffMessage.self, "NoteOffMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.note == note &&
                                     (msg.ignoreVelocity || (msg.minVelocity <= velocity && msg.maxVelocity >= velocity)))
                         }
                     case let .controlChange(channel, index, data):
-                        self.emulateKeysThatCorespondToMessage(ControlChangeMessage.self, "ControlChangeMessage") { msg in
+                        self.triggerEventsThatCorespondToMessage(ControlChangeMessage.self, "ControlChangeMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.index == index &&
                                     (msg.data == 0 || msg.data == data))
                         }
                     case let .programChange(channel, program):
-                        self.emulateKeysThatCorespondToMessage(ProgramChangeMessage.self, "ProgramChangeMessage") { msg in
+                        self.triggerEventsThatCorespondToMessage(ProgramChangeMessage.self, "ProgramChangeMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     (msg.program == 0 || msg.program == program))
                         }
                     case let .channelPressure(channel, data):
-                        self.emulateKeysThatCorespondToMessage(ChannelPressureMessage.self, "ChannelPressureMessage") { msg in
+                        self.triggerEventsThatCorespondToMessage(ChannelPressureMessage.self, "ChannelPressureMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     (msg.ignoreData || (msg.minData <= data && msg.maxData >= data)))
                         }
                     case let .polyPressure(channel, note, data):
-                        self.emulateKeysThatCorespondToMessage(PolyPressureMessage.self, "PolyPressureMessage") { msg in
+                        self.triggerEventsThatCorespondToMessage(PolyPressureMessage.self, "PolyPressureMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     msg.note == note &&
                                     (msg.ignoreData || (msg.minData <= data && msg.maxData >= data)))
                         }
                     case let .pitchBend(channel, data):
-                        self.emulateKeysThatCorespondToMessage(PitchBendMessage.self, "PitchBendMessage") { msg in
+                        self.triggerEventsThatCorespondToMessage(PitchBendMessage.self, "PitchBendMessage") { msg in
                             return (msg.channel - 1 == channel &&
                                     (msg.ignoreData || (msg.minData <= data && msg.maxData >= data)))
                         }
@@ -109,7 +110,7 @@ class MidiEventsLogModel: ObservableObject {
         }
     }
 
-    private func emulateKeysThatCorespondToMessage<MessageType: ICDMidiMessage>(_ messageType: MessageType.Type,
+    private func triggerEventsThatCorespondToMessage<MessageType: ICDMidiMessage>(_ messageType: MessageType.Type,
                                                                                 _ messageName: String,
                                                                                 filter: (MessageType) -> Bool) {
         let messages = self.getMessages(name: messageName) as! [MessageType]
@@ -121,6 +122,13 @@ class MidiEventsLogModel: ObservableObject {
             for event in array {
                 if let keyStroke = event as? KeyStroke {
                     KeyPressEmulator.emulateKey(key: keyStroke)
+                }
+                else if let appLaunch = event as? ApplicationLaunch, let url = appLaunch.unwrappedUrl {
+                    let configuration = NSWorkspace.OpenConfiguration()
+                    configuration.activates = appLaunch.activates
+                    configuration.hidesOthers = appLaunch.hidesOthers
+                    configuration.createsNewApplicationInstance = appLaunch.newInstance
+                    NSWorkspace.shared.openApplication(at: url, configuration: configuration)
                 }
             }
         }
