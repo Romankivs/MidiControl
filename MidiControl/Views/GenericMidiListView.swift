@@ -84,6 +84,15 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                         } label: {
                             Label("New App Closure", systemImage: "xmark.circle")
                         }
+                        Button {
+                            guard let selectedMidi = selectedStroke else { return }
+                            let delay = DelayEvent(context: moc)
+                            delay.createdDate = .init()
+                            delay.parent = selectedMidi
+                            try? moc.save()
+                        } label: {
+                            Label("New Delay", systemImage: "timer")
+                        }
                     } label: {
                         Label("", systemImage: "plus")
                     }.fixedSize().labelsHidden()

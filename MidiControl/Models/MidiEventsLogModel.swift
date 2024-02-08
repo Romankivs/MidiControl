@@ -133,26 +133,33 @@ class MidiEventsLogModel: ObservableObject {
             let array = msg.triggerableEventsArray.sorted { left, right in
                 left.createdDate < right.createdDate
             }
-            for event in array {
-                if let keyStroke = event as? KeyStroke {
-                    KeyPressEmulator.emulateKey(key: keyStroke)
-                }
-                else if let appLaunch = event as? ApplicationLaunch, let url = appLaunch.unwrappedUrl {
-                    let configuration = NSWorkspace.OpenConfiguration()
-                    configuration.activates = appLaunch.activates
-                    configuration.hidesOthers = appLaunch.hidesOthers
-                    configuration.createsNewApplicationInstance = appLaunch.newInstance
-                    NSWorkspace.shared.openApplication(at: url, configuration: configuration)
-                }
-                else if let appLaunch = event as? ApplicationClosure, let url = appLaunch.unwrappedUrl {
-                    let runningApps = NSWorkspace.shared.runningApplications
-                    for app in runningApps {
-                       if let bundleUrl = app.bundleURL, bundleUrl == url {
-                           terminateApplication(bundleIdentifier: bundleUrl.lastPathComponent)
-                       }
-                    }
-                }
+            Task.detached {
+                array.forEach(self.triggerEvent)
             }
+        }
+    }
+
+    private func triggerEvent(event: TriggerableEvent) {
+        if let keyStroke = event as? KeyStroke {
+            KeyPressEmulator.emulateKey(key: keyStroke)
+        }
+        else if let appLaunch = event as? ApplicationLaunch, let url = appLaunch.unwrappedUrl {
+            let configuration = NSWorkspace.OpenConfiguration()
+            configuration.activates = appLaunch.activates
+            configuration.hidesOthers = appLaunch.hidesOthers
+            configuration.createsNewApplicationInstance = appLaunch.newInstance
+            NSWorkspace.shared.openApplication(at: url, configuration: configuration)
+        }
+        else if let appLaunch = event as? ApplicationClosure, let url = appLaunch.unwrappedUrl {
+            let runningApps = NSWorkspace.shared.runningApplications
+            for app in runningApps {
+               if let bundleUrl = app.bundleURL, bundleUrl == url {
+                   terminateApplication(bundleIdentifier: bundleUrl.lastPathComponent)
+               }
+            }
+        }
+        else if let delay = event as? DelayEvent {
+            usleep(UInt32(delay.amountMilliseconds * 1000)) // 1000 microseconds is 1 millisecond
         }
     }
 

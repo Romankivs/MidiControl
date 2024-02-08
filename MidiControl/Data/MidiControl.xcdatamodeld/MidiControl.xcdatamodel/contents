@@ -24,6 +24,9 @@
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TriggerableEvent" inverseName="controlChange" inverseEntity="TriggerableEvent"/>
     </entity>
+    <entity name="DelayEvent" representedClassName="DelayEvent" parentEntity="TriggerableEvent" syncable="YES" codeGenerationType="class">
+        <attribute name="amountMilliseconds" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="KeyStroke" representedClassName="KeyStroke" parentEntity="TriggerableEvent" syncable="YES" codeGenerationType="class">
         <attribute name="action" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="command" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -31,6 +34,12 @@
         <attribute name="keyCode" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="option" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="shift" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="MouseEvent" representedClassName="MouseEvent" parentEntity="TriggerableEvent" syncable="YES" codeGenerationType="class">
+        <attribute name="action" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mousePositionX" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="mousePositionY" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="otherButton" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="NoteOffMessage" representedClassName="NoteOffMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

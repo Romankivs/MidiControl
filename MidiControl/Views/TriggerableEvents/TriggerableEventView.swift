@@ -18,6 +18,8 @@ struct TriggerableEventView: View {
             ApplicationLaunchView(launch: model)
         case let model as ApplicationClosure:
             ApplicationClosureView(closure: model)
+        case let model as DelayEvent:
+            DelayEventView(delay: model)
         default: Text("Unknown event")
         }
     }

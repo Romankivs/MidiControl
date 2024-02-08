@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F90AE4832B7562E200BE93BF /* DelayEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AE4822B7562E200BE93BF /* DelayEventView.swift */; };
 		F90E373C2B4DF95D00331483 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E373B2B4DF95D00331483 /* Utils.swift */; };
 		F90E373E2B51BFA100331483 /* MidiMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E373D2B51BFA100331483 /* MidiMessageView.swift */; };
 		F90E37412B52CC9800331483 /* TextFieldUInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E37402B52CC9800331483 /* TextFieldUInt8.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F90AE4822B7562E200BE93BF /* DelayEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayEventView.swift; sourceTree = "<group>"; };
 		F90E373B2B4DF95D00331483 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F90E373D2B51BFA100331483 /* MidiMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiMessageView.swift; sourceTree = "<group>"; };
 		F90E37402B52CC9800331483 /* TextFieldUInt8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldUInt8.swift; sourceTree = "<group>"; };
@@ -142,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				F90E373D2B51BFA100331483 /* MidiMessageView.swift */,
-				F90E37402B52CC9800331483 /* TextFieldUInt8.swift */,
 				F9D482812B6AB95D00470467 /* ChannelStepper.swift */,
 			);
 			path = MidiMessages;
@@ -165,6 +166,7 @@
 				F97402562B701A6D00CFD4EE /* ApplicationLaunchView.swift */,
 				F99774782B7166830045C7AD /* ApplicationClosureView.swift */,
 				F997747A2B7167160045C7AD /* TriggerableEventView.swift */,
+				F90AE4822B7562E200BE93BF /* DelayEventView.swift */,
 			);
 			path = TriggerableEvents;
 			sourceTree = "<group>";
@@ -229,6 +231,7 @@
 		F9D4827E2B6A89EE00470467 /* GenericComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F90E37402B52CC9800331483 /* TextFieldUInt8.swift */,
 				F9D4827F2B6A8A0A00470467 /* ExpandViewer.swift */,
 				F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */,
 			);
@@ -469,6 +472,7 @@
 				F9E4FF8D2B49B35400BA18C3 /* MidiAdapter.mm in Sources */,
 				F9D482822B6AB95E00470467 /* ChannelStepper.swift in Sources */,
 				F90E373E2B51BFA100331483 /* MidiMessageView.swift in Sources */,
+				F90AE4832B7562E200BE93BF /* DelayEventView.swift in Sources */,
 				F90E37412B52CC9800331483 /* TextFieldUInt8.swift in Sources */,
 				F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */,
 				F90E37472B5598D700331483 /* DataController.swift in Sources */,
