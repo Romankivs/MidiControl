@@ -42,7 +42,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                 }
                 List(selection: $selectedStroke) {
                     ForEach(messages, id: \.self) { stroke in
-                        MidiMessageView(model: stroke)
+                        MidiMessageView(model: stroke).moveDisabled(stroke == selectedStroke)
                     }.onMove(perform: moveMessages)
                 }.clipShape(.rect(cornerRadius: 3))
             }
@@ -117,7 +117,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                     }
                     List(selection: $selectedKey) {
                         ForEach(array, id: \.self) {
-                            TriggerableEventView(model: $0)
+                            TriggerableEventView(model: $0).moveDisabled($0 == selectedKey)
                         }.onMove(perform: move)
                     }
                     .clipShape(.rect(cornerRadius: 3))
