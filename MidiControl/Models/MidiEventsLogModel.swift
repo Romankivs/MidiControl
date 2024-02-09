@@ -52,7 +52,7 @@ class MidiEventsLogModel: ObservableObject {
 
     func getMessages<T: NSManagedObject>(name: String) -> [T] {
         let request = NSFetchRequest<T>(entityName: name)
-        request.sortDescriptors = [NSSortDescriptor(key: "created", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true), NSSortDescriptor(key: "created", ascending: true)]
         return (try? context.fetch(request)) ?? []
     }
 
@@ -131,7 +131,7 @@ class MidiEventsLogModel: ObservableObject {
         let filtered = messages.filter(filter)
         for msg in filtered {
             let array = msg.triggerableEventsArray.sorted { left, right in
-                left.createdDate < right.createdDate
+                (left.userOrder, left.createdDate) < (right.userOrder, right.createdDate)
             }
             Task.detached {
                 array.forEach(self.triggerEvent)

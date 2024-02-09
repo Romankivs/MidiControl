@@ -15,6 +15,7 @@
         <attribute name="ignoreData" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="maxData" optional="YES" attributeType="Integer 16" defaultValueString="127" usesScalarValueType="YES"/>
         <attribute name="minData" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TriggerableEvent" inverseName="channelPressure" inverseEntity="TriggerableEvent"/>
     </entity>
     <entity name="ControlChangeMessage" representedClassName="ControlChangeMessage" syncable="YES" codeGenerationType="class">
@@ -22,6 +23,7 @@
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="data" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TriggerableEvent" inverseName="controlChange" inverseEntity="TriggerableEvent"/>
     </entity>
     <entity name="DelayEvent" representedClassName="DelayEvent" parentEntity="TriggerableEvent" syncable="YES" codeGenerationType="class">
@@ -48,6 +50,7 @@
         <attribute name="maxVelocity" optional="YES" attributeType="Integer 16" defaultValueString="127" usesScalarValueType="YES"/>
         <attribute name="minVelocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="60" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TriggerableEvent" inverseName="noteOff" inverseEntity="TriggerableEvent"/>
     </entity>
     <entity name="NoteOnMessage" representedClassName="NoteOnMessage" syncable="YES" codeGenerationType="class">
@@ -57,6 +60,7 @@
         <attribute name="maxVelocity" optional="YES" attributeType="Integer 16" defaultValueString="127" usesScalarValueType="YES"/>
         <attribute name="minVelocity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="60" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TriggerableEvent" inverseName="noteOn" inverseEntity="TriggerableEvent"/>
     </entity>
     <entity name="PitchBendMessage" representedClassName="PitchBendMessage" syncable="YES" codeGenerationType="class">
@@ -65,6 +69,7 @@
         <attribute name="ignoreData" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="maxData" optional="YES" attributeType="Integer 32" defaultValueString="16383" usesScalarValueType="YES"/>
         <attribute name="minData" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TriggerableEvent" inverseName="pitchBend" inverseEntity="TriggerableEvent"/>
     </entity>
     <entity name="PolyPressureMessage" representedClassName="PolyPressureMessage" syncable="YES" codeGenerationType="class">
@@ -74,16 +79,19 @@
         <attribute name="maxData" optional="YES" attributeType="Integer 16" defaultValueString="127" usesScalarValueType="YES"/>
         <attribute name="minData" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TriggerableEvent" inverseName="polyPressure" inverseEntity="TriggerableEvent"/>
     </entity>
     <entity name="ProgramChangeMessage" representedClassName="ProgramChangeMessage" syncable="YES" codeGenerationType="class">
         <attribute name="channel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="program" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TriggerableEvent" inverseName="programChange" inverseEntity="TriggerableEvent"/>
     </entity>
     <entity name="TriggerableEvent" representedClassName="TriggerableEvent" syncable="YES" codeGenerationType="class">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="userOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="channelPressure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChannelPressureMessage" inverseName="event" inverseEntity="ChannelPressureMessage"/>
         <relationship name="controlChange" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ControlChangeMessage" inverseName="event" inverseEntity="ControlChangeMessage"/>
         <relationship name="noteOff" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteOffMessage" inverseName="event" inverseEntity="NoteOffMessage"/>

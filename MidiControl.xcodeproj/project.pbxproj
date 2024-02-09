@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F90AE4832B7562E200BE93BF /* DelayEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AE4822B7562E200BE93BF /* DelayEventView.swift */; };
+		F90AE4852B76987100BE93BF /* TriggerableEventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AE4842B76987100BE93BF /* TriggerableEventsListView.swift */; };
 		F90E373C2B4DF95D00331483 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E373B2B4DF95D00331483 /* Utils.swift */; };
 		F90E373E2B51BFA100331483 /* MidiMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E373D2B51BFA100331483 /* MidiMessageView.swift */; };
 		F90E37412B52CC9800331483 /* TextFieldUInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E37402B52CC9800331483 /* TextFieldUInt8.swift */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		F90AE4822B7562E200BE93BF /* DelayEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayEventView.swift; sourceTree = "<group>"; };
+		F90AE4842B76987100BE93BF /* TriggerableEventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerableEventsListView.swift; sourceTree = "<group>"; };
 		F90E373B2B4DF95D00331483 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F90E373D2B51BFA100331483 /* MidiMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiMessageView.swift; sourceTree = "<group>"; };
 		F90E37402B52CC9800331483 /* TextFieldUInt8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldUInt8.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				F9E4FF922B49CA6600BA18C3 /* MidiEventsLogView.swift */,
 				F9B052622B584C2D006F1A33 /* GenericMidiListView.swift */,
 				F9B052642B5858E3006F1A33 /* TabsMidiListsView.swift */,
+				F90AE4842B76987100BE93BF /* TriggerableEventsListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				F9D482802B6A8A0A00470467 /* ExpandViewer.swift in Sources */,
 				F924A6B52B4DE9E0004E9129 /* MidiMessage.swift in Sources */,
 				F90E373C2B4DF95D00331483 /* Utils.swift in Sources */,
+				F90AE4852B76987100BE93BF /* TriggerableEventsListView.swift in Sources */,
 				F9E4FF8D2B49B35400BA18C3 /* MidiAdapter.mm in Sources */,
 				F9D482822B6AB95E00470467 /* ChannelStepper.swift in Sources */,
 				F90E373E2B51BFA100331483 /* MidiMessageView.swift in Sources */,

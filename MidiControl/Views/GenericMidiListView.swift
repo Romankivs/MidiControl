@@ -13,7 +13,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
 
     @Environment(\.managedObjectContext) var moc
 
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "created", ascending: true)]) var messages: FetchedResults<T>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "order", ascending: true), NSSortDescriptor(key: "created", ascending: true)]) var messages: FetchedResults<T>
 
     var body: some View {
         HStack {
@@ -23,6 +23,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                         withAnimation {
                             var new = T(context: moc)
                             new.createdDate = .init()
+                            new.userOrder = Int32.max
                             try? moc.save()
                         }
                     }) {
@@ -39,8 +40,10 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                         Image(systemName: "minus")
                     }
                 }
-                List(messages, id: \.self, selection: $selectedStroke) { stroke in
-                    MidiMessageView(model: stroke)
+                List(selection: $selectedStroke) {
+                    ForEach(messages, id: \.self) { stroke in
+                        MidiMessageView(model: stroke)
+                    }.onMove(perform: moveMessages)
                 }.clipShape(.rect(cornerRadius: 3))
             }
 
@@ -110,10 +113,12 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                 }
                 if let selectedStroke = selectedStroke {
                     let array = selectedStroke.triggerableEventsArray.sorted { left, right in
-                        left.createdDate < right.createdDate
+                        (left.userOrder, left.createdDate) < (right.userOrder, right.createdDate)
                     }
-                    List(array, id: \.self, selection: $selectedKey) {
-                        TriggerableEventView(model: $0)
+                    List(selection: $selectedKey) {
+                        ForEach(array, id: \.self) {
+                            TriggerableEventView(model: $0)
+                        }.onMove(perform: move)
                     }
                     .clipShape(.rect(cornerRadius: 3))
                 } else {
@@ -128,6 +133,54 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
             }
         }
         .padding()
+    }
+
+    private func moveMessages( from source: IndexSet, to destination: Int)
+    {
+        // Make an array of items from fetched results
+        var revisedItems: [ ICDMidiMessage ] = messages.map{ $0 }
+
+        // change the order of the items in the array
+        revisedItems.move(fromOffsets: source, toOffset: destination )
+
+        // update the userOrder attribute in revisedItems to
+        // persist the new order. This is done in reverse order
+        // to minimize changes to the indices.
+        for reverseIndex in stride( from: revisedItems.count - 1,
+                                    through: 0,
+                                    by: -1 )
+        {
+            revisedItems[ reverseIndex ].userOrder = Int32(reverseIndex)
+        }
+
+        try? moc.save()
+    }
+
+    private func move( from source: IndexSet, to destination: Int)
+    {
+        guard let selectedStroke = selectedStroke else { return }
+
+        var revisedItems = selectedStroke.triggerableEventsArray.sorted { left, right in
+            (left.userOrder, left.createdDate) < (right.userOrder, right.createdDate)
+        }
+
+        // change the order of the items in the array
+        revisedItems.move(fromOffsets: source, toOffset: destination )
+
+        // update the userOrder attribute in revisedItems to
+        // persist the new order. This is done in reverse order
+        // to minimize changes to the indices.
+        for reverseIndex in stride( from: revisedItems.count - 1,
+                                    through: 0,
+                                    by: -1 )
+        {
+            revisedItems[ reverseIndex ].userOrder = Int32(reverseIndex)
+        }
+
+        try? moc.save()
+
+        self.selectedStroke = nil
+        self.selectedStroke = selectedStroke
     }
 }
 

@@ -11,6 +11,7 @@ import Foundation
 
 protocol CreatedAtDate {
     var createdDate: Date { get set }
+    var userOrder: Int32 { get set }
 }
 
 protocol ICDMidiMessage: CreatedAtDate {
@@ -26,7 +27,16 @@ extension NoteOnMessage: ICDMidiMessage {
             created = newValue
         }
     }
-    
+
+    var userOrder: Int32 {
+        get {
+            order
+        }
+        set {
+            order = newValue
+        }
+    }
+
     public var triggerableEventsArray: [TriggerableEvent] {
         guard let event = event else { return [] }
         return Array(event as! Set<TriggerableEvent>)
@@ -40,6 +50,15 @@ extension NoteOffMessage: ICDMidiMessage {
         }
         set {
             created = newValue
+        }
+    }
+
+    var userOrder: Int32 {
+        get {
+            order
+        }
+        set {
+            order = newValue
         }
     }
 
@@ -59,6 +78,15 @@ extension ControlChangeMessage: ICDMidiMessage {
         }
     }
 
+    var userOrder: Int32 {
+        get {
+            order
+        }
+        set {
+            order = newValue
+        }
+    }
+
     public var triggerableEventsArray: [TriggerableEvent] {
         guard let event = event else { return [] }
         return Array(event as! Set<TriggerableEvent>)
@@ -75,6 +103,14 @@ extension ProgramChangeMessage: ICDMidiMessage {
         }
     }
 
+    var userOrder: Int32 {
+        get {
+            order
+        }
+        set {
+            order = newValue
+        }
+    }
     public var triggerableEventsArray: [TriggerableEvent] {
         guard let event = event else { return [] }
         return Array(event as! Set<TriggerableEvent>)
@@ -89,6 +125,15 @@ extension ChannelPressureMessage: ICDMidiMessage {
         }
         set {
             created = newValue
+        }
+    }
+
+    var userOrder: Int32 {
+        get {
+            order
+        }
+        set {
+            order = newValue
         }
     }
 
@@ -109,6 +154,15 @@ extension PolyPressureMessage: ICDMidiMessage {
         }
     }
 
+    var userOrder: Int32 {
+        get {
+            order
+        }
+        set {
+            order = newValue
+        }
+    }
+
     public var triggerableEventsArray: [TriggerableEvent] {
         guard let event = event else { return [] }
         return Array(event as! Set<TriggerableEvent>)
@@ -123,6 +177,15 @@ extension PitchBendMessage: ICDMidiMessage {
         }
         set {
             created = newValue
+        }
+    }
+
+    var userOrder: Int32 {
+        get {
+            order
+        }
+        set {
+            order = newValue
         }
     }
 
