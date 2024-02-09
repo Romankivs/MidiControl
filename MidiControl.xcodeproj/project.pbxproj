@@ -21,6 +21,8 @@
 		F958EF8C2B69617E00610202 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = F958EF8B2B69617E00610202 /* Sparkle */; };
 		F958EF902B6966A900610202 /* CheckForUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958EF8F2B6966A900610202 /* CheckForUpdates.swift */; };
 		F958EF932B69671B00610202 /* CheckForUpdatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958EF922B69671B00610202 /* CheckForUpdatesModel.swift */; };
+		F960BA052B76BFDF00DDDC3D /* MouseEventTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F960BA042B76BFDF00DDDC3D /* MouseEventTypes.swift */; };
+		F960BA072B76C4A600DDDC3D /* MouseEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F960BA062B76C4A600DDDC3D /* MouseEventView.swift */; };
 		F96AB3A92B5BFC3E0009D766 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */; };
 		F97402542B6D60DA00CFD4EE /* ToggleCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */; };
 		F97402572B701A6D00CFD4EE /* ApplicationLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97402562B701A6D00CFD4EE /* ApplicationLaunchView.swift */; };
@@ -81,6 +83,8 @@
 		F958EF8D2B6964BE00610202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F958EF8F2B6966A900610202 /* CheckForUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdates.swift; sourceTree = "<group>"; };
 		F958EF922B69671B00610202 /* CheckForUpdatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesModel.swift; sourceTree = "<group>"; };
+		F960BA042B76BFDF00DDDC3D /* MouseEventTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseEventTypes.swift; sourceTree = "<group>"; };
+		F960BA062B76C4A600DDDC3D /* MouseEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseEventView.swift; sourceTree = "<group>"; };
 		F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		F97402532B6D60DA00CFD4EE /* ToggleCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCheckBox.swift; sourceTree = "<group>"; };
 		F97402562B701A6D00CFD4EE /* ApplicationLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationLaunchView.swift; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				F99774782B7166830045C7AD /* ApplicationClosureView.swift */,
 				F997747A2B7167160045C7AD /* TriggerableEventView.swift */,
 				F90AE4822B7562E200BE93BF /* DelayEventView.swift */,
+				F960BA062B76C4A600DDDC3D /* MouseEventView.swift */,
 			);
 			path = TriggerableEvents;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 				F9E4FF8E2B49BE9900BA18C3 /* Extensions.swift */,
 				F90E373B2B4DF95D00331483 /* Utils.swift */,
 				F96AB3A82B5BFC3E0009D766 /* KeyCodes.swift */,
+				F960BA042B76BFDF00DDDC3D /* MouseEventTypes.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -473,10 +479,12 @@
 				F924A6B52B4DE9E0004E9129 /* MidiMessage.swift in Sources */,
 				F90E373C2B4DF95D00331483 /* Utils.swift in Sources */,
 				F90AE4852B76987100BE93BF /* TriggerableEventsListView.swift in Sources */,
+				F960BA052B76BFDF00DDDC3D /* MouseEventTypes.swift in Sources */,
 				F9E4FF8D2B49B35400BA18C3 /* MidiAdapter.mm in Sources */,
 				F9D482822B6AB95E00470467 /* ChannelStepper.swift in Sources */,
 				F90E373E2B51BFA100331483 /* MidiMessageView.swift in Sources */,
 				F90AE4832B7562E200BE93BF /* DelayEventView.swift in Sources */,
+				F960BA072B76C4A600DDDC3D /* MouseEventView.swift in Sources */,
 				F90E37412B52CC9800331483 /* TextFieldUInt8.swift in Sources */,
 				F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */,
 				F90E37472B5598D700331483 /* DataController.swift in Sources */,

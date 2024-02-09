@@ -56,7 +56,7 @@ class KeyPressEmulator {
 
         keyEvent?.post(tap: .cghidEventTap)
 
-        print("Triggered key: \(keyCode) down: \(keyDown) command: \(command)",
+        print("Triggered key event: \(keyCode) down: \(keyDown) command: \(command)",
               "option: \(option) control: \(control) shift: \(shift)")
     }
 
@@ -75,5 +75,16 @@ class KeyPressEmulator {
             flags.insert(.maskShift)
         }
         return flags
+    }
+
+    static func emulateMouseKey(type: MouseEventType, posX: Double, posY: Double, button: Int32) {
+        let eventSource = CGEventSource(stateID: .hidSystemState)
+        let mouseEvent = CGEvent(mouseEventSource: eventSource, mouseType: type.toCGEventType(),
+                                 mouseCursorPosition: CGPoint(x: posX, y: posY), mouseButton: CGMouseButton(rawValue: UInt32(button)) ?? .left)
+
+        mouseEvent?.post(tap: .cghidEventTap)
+
+        print("Triggered mouse event: \(type) position X: \(posX) position Y: \(posY) button: \(button)")
+
     }
 }

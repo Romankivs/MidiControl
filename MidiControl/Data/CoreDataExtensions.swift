@@ -294,3 +294,17 @@ extension ApplicationClosure {
         }
     }
 }
+
+// MARK: Mouse Event extensions
+
+extension MouseEvent {
+    var unwrappedType: MouseEventType {
+        get {
+            return MouseEventType(rawValue: self.action) ?? .move
+        }
+        set {
+            self.action = Int32(newValue.rawValue)
+        }
+    }
+}
+

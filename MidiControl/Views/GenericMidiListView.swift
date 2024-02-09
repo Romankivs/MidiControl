@@ -59,42 +59,30 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                     Menu {
                         Button {
                             withAnimation {
-                                guard let selectedMidi = selectedStroke else { return }
-                                let stroke = KeyStroke(context: moc)
-                                stroke.createdDate = .init()
-                                stroke.keyCode = 33
-                                stroke.parent = selectedMidi
-                                try? moc.save()
+                                newEventObject(type: KeyStroke.self)
                             }
                         } label: {
                             Label("New Key Stroke", systemImage: "keyboard")
                         }
                         Button {
-                            guard let selectedMidi = selectedStroke else { return }
-                            let appLaunch = ApplicationLaunch(context: moc)
-                            appLaunch.createdDate = .init()
-                            appLaunch.parent = selectedMidi
-                            try? moc.save()
+                            newEventObject(type: ApplicationLaunch.self)
                         } label: {
                             Label("New App Launch", systemImage: "apple.terminal")
                         }
                         Button {
-                            guard let selectedMidi = selectedStroke else { return }
-                            let appLaunch = ApplicationClosure(context: moc)
-                            appLaunch.createdDate = .init()
-                            appLaunch.parent = selectedMidi
-                            try? moc.save()
+                            newEventObject(type: ApplicationClosure.self)
                         } label: {
                             Label("New App Closure", systemImage: "xmark.circle")
                         }
                         Button {
-                            guard let selectedMidi = selectedStroke else { return }
-                            let delay = DelayEvent(context: moc)
-                            delay.createdDate = .init()
-                            delay.parent = selectedMidi
-                            try? moc.save()
+                            newEventObject(type: DelayEvent.self)
                         } label: {
                             Label("New Delay", systemImage: "timer")
+                        }
+                        Button {
+                            newEventObject(type: MouseEvent.self)
+                        } label: {
+                            Label("New Mouse Event", systemImage: "mouse")
                         }
                     } label: {
                         Label("", systemImage: "plus")
@@ -133,6 +121,14 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
             }
         }
         .padding()
+    }
+
+    private func newEventObject<E: TriggerableEvent>(type: E.Type) {
+        guard let selectedMidi = selectedStroke else { return }
+        let delay = E(context: moc)
+        delay.createdDate = .init()
+        delay.parent = selectedMidi
+        try? moc.save()
     }
 
     private func moveMessages( from source: IndexSet, to destination: Int)

@@ -20,6 +20,8 @@ struct TriggerableEventView: View {
             ApplicationClosureView(closure: model)
         case let model as DelayEvent:
             DelayEventView(delay: model)
+        case let model as MouseEvent:
+            MouseEventView(mouse: model)
         default: Text("Unknown event")
         }
     }

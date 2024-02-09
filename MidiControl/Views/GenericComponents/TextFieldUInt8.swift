@@ -34,6 +34,7 @@ struct TextFieldUInt<T> : View {
 typealias TextFieldUInt8 = TextFieldUInt<Int16>
 typealias TextFieldUInt16 = TextFieldUInt<Int32>
 typealias TextFieldUInt32 = TextFieldUInt<Int64>
+typealias TextFieldDouble = TextFieldUInt<Double>
 
 #Preview {
     TextFieldUInt8(value: .constant(55), name: "Preview", emptyText: "Enter")

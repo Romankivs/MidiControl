@@ -161,6 +161,12 @@ class MidiEventsLogModel: ObservableObject {
         else if let delay = event as? DelayEvent {
             usleep(UInt32(delay.amountMilliseconds * 1000)) // 1000 microseconds is 1 millisecond
         }
+        else if let mouseEvent = event as? MouseEvent {
+            KeyPressEmulator.emulateMouseKey(type: mouseEvent.unwrappedType,
+                                             posX: mouseEvent.mousePositionX,
+                                             posY: mouseEvent.mousePositionY,
+                                             button: mouseEvent.otherButton)
+        }
     }
 
     func stopLogTimer() {
