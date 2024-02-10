@@ -29,6 +29,7 @@
 		F97FD9F62B40B7B50032DFD0 /* MidiEndpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */; };
 		F97FD9F72B40B7B50032DFD0 /* MidiSourcesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */; };
 		F97FD9F92B40B7C40032DFD0 /* MidiSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */; };
+		F9871AE12B77FE40005032C8 /* ScriptLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9871AE02B77FE40005032C8 /* ScriptLaunchView.swift */; };
 		F99774792B7166830045C7AD /* ApplicationClosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99774782B7166830045C7AD /* ApplicationClosureView.swift */; };
 		F997747B2B7167160045C7AD /* TriggerableEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997747A2B7167160045C7AD /* TriggerableEventView.swift */; };
 		F9B052632B584C2E006F1A33 /* GenericMidiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B052622B584C2D006F1A33 /* GenericMidiListView.swift */; };
@@ -91,6 +92,7 @@
 		F97FD9F42B40B7B50032DFD0 /* MidiEndpointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiEndpointModel.swift; sourceTree = "<group>"; };
 		F97FD9F52B40B7B50032DFD0 /* MidiSourcesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesManager.swift; sourceTree = "<group>"; };
 		F97FD9F82B40B7C40032DFD0 /* MidiSourcesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSourcesView.swift; sourceTree = "<group>"; };
+		F9871AE02B77FE40005032C8 /* ScriptLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptLaunchView.swift; sourceTree = "<group>"; };
 		F99774782B7166830045C7AD /* ApplicationClosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationClosureView.swift; sourceTree = "<group>"; };
 		F997747A2B7167160045C7AD /* TriggerableEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerableEventView.swift; sourceTree = "<group>"; };
 		F9B052622B584C2D006F1A33 /* GenericMidiListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMidiListView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				F997747A2B7167160045C7AD /* TriggerableEventView.swift */,
 				F90AE4822B7562E200BE93BF /* DelayEventView.swift */,
 				F960BA062B76C4A600DDDC3D /* MouseEventView.swift */,
+				F9871AE02B77FE40005032C8 /* ScriptLaunchView.swift */,
 			);
 			path = TriggerableEvents;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F99774792B7166830045C7AD /* ApplicationClosureView.swift in Sources */,
+				F9871AE12B77FE40005032C8 /* ScriptLaunchView.swift in Sources */,
 				F9F05C712B5C44F8008F14FC /* KeyPressEmulator.swift in Sources */,
 				F9D6B05A2B374A260063F634 /* ContentView.swift in Sources */,
 				F97402572B701A6D00CFD4EE /* ApplicationLaunchView.swift in Sources */,
@@ -672,6 +676,7 @@
 				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MidiControl/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -707,6 +712,7 @@
 				DEVELOPMENT_TEAM = F7Y3J8Z4AZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MidiControl/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

@@ -75,6 +75,11 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                             Label("New App Closure", systemImage: "xmark.circle")
                         }
                         Button {
+                            newEventObject(type: ScriptLaunch.self)
+                        } label: {
+                            Label("New Script Launch", systemImage: "script")
+                        }
+                        Button {
                             newEventObject(type: DelayEvent.self)
                         } label: {
                             Label("New Delay", systemImage: "timer")

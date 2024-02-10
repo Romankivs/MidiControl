@@ -167,6 +167,10 @@ class MidiEventsLogModel: ObservableObject {
                                              posY: mouseEvent.mousePositionY,
                                              button: mouseEvent.otherButton)
         }
+        else if let scriptLaunch = event as? ScriptLaunch, let url = scriptLaunch.unwrappedUrl {
+            let task = try? NSUserScriptTask(url: url)
+            task?.execute(completionHandler: { error in print(error?.localizedDescription ?? "No error") })
+        }
     }
 
     func stopLogTimer() {

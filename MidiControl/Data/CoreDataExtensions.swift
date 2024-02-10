@@ -308,3 +308,15 @@ extension MouseEvent {
     }
 }
 
+// MARK: Script Launch extensions
+
+extension ScriptLaunch {
+    var unwrappedUrl: URL? {
+        get {
+            return URL(string: url ?? "")
+        }
+        set {
+            self.url = newValue?.absoluteString
+        }
+    }
+}

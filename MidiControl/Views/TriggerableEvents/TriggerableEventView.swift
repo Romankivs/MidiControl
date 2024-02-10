@@ -22,6 +22,8 @@ struct TriggerableEventView: View {
             DelayEventView(delay: model)
         case let model as MouseEvent:
             MouseEventView(mouse: model)
+        case let model as ScriptLaunch:
+            ScriptLaunchView(launch: model)
         default: Text("Unknown event")
         }
     }
