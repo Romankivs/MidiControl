@@ -35,6 +35,9 @@ struct MouseEventView: View {
                             emptyText: "Enter other button",
                             minimum: 3,
                             maximum: 31)
+            .disabled(mouse.unwrappedType != MouseEventType.otherDown &&
+                      mouse.unwrappedType != MouseEventType.otherUp &&
+                      mouse.unwrappedType != MouseEventType.otherDrag)
         }
         .onChange(of: [mouse.action, mouse.otherButton]) { _ in
             try? moc.save()
