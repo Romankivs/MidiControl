@@ -14,6 +14,7 @@ struct MidiEventsLogView: View {
         List(midiEventsLogModel.logs) {
             Text($0.description)
         }
+        .accessibilityLabel("Midi Logs List")
     }
 }
 

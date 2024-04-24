@@ -36,6 +36,8 @@ final class MidiControlUITests: XCTestCase {
 
     let midiSetupApp = XCUIApplication(bundleIdentifier: "com.apple.audio.AudioMIDISetup")
 
+    let vmpkApp = XCUIApplication(bundleIdentifier: "net.sourceforge.vmpk")
+
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -105,6 +107,74 @@ final class MidiControlUITests: XCTestCase {
         XCTAssertFalse(app.checkBoxes["IAC Driver \(newBusName) (MIDI 2.0)"].exists)
 
         midiSetupApp.terminate()
+    }
+
+    func testLogsAreAdded() throws {
+        let viewLogsButton = app.buttons["View Midi Messages Logs"]
+        XCTAssertTrue(viewLogsButton.exists)
+        viewLogsButton.click();
+
+        vmpkApp.terminate()
+        vmpkApp.launch()
+
+        let inputCheckbox = app.checkBoxes["VMPK Output (MIDI-1UP)"]
+        XCTAssertTrue(inputCheckbox.waitForExistence(timeout: 5))
+        // Click if not checked
+        if !(inputCheckbox.value as! Bool) {
+            inputCheckbox.click()
+        }
+        else
+        {
+            inputCheckbox.doubleClick()
+        }
+        sleep(1)
+
+        let controlCheckBox = vmpkApp.checkBoxes.firstMatch
+        XCTAssertTrue(controlCheckBox.exists)
+        controlCheckBox.click()
+        controlCheckBox.click()
+        controlCheckBox.click()
+
+        let logsList = app.tables["Midi Logs List"]
+        XCTAssertTrue(logsList.exists)
+
+        XCTAssertTrue(logsList.tableRows.count == 3)
+
+        vmpkApp.terminate()
+    }
+
+    func testLogIsAddedWithCorrectText() throws {
+        let viewLogsButton = app.buttons["View Midi Messages Logs"]
+        XCTAssertTrue(viewLogsButton.exists)
+        viewLogsButton.click();
+
+        vmpkApp.terminate()
+        vmpkApp.launch()
+
+        let inputCheckbox = app.checkBoxes["VMPK Output (MIDI-1UP)"]
+        XCTAssertTrue(inputCheckbox.waitForExistence(timeout: 5))
+        // Click if not checked
+        if !(inputCheckbox.value as! Bool) {
+            inputCheckbox.click()
+        }
+        else
+        {
+            inputCheckbox.doubleClick()
+        }
+        sleep(1)
+
+        let controlCheckBox = vmpkApp.checkBoxes.firstMatch
+        XCTAssertTrue(controlCheckBox.exists)
+        controlCheckBox.click()
+
+        let logsList = app.tables["Midi Logs List"]
+        XCTAssertTrue(logsList.exists)
+
+        let text = logsList.tableRows.firstMatch.staticTexts.firstMatch.value as! String
+        print(text)
+        XCTAssertTrue(text.contains("Control Change"))
+
+        vmpkApp.terminate()
     }
 
     func testLaunchPerformance() throws {
