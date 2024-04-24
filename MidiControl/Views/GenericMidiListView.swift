@@ -29,6 +29,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                     }) {
                         Image(systemName: "plus")
                     }
+                    .accessibilityLabel("Add Midi")
                     Button(action: {
                         withAnimation {
                             if let selected = selectedStroke {
@@ -39,6 +40,7 @@ struct GenericMidiListView<T: NSManagedObject & ICDMidiMessage>: View {
                     }) {
                         Image(systemName: "minus")
                     }
+                    .accessibilityLabel("Remove Midi")
                 }
                 List(selection: $selectedStroke) {
                     ForEach(messages, id: \.self) { stroke in
